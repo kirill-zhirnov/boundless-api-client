@@ -1,0 +1,7 @@
+{
+  "name": "boundless-api-client",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
+  "license": "BSD 3-Clause License"
+}
