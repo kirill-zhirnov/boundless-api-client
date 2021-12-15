@@ -8,10 +8,3 @@
 ```
 yarn build
 ```
-
-
-### To build ESModules lib
-```
-yarn build-esm
-```
-

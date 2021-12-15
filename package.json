@@ -6,12 +6,19 @@
   "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
   "license": "BSD-3-Clause",
   "files": [
-    "/lib",
-    "/lib-esm"
+    "/lib"
   ],
+	"exports": {
+		".": "./lib/index.js",
+		"./token": "./lib/token.js"
+	},
+	"typesVersions": {
+		"*": {
+			"token": ["lib/token.d.ts"]
+		}
+	},
   "scripts": {
     "build": "npx tsc",
-    "build-esm": "npx tsc -m es6 --outDir lib-esm",
     "lint": "npx eslint --ext .ts ./src/"
   },
   "dependencies": {

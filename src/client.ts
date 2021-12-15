@@ -7,70 +7,68 @@ const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 */
 
 export class BoundlessClient {
-    protected server: AxiosInstance | null = null;
-    protected instanceId: number | null = null;
+	protected server: AxiosInstance|null = null;
+	protected instanceId: number|null = null;
 
-    /**
-    * Create an instance of Boundless Commerce API client.
-    * 
-    * @param {string} token - permanent or regular token. Regular token can be generated with generateBoundlessToken
-    * @param {string} baseUrl - custom base URL for API requests.
-    */
-    constructor(protected token: string, protected baseUrl: string = DEFAULT_BASE_URL) {
-        if (!token) throw new Error('Token is required for authorization');
-    }
+	/**
+	* Create an instance of Boundless Commerce API client.
+	*
+	* @param {string} token - permanent or regular token. Regular token can be generated with generateBoundlessToken
+	* @param {string} baseUrl - custom base URL for API requests.
+	*/
+	constructor(protected token: string|null = null, protected baseUrl: string = DEFAULT_BASE_URL) {
+	}
 
-    /**
-    * Sets your shop instance ID for getting images.
-    * 
-    * @param {number} instanceId
-    */
-    public setInstanceId(instanceId: number) {
-        this.instanceId = instanceId;
+	/**
+	* Sets your shop instance ID for getting images.
+	*
+	* @param {number} instanceId
+	*/
+	public setInstanceId(instanceId: number) {
+		this.instanceId = instanceId;
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-    * Sets custom base URL for API requests.
-    * 
-    * @param {string} baseURL
-    */
-    public setBaseUrl(baseURL: string) {
-        this.baseUrl = baseURL;
+	/**
+	* Sets auth token for API requests.
+	*
+	* @param {string} token
+	*/
+	public setAuthToken(token: string) {
+		this.token = token;
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-    * Returns a server (axios) instance to make custom API requests.
-    * 
-    * @param {AxiosRequestConfig} config - additional axios request config
-    */
-    public createRequest(config: AxiosRequestConfig = {}) {
-        this.setupAxios(config);
+	/**
+	* Sets custom base URL for API requests.
+	*
+	* @param {string} baseURL
+	*/
+	public setBaseUrl(baseURL: string) {
+		this.baseUrl = baseURL;
 
-        return this.server;
-    }
+		return this;
+	}
 
-    private setupAxios(config: AxiosRequestConfig = {}) {
-        this.server = axios.create(Object.assign({
-            baseURL: this.baseUrl,
-            proxy: false
-        }, config));
+	/**
+	* Returns an axios instance to make custom API requests.
+	*
+	* @param {AxiosRequestConfig} config - additional axios request config
+	*/
+	public createRequest(config: AxiosRequestConfig = {}): AxiosInstance {
+		if (!this.token) {
+			throw new Error('Token is required for authorization, use setAuthToken to set the token');
+		}
 
-        this.server.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
-    }
-}
+		const instance = axios.create(Object.assign({
+			baseURL: this.baseUrl,
+			proxy: false
+		}, config));
 
-export class BoundlessClientStatic extends BoundlessClient {
+		instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
 
-    /**
-    * Creates an instance of Boundless Commerce API client.
-    * 
-    * @param {string} token - permanent or regular token. Regular token cab be generated with generateBoundlessToken
-    */
-    create(token: string) {
-        return new BoundlessClient(token);
-    }
+		return instance;
+	}
 }
