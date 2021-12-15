@@ -1,16 +1,25 @@
 {
   "name": "boundless-api-client",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
   "license": "BSD-3-Clause",
+  "files": [
+    "/lib",
+    "/lib-esm"
+  ],
   "scripts": {
+    "build": "npx tsc",
+    "build-esm": "npx tsc -m es6 --outDir lib-esm",
     "lint": "npx eslint --ext .ts ./src/"
   },
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@types/node": "^16.11.12",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^8.4.1",
