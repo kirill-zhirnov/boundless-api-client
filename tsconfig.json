@@ -3,11 +3,12 @@
         "module": "commonjs",
         "target": "ES6",
         "declaration": true,
-        "outDir": "./lib",
+        "outDir": "./",
         "sourceMap": false,
         "moduleResolution": "node"
     },
-    "include": [
-        "./src/**/*"
+    "files": [
+        "./src/index.ts",
+        "./src/token.ts"
     ],
 }

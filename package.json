@@ -1,21 +1,21 @@
 {
   "name": "boundless-api-client",
   "version": "0.0.1",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
   "license": "BSD-3-Clause",
   "files": [
-    "/lib"
+    "/"
   ],
 	"exports": {
-		".": "./lib/index.js",
-		"./lib/token.js": "./lib/token.js",
-		"./token": "./lib/token.js"
+		".": "./index.js",
+		"./token.js": "./token.js",
+		"./token": "./token.js"
 	},
 	"typesVersions": {
 		"*": {
-			"token": ["lib/token.d.ts"]
+			"token": ["token.d.ts"]
 		}
 	},
   "scripts": {
