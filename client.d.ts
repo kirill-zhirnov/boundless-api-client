@@ -1,4 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import CatalogApi from './endpoints/catalog';
 /**
 * Boundless Commerce API client.
 */
@@ -7,6 +8,7 @@ export declare class BoundlessClient {
     protected baseUrl: string;
     protected server: AxiosInstance | null;
     protected instanceId: number | null;
+    catalog: CatalogApi;
     /**
     * Create an instance of Boundless Commerce API client.
     *
