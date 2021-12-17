@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import CatalogApi from './endpoints/catalog';
 
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 
@@ -10,6 +11,8 @@ export class BoundlessClient {
 	protected server: AxiosInstance|null = null;
 	protected instanceId: number|null = null;
 
+	public catalog: CatalogApi;
+
 	/**
 	* Create an instance of Boundless Commerce API client.
 	*
@@ -17,6 +20,7 @@ export class BoundlessClient {
 	* @param {string} baseUrl - custom base URL for API requests.
 	*/
 	constructor(protected token: string|null = null, protected baseUrl: string = DEFAULT_BASE_URL) {
+		this.catalog = new CatalogApi(this);
 	}
 
 	/**
