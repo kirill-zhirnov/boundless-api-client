@@ -13,10 +13,15 @@ class CatalogApi {
     constructor(client) {
         this.client = client;
     }
-    getProducts() {
+    getProducts(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            const url = '/catalog/products';
-            const { data } = yield this.client.createRequest().get(url);
+            const { data } = yield this.client.createRequest().get('/catalog/products', { params });
+            return data;
+        });
+    }
+    getCategoryTree(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/categories/tree', { params });
             return data;
         });
     }
