@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoundlessClient = void 0;
 const axios_1 = require("axios");
 const catalog_1 = require("./endpoints/catalog");
+const thumb_1 = require("./thumb");
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 /**
 * Boundless Commerce API client.
@@ -17,7 +18,6 @@ class BoundlessClient {
     constructor(token = null, baseUrl = DEFAULT_BASE_URL) {
         this.token = token;
         this.baseUrl = baseUrl;
-        this.server = null;
         this.instanceId = null;
         this.catalog = new catalog_1.default(this);
     }
@@ -63,6 +63,27 @@ class BoundlessClient {
         }, config));
         instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
         return instance;
+    }
+    setS3FolderPrefix(prefix) {
+        this.s3FolderPrefix = prefix;
+        return this;
+    }
+    setMediaServerUrl(url) {
+        this.mediaServerUrl = url;
+        return this;
+    }
+    makeThumb(localPath, maxSize) {
+        const thumb = new thumb_1.BoundlessThumb(localPath, maxSize);
+        if (this.instanceId) {
+            thumb.setInstanceId(this.instanceId);
+        }
+        if (this.s3FolderPrefix) {
+            thumb.setFolderPrefix(this.s3FolderPrefix);
+        }
+        if (this.mediaServerUrl) {
+            thumb.setMediaServerUrl(this.mediaServerUrl);
+        }
+        return thumb;
     }
 }
 exports.BoundlessClient = BoundlessClient;

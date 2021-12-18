@@ -9,14 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TGetProductsInStock = void 0;
+const utils_1 = require("../utils");
 class CatalogApi {
     constructor(client) {
         this.client = client;
     }
     getProducts(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data } = yield this.client.createRequest().get('/catalog/products', { params });
-            return data;
+            const { headers, data: products } = yield this.client.createRequest().get('/catalog/products', { params });
+            const pagination = (0, utils_1.extractPaginationFromHeaders)(headers);
+            return { products, pagination };
         });
     }
     getCategoryTree(params = {}) {
@@ -27,3 +30,8 @@ class CatalogApi {
     }
 }
 exports.default = CatalogApi;
+var TGetProductsInStock;
+(function (TGetProductsInStock) {
+    TGetProductsInStock["inStock"] = "1";
+    TGetProductsInStock["outOfStock"] = "0";
+})(TGetProductsInStock = exports.TGetProductsInStock || (exports.TGetProductsInStock = {}));
