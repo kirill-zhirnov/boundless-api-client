@@ -1,5 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import CatalogApi from './endpoints/catalog';
+import {BoundlessThumb} from './thumb';
 
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 
@@ -8,10 +9,10 @@ const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 */
 
 export class BoundlessClient {
-	protected server: AxiosInstance|null = null;
 	protected instanceId: number|null = null;
-
-	public catalog: CatalogApi;
+	protected s3FolderPrefix?: string;
+	protected mediaServerUrl?: string;
+	public readonly catalog: CatalogApi;
 
 	/**
 	* Create an instance of Boundless Commerce API client.
@@ -74,5 +75,33 @@ export class BoundlessClient {
 		instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
 
 		return instance;
+	}
+
+	public setS3FolderPrefix(prefix: string) {
+		this.s3FolderPrefix = prefix;
+		return this;
+	}
+
+	public setMediaServerUrl(url: string) {
+		this.mediaServerUrl = url;
+		return this;
+	}
+
+	public makeThumb(localPath: string, maxSize: number): BoundlessThumb {
+		const thumb = new BoundlessThumb(localPath, maxSize);
+
+		if (this.instanceId) {
+			thumb.setInstanceId(this.instanceId);
+		}
+
+		if (this.s3FolderPrefix) {
+			thumb.setFolderPrefix(this.s3FolderPrefix);
+		}
+
+		if (this.mediaServerUrl) {
+			thumb.setMediaServerUrl(this.mediaServerUrl);
+		}
+
+		return thumb;
 	}
 }
