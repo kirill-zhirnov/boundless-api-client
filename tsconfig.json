@@ -1,13 +1,14 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES6",
-        "declaration": true,
-        "outDir": "./lib",
-        "sourceMap": false,
-        "moduleResolution": "node"
-    },
-    "include": [
-        "./src/**/*"
-    ],
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES6",
+		"declaration": true,
+		"outDir": "./",
+		"sourceMap": false,
+		"moduleResolution": "node"
+	},
+	"files": [
+		"./src/index.ts",
+		"./src/token.ts"
+	]
 }

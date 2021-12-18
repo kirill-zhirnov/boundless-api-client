@@ -1,12 +1,16 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import CatalogApi from './endpoints/catalog';
+import { BoundlessThumb } from './thumb';
 /**
 * Boundless Commerce API client.
 */
 export declare class BoundlessClient {
     protected token: string | null;
     protected baseUrl: string;
-    protected server: AxiosInstance | null;
     protected instanceId: number | null;
+    protected s3FolderPrefix?: string;
+    protected mediaServerUrl?: string;
+    readonly catalog: CatalogApi;
     /**
     * Create an instance of Boundless Commerce API client.
     *
@@ -38,4 +42,7 @@ export declare class BoundlessClient {
     * @param {AxiosRequestConfig} config - additional axios request config
     */
     createRequest(config?: AxiosRequestConfig): AxiosInstance;
+    setS3FolderPrefix(prefix: string): this;
+    setMediaServerUrl(url: string): this;
+    makeThumb(localPath: string, maxSize: number): BoundlessThumb;
 }

@@ -1,26 +1,29 @@
 {
   "name": "boundless-api-client",
   "version": "0.0.1",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
   "license": "BSD-3-Clause",
   "files": [
-    "/lib"
+    "/"
   ],
-	"exports": {
-		".": "./lib/index.js",
-		"./lib/token.js": "./lib/token.js",
-		"./token": "./lib/token.js"
-	},
-	"typesVersions": {
-		"*": {
-			"token": ["lib/token.d.ts"]
-		}
-	},
+  "exports": {
+    ".": "./index.js",
+    "./token.js": "./token.js",
+    "./token": "./token.js"
+  },
+  "typesVersions": {
+    "*": {
+      "token": [
+        "token.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "npx tsc",
-    "lint": "npx eslint --ext .ts ./src/"
+    "lint": "npx eslint --ext .ts ./src/",
+		"clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -31,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^8.4.1",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.3"
   }
 }
