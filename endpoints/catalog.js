@@ -30,7 +30,15 @@ class CatalogApi {
     }
     getCategoryItem(slugOrId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`);
+            let data = null;
+            try {
+                ({ data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
+            }
+            catch (err) {
+                if (err.response.status !== 404) {
+                    throw err;
+                }
+            }
             return data;
         });
     }

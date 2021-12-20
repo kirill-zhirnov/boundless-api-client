@@ -5,7 +5,7 @@ import {extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 
 export default class CatalogApi {
-	constructor(protected client: BoundlessClient) {}
+	constructor(protected client: BoundlessClient) { }
 
 	async getProducts(params: IGetProductsParams = {}): Promise<{products: IProduct[], pagination: IPagination}> {
 		const {headers, data: products} = await this.client.createRequest().get('/catalog/products', {params});
@@ -20,8 +20,15 @@ export default class CatalogApi {
 		return data;
 	}
 
-	async getCategoryItem(slugOrId: string|number): Promise<ICategoryItem> {
-		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`);
+	async getCategoryItem(slugOrId: string | number): Promise<ICategoryItem> {
+		let data = null;
+		try {
+			({data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
+		} catch (err) {
+			if (err.response.status !== 404) {
+				throw err;
+			}
+		}
 
 		return data;
 	}
@@ -33,10 +40,10 @@ export enum TGetProductsInStock {
 }
 
 export interface IGetProductsParams {
-	product?: (string|number)[];
-	category?: (number|string)[];
+	product?: (string | number)[];
+	category?: (number | string)[];
 	collection?: number[];
-	props?: {[key: number]: string|number|(string|number)[]};
+	props?: {[key: number]: string | number | (string | number)[]};
 	in_stock?: TGetProductsInStock;
 	price_min?: number;
 	price_max?: number;
@@ -48,5 +55,5 @@ export interface IGetProductsParams {
 
 export interface IGetCategoryTreeParams {
 	menu?: 'category';
-	calc_products?: 0|1;
+	calc_products?: 0 | 1;
 }
