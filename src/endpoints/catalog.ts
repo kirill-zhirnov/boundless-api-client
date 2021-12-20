@@ -1,6 +1,6 @@
 import {BoundlessClient} from '../client';
 import {IProduct} from '../types/catalog/product';
-import {ICategory, ICategoryItem} from '../types/catalog/category';
+import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
 import {extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 
@@ -21,6 +21,8 @@ export default class CatalogApi {
 	}
 
 	async getCategoryItem(slugOrId: string | number): Promise<ICategoryItem> {
+		if (!slugOrId) return null;
+
 		let data = null;
 		try {
 			({data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
@@ -32,6 +34,13 @@ export default class CatalogApi {
 
 		return data;
 	}
+
+	async getFlatCategories(params: IGetCategoryFlatParams = {}): Promise<ICategoryFlatItem[]> {
+		const {data} = await this.client.createRequest().get('/catalog/categories/flat', {params});
+
+		return data;
+	}
+
 }
 
 export enum TGetProductsInStock {
@@ -56,4 +65,12 @@ export interface IGetProductsParams {
 export interface IGetCategoryTreeParams {
 	menu?: 'category';
 	calc_products?: 0 | 1;
+}
+
+export interface IGetCategoryFlatParams {
+	menu?: 'category';
+	calc_products?: 0 | 1;
+	parent?: number;
+	brand?: number[];
+	sort?: string;
 }

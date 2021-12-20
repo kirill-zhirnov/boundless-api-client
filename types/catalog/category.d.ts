@@ -26,6 +26,17 @@ export interface ICategoryItem {
     text: ICategoryText | null;
     props: ICategoryProps | null;
 }
+export interface ICategoryFlatItem {
+    category_id: number;
+    level: number;
+    tree_sort: string;
+    joined_title: string | null;
+    title: string | null;
+    url_key: string | null;
+    parent_id: number | null;
+    icon: ICategoryIcon | null;
+    custom_link: string | null;
+}
 interface ICategoryIcon {
     type: 'icon' | 'image';
     icon?: string | null;

@@ -30,6 +30,8 @@ class CatalogApi {
     }
     getCategoryItem(slugOrId) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!slugOrId)
+                return null;
             let data = null;
             try {
                 ({ data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
@@ -39,6 +41,12 @@ class CatalogApi {
                     throw err;
                 }
             }
+            return data;
+        });
+    }
+    getFlatCategories(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/categories/flat', { params });
             return data;
         });
     }
