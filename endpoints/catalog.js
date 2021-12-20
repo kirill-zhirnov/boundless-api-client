@@ -28,6 +28,12 @@ class CatalogApi {
             return data;
         });
     }
+    getCategoryItem(slugOrId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`);
+            return data;
+        });
+    }
 }
 exports.default = CatalogApi;
 var TGetProductsInStock;

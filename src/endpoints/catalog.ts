@@ -1,6 +1,6 @@
 import {BoundlessClient} from '../client';
 import {IProduct} from '../types/catalog/product';
-import {ICategory} from '../types/catalog/category';
+import {ICategory, ICategoryItem} from '../types/catalog/category';
 import {extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 
@@ -16,6 +16,12 @@ export default class CatalogApi {
 
 	async getCategoryTree(params: IGetCategoryTreeParams = {}): Promise<ICategory[]> {
 		const {data} = await this.client.createRequest().get('/catalog/categories/tree', {params});
+
+		return data;
+	}
+
+	async getCategoryItem(slugOrId: string|number): Promise<ICategoryItem> {
+		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`);
 
 		return data;
 	}

@@ -1,6 +1,6 @@
 import { BoundlessClient } from '../client';
 import { IProduct } from '../types/catalog/product';
-import { ICategory } from '../types/catalog/category';
+import { ICategory, ICategoryItem } from '../types/catalog/category';
 import { IPagination } from '../types/common';
 export default class CatalogApi {
     protected client: BoundlessClient;
@@ -10,6 +10,7 @@ export default class CatalogApi {
         pagination: IPagination;
     }>;
     getCategoryTree(params?: IGetCategoryTreeParams): Promise<ICategory[]>;
+    getCategoryItem(slugOrId: string | number): Promise<ICategoryItem>;
 }
 export declare enum TGetProductsInStock {
     inStock = "1",
