@@ -20,12 +20,12 @@ export default class CatalogApi {
 		return data;
 	}
 
-	async getCategoryItem(slugOrId: string | number): Promise<ICategoryItem> {
+	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}): Promise<ICategoryItem> {
 		if (!slugOrId) return null;
 
 		let data = null;
 		try {
-			({data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
+			({data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`, {params}));
 		} catch (err) {
 			if (err.response.status !== 404) {
 				throw err;
@@ -40,7 +40,6 @@ export default class CatalogApi {
 
 		return data;
 	}
-
 }
 
 export enum TGetProductsInStock {
@@ -70,7 +69,13 @@ export interface IGetCategoryTreeParams {
 export interface IGetCategoryFlatParams {
 	menu?: 'category';
 	calc_products?: 0 | 1;
+	calc_children?: 0 | 1;
 	parent?: number;
 	brand?: number[];
 	sort?: string;
+}
+
+export interface IGetCategoryItemParams {
+	with_children?: 0 | 1;
+	with_siblings?: 0 | 1;
 }

@@ -10,7 +10,7 @@ export default class CatalogApi {
         pagination: IPagination;
     }>;
     getCategoryTree(params?: IGetCategoryTreeParams): Promise<ICategory[]>;
-    getCategoryItem(slugOrId: string | number): Promise<ICategoryItem>;
+    getCategoryItem(slugOrId: number | string, params?: IGetCategoryItemParams): Promise<ICategoryItem>;
     getFlatCategories(params?: IGetCategoryFlatParams): Promise<ICategoryFlatItem[]>;
 }
 export declare enum TGetProductsInStock {
@@ -39,7 +39,12 @@ export interface IGetCategoryTreeParams {
 export interface IGetCategoryFlatParams {
     menu?: 'category';
     calc_products?: 0 | 1;
+    calc_children?: 0 | 1;
     parent?: number;
     brand?: number[];
     sort?: string;
+}
+export interface IGetCategoryItemParams {
+    with_children?: 0 | 1;
+    with_siblings?: 0 | 1;
 }

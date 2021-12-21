@@ -28,13 +28,13 @@ class CatalogApi {
             return data;
         });
     }
-    getCategoryItem(slugOrId) {
+    getCategoryItem(slugOrId, params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!slugOrId)
                 return null;
             let data = null;
             try {
-                ({ data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`));
+                ({ data } = yield this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`, { params }));
             }
             catch (err) {
                 if (err.response.status !== 404) {

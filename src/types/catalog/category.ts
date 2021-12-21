@@ -1,4 +1,5 @@
 import {TPublishingStatus} from '../common';
+import {ICategoryImage} from '../image';
 
 export interface ICategory {
 	category_id: number;
@@ -7,44 +8,41 @@ export interface ICategory {
 	url_key: string|null;
 	tree_sort: string|null;
 	level: number;
-	image_id?: number|null;
-	image_path?: string|null;
-	icon?: ICategoryIcon|null;
+	image?: ICategoryImage|null;
 	custom_link: string|null;
-	children: ICategory[]|null;
+	children?: ICategory[]|null;
 }
 
 export interface ICategoryItem {
 	category_id: number;
 	parent_id: number|null;
-	site_id: number|null;
 	sort: number;
 	created_at: string;
 	deleted_at: string|null;
 	external_id: number|string|null;
 	status: TPublishingStatus;
 	created_by: number|null;
-	icon: ICategoryIcon|ICategoryIcon[];
+	image_id: number|null;
+	products_qty?: number;
+	image?: ICategoryImage|null;
 	text: ICategoryText|null;
 	props: ICategoryProps|null;
+	children?: ICategoryFlatItem[];
+	siblings?: ICategoryFlatItem[];
 }
 
 export interface ICategoryFlatItem {
 	category_id: number;
+	parent_id: number|null;
+	title: string|null;
+	url_key: string|null;
 	level: number;
 	tree_sort: string;
 	joined_title: string|null;
-	title: string|null;
-	url_key: string|null;
-	parent_id: number|null;
-	icon: ICategoryIcon|null;
+	image?: ICategoryImage|null;
 	custom_link: string|null;
-}
-
-interface ICategoryIcon {
-	type: 'icon'|'image';
-	icon?: string|null;
-	image?: string|null;
+	products_qty?: number;
+	children_qty?: number;
 }
 
 interface ICategoryText {
