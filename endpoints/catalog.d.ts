@@ -12,6 +12,7 @@ export default class CatalogApi {
     getCategoryTree(params?: IGetCategoryTreeParams): Promise<ICategory[]>;
     getCategoryItem(slugOrId: number | string, params?: IGetCategoryItemParams): Promise<ICategoryItem>;
     getFlatCategories(params?: IGetCategoryFlatParams): Promise<ICategoryFlatItem[]>;
+    getCategoryParents(categoryId: number): Promise<ICategoryFlatItem[]>;
 }
 export declare enum TGetProductsInStock {
     inStock = "1",
@@ -47,4 +48,5 @@ export interface IGetCategoryFlatParams {
 export interface IGetCategoryItemParams {
     with_children?: 0 | 1;
     with_siblings?: 0 | 1;
+    with_parents?: 0 | 1;
 }

@@ -50,6 +50,12 @@ class CatalogApi {
             return data;
         });
     }
+    getCategoryParents(categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/categories/parents', { params: { category: categoryId } });
+            return data;
+        });
+    }
 }
 exports.default = CatalogApi;
 var TGetProductsInStock;
