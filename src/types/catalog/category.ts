@@ -29,6 +29,7 @@ export interface ICategoryItem {
 	props: ICategoryProps|null;
 	children?: ICategoryFlatItem[];
 	siblings?: ICategoryFlatItem[];
+	parents?: ICategoryFlatItem[];
 }
 
 export interface ICategoryFlatItem {

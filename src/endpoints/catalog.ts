@@ -40,6 +40,12 @@ export default class CatalogApi {
 
 		return data;
 	}
+
+	async getCategoryParents(categoryId: number): Promise<ICategoryFlatItem[]> {
+		const {data} = await this.client.createRequest().get('/catalog/categories/parents', {params: {category: categoryId}});
+
+		return data;
+	}
 }
 
 export enum TGetProductsInStock {
@@ -78,4 +84,5 @@ export interface IGetCategoryFlatParams {
 export interface IGetCategoryItemParams {
 	with_children?: 0 | 1;
 	with_siblings?: 0 | 1;
+	with_parents?: 0 | 1;
 }
