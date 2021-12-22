@@ -1,6 +1,11 @@
 import {IPagination} from './types/common';
 
 export function extractPaginationFromHeaders(headers: {[key: string]: string}): IPagination {
+	const parsedHeaders = {};
+	for (const [key, value] of Object.entries(headers)) {
+		parsedHeaders[key.toLowerCase()] = value;
+	}
+
 	const headers2Keys = {
 		'x-pagination-total-count': 'totalCount',
 		'x-pagination-page-count': 'pageCount',
@@ -11,8 +16,8 @@ export function extractPaginationFromHeaders(headers: {[key: string]: string}): 
 	const pagination: Partial<IPagination> = {};
 
 	for (const [header, key] of Object.entries(headers2Keys)) {
-		if (header in headers) {
-			pagination[key] = parseInt(headers[header]);
+		if (header in parsedHeaders) {
+			pagination[key] = parseInt(parsedHeaders[header]);
 		}
 	}
 

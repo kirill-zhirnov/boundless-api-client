@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createGetStr = exports.extractPaginationFromHeaders = void 0;
 function extractPaginationFromHeaders(headers) {
+    const parsedHeaders = {};
+    for (const [key, value] of Object.entries(headers)) {
+        parsedHeaders[key.toLowerCase()] = value;
+    }
     const headers2Keys = {
         'x-pagination-total-count': 'totalCount',
         'x-pagination-page-count': 'pageCount',
@@ -10,8 +14,8 @@ function extractPaginationFromHeaders(headers) {
     };
     const pagination = {};
     for (const [header, key] of Object.entries(headers2Keys)) {
-        if (header in headers) {
-            pagination[key] = parseInt(headers[header]);
+        if (header in parsedHeaders) {
+            pagination[key] = parseInt(parsedHeaders[header]);
         }
     }
     return pagination;
