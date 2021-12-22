@@ -23,14 +23,7 @@ export default class CatalogApi {
 	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}): Promise<ICategoryItem> {
 		if (!slugOrId) return null;
 
-		let data = null;
-		try {
-			({data} = await this.client.createRequest().get(`/catalog/categories/item/${String(slugOrId)}`, {params}));
-		} catch (err) {
-			if (err.response.status !== 404) {
-				throw err;
-			}
-		}
+		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, {params});
 
 		return data;
 	}
