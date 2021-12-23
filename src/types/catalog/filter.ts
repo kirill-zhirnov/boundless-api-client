@@ -8,7 +8,7 @@ export interface IFilter {
 	fields: IFilterField[];
 }
 
-interface IFilterField {
+export interface IFilterField {
 	field_id: number;
 	filter_id: number;
 	type: IFilterFieldType;
