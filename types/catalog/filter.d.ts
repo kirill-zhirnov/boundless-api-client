@@ -9,12 +9,12 @@ export interface IFilter {
 export interface IFilterField {
     field_id: number;
     filter_id: number;
-    type: IFilterFieldType;
+    type: TFilterFieldType;
     characteristic_id: number | null;
     sort: number;
     characteristic: ICharacteristic | null;
 }
-export declare enum IFilterFieldType {
+export declare enum TFilterFieldType {
     category = "category",
     brand = "brand",
     price = "price",

@@ -11,13 +11,13 @@ export interface IFilter {
 export interface IFilterField {
 	field_id: number;
 	filter_id: number;
-	type: IFilterFieldType;
+	type: TFilterFieldType;
 	characteristic_id: number | null;
 	sort: number;
 	characteristic: ICharacteristic | null
 }
 
-export enum IFilterFieldType {
+export enum TFilterFieldType {
 	category = 'category', //deprecated
 	brand = 'brand',
 	price = 'price',

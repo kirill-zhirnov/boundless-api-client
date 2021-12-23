@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IFilterFieldType = void 0;
-var IFilterFieldType;
-(function (IFilterFieldType) {
-    IFilterFieldType["category"] = "category";
-    IFilterFieldType["brand"] = "brand";
-    IFilterFieldType["price"] = "price";
-    IFilterFieldType["availability"] = "availability";
-    IFilterFieldType["characteristic"] = "characteristic";
-})(IFilterFieldType = exports.IFilterFieldType || (exports.IFilterFieldType = {}));
+exports.TFilterFieldType = void 0;
+var TFilterFieldType;
+(function (TFilterFieldType) {
+    TFilterFieldType["category"] = "category";
+    TFilterFieldType["brand"] = "brand";
+    TFilterFieldType["price"] = "price";
+    TFilterFieldType["availability"] = "availability";
+    TFilterFieldType["characteristic"] = "characteristic";
+})(TFilterFieldType = exports.TFilterFieldType || (exports.TFilterFieldType = {}));
