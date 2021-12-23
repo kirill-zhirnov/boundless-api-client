@@ -12,8 +12,6 @@
     ".": "./index.js",
     "./token.js": "./token.js",
     "./token": "./token.js",
-    "./filter.js": "./filter.js",
-    "./filter": "./filter.js",
     "./utils.js": "./utils.js",
     "./utils": "./utils.js"
   },
@@ -24,9 +22,6 @@
       ],
       "utils": [
         "utils.d.ts"
-      ],
-      "filter": [
-        "filter.d.ts"
       ]
     }
   },
