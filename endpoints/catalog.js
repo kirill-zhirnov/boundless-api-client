@@ -48,6 +48,12 @@ class CatalogApi {
             return data;
         });
     }
+    getFilters(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/filters', { params });
+            return data;
+        });
+    }
 }
 exports.default = CatalogApi;
 var TGetProductsInStock;
