@@ -41,7 +41,7 @@ export default class CatalogApi {
 		return data;
 	}
 
-	async getFilters(params: IGetFiltersParams): Promise<IFilter[]> {
+	async getFilters(params: IGetFiltersParams = {}): Promise<IFilter[]> {
 		const {data} = await this.client.createRequest().get('/catalog/filters', {params});
 
 		return data;
