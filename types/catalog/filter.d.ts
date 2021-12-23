@@ -6,7 +6,7 @@ export interface IFilter {
     created_at: string;
     fields: IFilterField[];
 }
-interface IFilterField {
+export interface IFilterField {
     field_id: number;
     filter_id: number;
     type: IFilterFieldType;
@@ -21,4 +21,3 @@ export declare enum IFilterFieldType {
     availability = "availability",
     characteristic = "characteristic"
 }
-export {};
