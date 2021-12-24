@@ -19,4 +19,4 @@ __exportStar(require("./types/catalog/filter"), exports);
 __exportStar(require("./types/catalog/product"), exports);
 __exportStar(require("./types/catalog/category"), exports);
 __exportStar(require("./types/catalog/characteristic"), exports);
-__exportStar(require("./endpoints/catalog"), exports);
+__exportStar(require("./endpoints/catalog"), exports); // FIXME organize exports

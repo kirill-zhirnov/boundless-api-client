@@ -6,4 +6,4 @@ export * from './types/catalog/product';
 export * from './types/catalog/category';
 export * from './types/catalog/characteristic';
 
-export * from './endpoints/catalog';
+export * from './endpoints/catalog'; // FIXME organize exports
