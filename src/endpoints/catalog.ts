@@ -4,6 +4,8 @@ import {IFilter} from '../types/catalog/filter';
 import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
 import {extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
+import {IProductManufacturer} from '../types/catalog/product';
+import {ICharacteristic} from '..';
 
 export default class CatalogApi {
 	constructor(protected client: BoundlessClient) { }
@@ -43,6 +45,12 @@ export default class CatalogApi {
 
 	async getFilters(params: IGetFiltersParams = {}): Promise<IFilter[]> {
 		const {data} = await this.client.createRequest().get('/catalog/filters', {params});
+
+		return data;
+	}
+
+	async getFiltersProps(request: IFiltersPropsRequest): Promise<IFiltersPropsResponse> {
+		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields', request);
 
 		return data;
 	}
@@ -89,4 +97,35 @@ export interface IGetCategoryItemParams {
 
 export interface IGetFiltersParams {
 	is_default?: 0 | 1;
+}
+
+export interface IFiltersPropsRequest {
+	filter_fields: IFilterFieldRequest[];
+	values: IGetProductsParams;
+}
+
+export interface IFiltersPropsResponse {
+	filters: IFilterFieldProp[];
+}
+
+export interface IFilterFieldRequest {
+	type: TFilterType,
+	characteristic_id?: number;
+}
+
+export enum TFilterType {
+	price_range =	'price_range',
+	manufacturer = 'manufacturer',
+	characteristic = 'characteristic'
+}
+
+export interface IFilterFieldProp {
+	type: TFilterType,
+	range?: {
+		min: string;
+		max: string;
+	}
+	manufacturers?: (IProductManufacturer & {product_qty: number})[]
+	characteristic_id?: number;
+	characteristic?: ICharacteristic;
 }

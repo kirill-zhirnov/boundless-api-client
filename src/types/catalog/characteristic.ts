@@ -3,9 +3,10 @@ export interface ICharacteristic {
 	parent_id: number;
 	group_id: number;
 	type: TCharacteristicType;
-	alias: string|null;
+	alias: string | null;
 	sort: number;
 	title: string;
+	cases?: ICharacteristicCase[]
 }
 
 export enum TCharacteristicType {
@@ -14,4 +15,12 @@ export enum TCharacteristicType {
 	select = 'select',
 	text = 'text',
 	textarea = 'textarea'
+}
+
+export interface ICharacteristicCase {
+	case_id: number;
+	characteristic_id: number;
+	sort: number;
+	title: string;
+	products_qty: number;
 }

@@ -6,6 +6,7 @@ export interface ICharacteristic {
     alias: string | null;
     sort: number;
     title: string;
+    cases?: ICharacteristicCase[];
 }
 export declare enum TCharacteristicType {
     checkbox = "checkbox",
@@ -13,4 +14,11 @@ export declare enum TCharacteristicType {
     select = "select",
     text = "text",
     textarea = "textarea"
+}
+export interface ICharacteristicCase {
+    case_id: number;
+    characteristic_id: number;
+    sort: number;
+    title: string;
+    products_qty: number;
 }
