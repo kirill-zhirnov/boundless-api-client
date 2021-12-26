@@ -49,8 +49,8 @@ export default class CatalogApi {
 		return data;
 	}
 
-	async getFilterFields(request: IFilterFieldsRequest): Promise<IFilterFieldsResponse> {
-		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields', request);
+	async getFilterFieldsRanges(request: IFilterFieldsRequest): Promise<IFilterFieldsRangesResponse> {
+		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
 
 		return data;
 	}
@@ -104,8 +104,8 @@ export interface IFilterFieldsRequest {
 	values: IGetProductsParams;
 }
 
-export interface IFilterFieldsResponse {
-	filterFields: IFilterFieldProp[];
+export interface IFilterFieldsRangesResponse {
+	ranges: IFilterFieldRange[];
 }
 
 export interface IFilterFieldRequest {
@@ -119,7 +119,7 @@ export enum TFilterType {
 	characteristic = 'characteristic'
 }
 
-export interface IFilterFieldProp {
+export interface IFilterFieldRange {
 	type: TFilterType,
 	range?: {
 		min: string;

@@ -54,9 +54,9 @@ class CatalogApi {
             return data;
         });
     }
-    getFilterFields(request) {
+    getFilterFieldsRanges(request) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data } = yield this.client.createRequest().post('/catalog/products/filter-fields', request);
+            const { data } = yield this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
             return data;
         });
     }
