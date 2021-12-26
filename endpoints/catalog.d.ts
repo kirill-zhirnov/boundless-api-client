@@ -17,7 +17,7 @@ export default class CatalogApi {
     getFlatCategories(params?: IGetCategoryFlatParams): Promise<ICategoryFlatItem[]>;
     getCategoryParents(categoryId: number): Promise<ICategoryFlatItem[]>;
     getFilters(params?: IGetFiltersParams): Promise<IFilter[]>;
-    getFilterFields(request: IFilterFieldsRequest): Promise<IFiltersPropsResponse>;
+    getFilterFields(request: IFilterFieldsRequest): Promise<IFilterFieldsResponse>;
 }
 export declare enum TGetProductsInStock {
     inStock = "1",
@@ -62,7 +62,7 @@ export interface IFilterFieldsRequest {
     filter_fields: IFilterFieldRequest[];
     values: IGetProductsParams;
 }
-export interface IFiltersPropsResponse {
+export interface IFilterFieldsResponse {
     filters: IFilterFieldProp[];
 }
 export interface IFilterFieldRequest {

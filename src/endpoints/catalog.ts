@@ -49,7 +49,7 @@ export default class CatalogApi {
 		return data;
 	}
 
-	async getFilterFields(request: IFilterFieldsRequest): Promise<IFiltersPropsResponse> {
+	async getFilterFields(request: IFilterFieldsRequest): Promise<IFilterFieldsResponse> {
 		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields', request);
 
 		return data;
@@ -104,7 +104,7 @@ export interface IFilterFieldsRequest {
 	values: IGetProductsParams;
 }
 
-export interface IFiltersPropsResponse {
+export interface IFilterFieldsResponse {
 	filters: IFilterFieldProp[];
 }
 
