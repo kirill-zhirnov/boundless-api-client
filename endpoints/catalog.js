@@ -54,7 +54,7 @@ class CatalogApi {
             return data;
         });
     }
-    getFiltersProps(request) {
+    getFilterFields(request) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data } = yield this.client.createRequest().post('/catalog/products/filter-fields', request);
             return data;
