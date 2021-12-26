@@ -63,7 +63,7 @@ export interface IFilterFieldsRequest {
     values: IGetProductsParams;
 }
 export interface IFilterFieldsResponse {
-    filters: IFilterFieldProp[];
+    filterFields: IFilterFieldProp[];
 }
 export interface IFilterFieldRequest {
     type: TFilterType;

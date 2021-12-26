@@ -105,7 +105,7 @@ export interface IFilterFieldsRequest {
 }
 
 export interface IFilterFieldsResponse {
-	filters: IFilterFieldProp[];
+	filterFields: IFilterFieldProp[];
 }
 
 export interface IFilterFieldRequest {
