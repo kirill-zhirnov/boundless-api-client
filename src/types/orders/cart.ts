@@ -6,10 +6,11 @@ export interface ICartInfo {
 
 export interface ICartTotal {
 	qty: number;
-	total: number|string;
+	total: number | string;
 }
 
-export interface ICart extends ICartInfo{
+export interface ICart {
+	cart: ICartInfo;
 	items: ICartItem[];
 }
 
