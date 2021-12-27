@@ -97,7 +97,7 @@ export interface IGetCategoryItemParams {
 	with_children?: string | number;
 	with_siblings?: string | number;
 	with_parents?: string | number;
-	with_filters?: string | number;
+	with_filter?: string | number;
 }
 
 export interface IGetFiltersParams {
