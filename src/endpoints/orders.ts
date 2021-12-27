@@ -1,6 +1,6 @@
 import {ICartProduct} from '..';
 import {BoundlessClient} from '../client';
-import {ICartInfo, ICart} from '../types/orders/cart';
+import {ICartInfo, ICart, ICartTotal} from '../types/orders/cart';
 import {IVariant} from '../types/catalog/variant';
 
 export default class OrdersApi {
@@ -81,6 +81,7 @@ export interface IAddToCartResponse {
 	actionRequired?: 'chooseVariant'
 	product?: ICartProduct;
 	variants?: IVariant[];
+	cartTotal?: ICartTotal;
 }
 
 export interface IItemsQty {
