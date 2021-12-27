@@ -101,7 +101,7 @@ export interface IGetFiltersParams {
 
 export interface IFilterFieldsRequest {
 	filter_fields: IFilterFieldRequest[];
-	values: IGetProductsParams;
+	values?: IGetProductsParams;
 }
 
 export interface IFilterFieldsRangesResponse {

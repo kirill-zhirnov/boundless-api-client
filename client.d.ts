@@ -1,5 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import CatalogApi from './endpoints/catalog';
+import OrdersApi from './endpoints/orders';
 import { BoundlessThumb } from './thumb';
 /**
 * Boundless Commerce API client.
@@ -11,6 +12,7 @@ export declare class BoundlessClient {
     protected s3FolderPrefix?: string;
     protected mediaServerUrl?: string;
     readonly catalog: CatalogApi;
+    readonly orders: OrdersApi;
     /**
     * Create an instance of Boundless Commerce API client.
     *

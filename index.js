@@ -15,8 +15,10 @@ var client_1 = require("./client");
 Object.defineProperty(exports, "BoundlessClient", { enumerable: true, get: function () { return client_1.BoundlessClient; } });
 var thumb_1 = require("./thumb");
 Object.defineProperty(exports, "BoundlessThumb", { enumerable: true, get: function () { return thumb_1.BoundlessThumb; } });
+//Types exports:
 __exportStar(require("./types/catalog/filter"), exports);
 __exportStar(require("./types/catalog/product"), exports);
 __exportStar(require("./types/catalog/category"), exports);
 __exportStar(require("./types/catalog/characteristic"), exports);
+__exportStar(require("./types/orders/cart"), exports);
 __exportStar(require("./endpoints/catalog"), exports); // FIXME organize exports
