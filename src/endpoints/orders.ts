@@ -25,5 +25,61 @@ export default class OrdersApi {
 
 		return data;
 	}
+
+	async addItemToCart(cartId: string, itemId: number, qty: number): Promise<IAddToCartResponse> {
+		if (!cartId || !itemId || !qty) throw new Error('Cart ID, item ID and quantity are required');
+
+		const {data} = await this.client.createRequest().post('/orders/cart/add', {
+			cart_id: cartId,
+			item_id: itemId,
+			qty
+		});
+
+		return data;
+	}
+
+	async removeFromCart(cartId: number, items: number[]): Promise<{result: true}> {
+		if (!cartId || !items) throw new Error('Cart ID and item IDs are required');
+
+		const {data} = await this.client.createRequest().post('/orders/cart/rm-items', {
+			cart_id: cartId,
+			items,
+		});
+
+		return data;
+	}
+
+	async setCartItemsQty(cartId: number, items: IItemsQty[]): Promise<{result: true}> {
+		if (!cartId || !items) throw new Error('Cart ID and item are required');
+
+		const {data} = await this.client.createRequest().post('/orders/cart/set-qty', {
+			cart_id: cartId,
+			items,
+		});
+
+		return data;
+	}
+
+	async addCustomItemToCart(cartId: string, title: string, price: number, qty: number): Promise<{result: true}> {
+		if (!cartId || !price || !title ||  !qty) throw new Error('Cart ID, title, price and quantity are required');
+
+		const {data} = await this.client.createRequest().post('/orders/cart/add-custom-item', {
+			cart_id: cartId,
+			price,
+			title,
+			qty
+		});
+
+		return data;
+	}
 }
 
+export interface IAddToCartResponse {
+	result?: true;
+	actionRequired?: 'chooseVariant'
+}
+
+export interface IItemsQty {
+	item_id: number;
+	qty: number;
+}
