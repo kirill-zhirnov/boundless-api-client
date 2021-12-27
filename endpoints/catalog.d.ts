@@ -1,6 +1,6 @@
 import { BoundlessClient } from '../client';
 import { IProduct } from '../types/catalog/product';
-import { IFilter } from '../types/catalog/filter';
+import { IFilter, TFilterFieldType } from '../types/catalog/filter';
 import { ICategory, ICategoryFlatItem, ICategoryItem } from '../types/catalog/category';
 import { IPagination } from '../types/common';
 import { IProductManufacturer } from '../types/catalog/product';
@@ -17,6 +17,7 @@ export default class CatalogApi {
     getFlatCategories(params?: IGetCategoryFlatParams): Promise<ICategoryFlatItem[]>;
     getCategoryParents(categoryId: number): Promise<ICategoryFlatItem[]>;
     getFilters(params?: IGetFiltersParams): Promise<IFilter[]>;
+    getFiltersByCategory(categoryId: number): Promise<IFilter[]>;
     getFilterFieldsRanges(request: IFilterFieldsRequest): Promise<IFilterFieldsRangesResponse>;
 }
 export declare enum TGetProductsInStock {
@@ -51,9 +52,10 @@ export interface IGetCategoryFlatParams {
     sort?: string;
 }
 export interface IGetCategoryItemParams {
-    with_children?: 0 | 1;
-    with_siblings?: 0 | 1;
-    with_parents?: 0 | 1;
+    with_children?: string | number;
+    with_siblings?: string | number;
+    with_parents?: string | number;
+    with_filters?: string | number;
 }
 export interface IGetFiltersParams {
     is_default?: 0 | 1;
@@ -66,16 +68,11 @@ export interface IFilterFieldsRangesResponse {
     ranges: IFilterFieldRange[];
 }
 export interface IFilterFieldRequest {
-    type: TFilterType;
+    type: TFilterFieldType;
     characteristic_id?: number;
 }
-export declare enum TFilterType {
-    price_range = "price_range",
-    manufacturer = "manufacturer",
-    characteristic = "characteristic"
-}
 export interface IFilterFieldRange {
-    type: TFilterType;
+    type: TFilterFieldType;
     range?: {
         min: string;
         max: string;

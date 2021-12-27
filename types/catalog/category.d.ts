@@ -1,5 +1,6 @@
 import { TPublishingStatus } from '../common';
 import { ICategoryImage } from '../image';
+import { IFilter } from './filter';
 export interface ICategory {
     category_id: number;
     parent_id: number | null;
@@ -28,6 +29,7 @@ export interface ICategoryItem {
     children?: ICategoryFlatItem[];
     siblings?: ICategoryFlatItem[];
     parents?: ICategoryFlatItem[];
+    filter?: IFilter;
 }
 export interface ICategoryFlatItem {
     category_id: number;

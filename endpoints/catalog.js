@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TFilterType = exports.TGetProductsInStock = void 0;
+exports.TGetProductsInStock = void 0;
 const utils_1 = require("../utils");
 class CatalogApi {
     constructor(client) {
@@ -30,8 +30,6 @@ class CatalogApi {
     }
     getCategoryItem(slugOrId, params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!slugOrId)
-                return null;
             const { data } = yield this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, { params });
             return data;
         });
@@ -54,6 +52,12 @@ class CatalogApi {
             return data;
         });
     }
+    getFiltersByCategory(categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/catalog/filters/by-category/${categoryId}`);
+            return data;
+        });
+    }
     getFilterFieldsRanges(request) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data } = yield this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
@@ -67,9 +71,3 @@ var TGetProductsInStock;
     TGetProductsInStock["inStock"] = "1";
     TGetProductsInStock["outOfStock"] = "0";
 })(TGetProductsInStock = exports.TGetProductsInStock || (exports.TGetProductsInStock = {}));
-var TFilterType;
-(function (TFilterType) {
-    TFilterType["price_range"] = "price_range";
-    TFilterType["manufacturer"] = "manufacturer";
-    TFilterType["characteristic"] = "characteristic";
-})(TFilterType = exports.TFilterType || (exports.TFilterType = {}));

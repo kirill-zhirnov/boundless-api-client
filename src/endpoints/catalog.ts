@@ -1,6 +1,6 @@
 import {BoundlessClient} from '../client';
 import {IProduct} from '../types/catalog/product';
-import {IFilter} from '../types/catalog/filter';
+import {IFilter, TFilterFieldType} from '../types/catalog/filter';
 import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
 import {extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
@@ -24,8 +24,6 @@ export default class CatalogApi {
 	}
 
 	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}): Promise<ICategoryItem> {
-		if (!slugOrId) return null;
-
 		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, {params});
 
 		return data;
@@ -45,6 +43,12 @@ export default class CatalogApi {
 
 	async getFilters(params: IGetFiltersParams = {}): Promise<IFilter[]> {
 		const {data} = await this.client.createRequest().get('/catalog/filters', {params});
+
+		return data;
+	}
+
+	async getFiltersByCategory(categoryId: number): Promise<IFilter[]> {
+		const {data} = await this.client.createRequest().get(`/catalog/filters/by-category/${categoryId}`);
 
 		return data;
 	}
@@ -90,9 +94,10 @@ export interface IGetCategoryFlatParams {
 }
 
 export interface IGetCategoryItemParams {
-	with_children?: 0 | 1;
-	with_siblings?: 0 | 1;
-	with_parents?: 0 | 1;
+	with_children?: string | number;
+	with_siblings?: string | number;
+	with_parents?: string | number;
+	with_filters?: string | number;
 }
 
 export interface IGetFiltersParams {
@@ -109,18 +114,12 @@ export interface IFilterFieldsRangesResponse {
 }
 
 export interface IFilterFieldRequest {
-	type: TFilterType,
+	type: TFilterFieldType,
 	characteristic_id?: number;
 }
 
-export enum TFilterType {
-	price_range =	'price_range',
-	manufacturer = 'manufacturer',
-	characteristic = 'characteristic'
-}
-
 export interface IFilterFieldRange {
-	type: TFilterType,
+	type: TFilterFieldType,
 	range?: {
 		min: string;
 		max: string;
