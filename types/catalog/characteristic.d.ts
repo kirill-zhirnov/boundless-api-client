@@ -6,7 +6,7 @@ export interface ICharacteristic {
     alias: string | null;
     sort: number;
     title: string;
-    cases: ICharacteristicCase[];
+    cases?: ICharacteristicCase[];
 }
 export declare enum TCharacteristicType {
     checkbox = "checkbox",
