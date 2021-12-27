@@ -69,7 +69,7 @@ export interface IFilterFieldsRangesResponse {
 }
 export interface IFilterFieldRequest {
     type: TFilterFieldType;
-    characteristic_id?: number;
+    characteristic_id?: number | string;
 }
 export interface IFilterFieldRange {
     type: TFilterFieldType;
