@@ -10,9 +10,9 @@ export interface IFilterField {
     field_id: number;
     filter_id: number;
     type: TFilterFieldType;
-    characteristic_id: number | null;
+    characteristic_id?: number;
     sort: number;
-    characteristic: ICharacteristic | null;
+    characteristic?: ICharacteristic;
 }
 export declare enum TFilterFieldType {
     category = "category",
