@@ -1,5 +1,7 @@
+import {ICartProduct} from '..';
 import {BoundlessClient} from '../client';
 import {ICartInfo, ICart} from '../types/orders/cart';
+import {IVariant} from '../types/catalog/variant';
 
 export default class OrdersApi {
 	constructor(protected client: BoundlessClient) { }
@@ -77,6 +79,8 @@ export default class OrdersApi {
 export interface IAddToCartResponse {
 	result?: true;
 	actionRequired?: 'chooseVariant'
+	product?: ICartProduct;
+	variants?: IVariant[];
 }
 
 export interface IItemsQty {
