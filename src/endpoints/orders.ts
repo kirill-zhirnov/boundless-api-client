@@ -40,7 +40,7 @@ export default class OrdersApi {
 		return data;
 	}
 
-	async removeFromCart(cartId: number, items: number[]): Promise<{result: true}> {
+	async removeFromCart(cartId: string, items: number[]): Promise<{result: true}> {
 		if (!cartId || !items) throw new Error('Cart ID and item IDs are required');
 
 		const {data} = await this.client.createRequest().post('/orders/cart/rm-items', {
@@ -51,7 +51,7 @@ export default class OrdersApi {
 		return data;
 	}
 
-	async setCartItemsQty(cartId: number, items: IItemsQty[]): Promise<{result: true}> {
+	async setCartItemsQty(cartId: string, items: IItemsQty[]): Promise<{result: true}> {
 		if (!cartId || !items) throw new Error('Cart ID and item are required');
 
 		const {data} = await this.client.createRequest().post('/orders/cart/set-qty', {

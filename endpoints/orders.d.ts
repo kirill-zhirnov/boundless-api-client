@@ -9,10 +9,10 @@ export default class OrdersApi {
     getCartInfo(cartId: string): Promise<ICartInfo>;
     getCartItems(cartId: string): Promise<ICart>;
     addItemToCart(cartId: string, itemId: number, qty: number): Promise<IAddToCartResponse>;
-    removeFromCart(cartId: number, items: number[]): Promise<{
+    removeFromCart(cartId: string, items: number[]): Promise<{
         result: true;
     }>;
-    setCartItemsQty(cartId: number, items: IItemsQty[]): Promise<{
+    setCartItemsQty(cartId: string, items: IItemsQty[]): Promise<{
         result: true;
     }>;
     addCustomItemToCart(cartId: string, title: string, price: number, qty: number): Promise<{
