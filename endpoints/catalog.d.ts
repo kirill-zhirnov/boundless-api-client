@@ -66,6 +66,7 @@ export interface IFilterFieldsRequest {
 }
 export interface IFilterFieldsRangesResponse {
     ranges: IFilterFieldRange[];
+    totalProducts: number;
 }
 export interface IFilterFieldRequest {
     type: TFilterFieldType;
