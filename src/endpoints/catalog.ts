@@ -2,7 +2,7 @@ import {BoundlessClient} from '../client';
 import {IProduct} from '../types/catalog/product';
 import {IFilter, TFilterFieldType} from '../types/catalog/filter';
 import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
-import {extractPaginationFromHeaders} from '../utils';
+import {createGetStr, extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 import {IProductManufacturer} from '../types/catalog/product';
 import {ICharacteristic} from '..';
@@ -11,7 +11,7 @@ export default class CatalogApi {
 	constructor(protected client: BoundlessClient) { }
 
 	async getProducts(params: IGetProductsParams = {}): Promise<{products: IProduct[], pagination: IPagination}> {
-		const {headers, data: products} = await this.client.createRequest().get('/catalog/products', {params});
+		const {headers, data: products} = await this.client.createRequest().get(`/catalog/products?${createGetStr({...params})}`);
 		const pagination = extractPaginationFromHeaders(headers);
 
 		return {products, pagination};

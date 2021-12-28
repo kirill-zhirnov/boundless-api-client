@@ -24,7 +24,7 @@ export function extractPaginationFromHeaders(headers: {[key: string]: string}): 
 	return pagination as IPagination;
 }
 
-export type TGetParams = {[param: string]: string | object | number} | string[];
+export type TGetParams = {[param: string]: string | number | (string | number)[] | TGetParams} | (string | number)[];
 export function createGetStr(params: TGetParams, skipRoot: string[] = [], prefix: string = '') {
 	const out: string[] = [];
 	const isArray = Array.isArray(params);

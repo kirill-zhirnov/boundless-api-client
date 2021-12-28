@@ -17,7 +17,7 @@ class CatalogApi {
     }
     getProducts(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { headers, data: products } = yield this.client.createRequest().get('/catalog/products', { params });
+            const { headers, data: products } = yield this.client.createRequest().get(`/catalog/products?${(0, utils_1.createGetStr)(Object.assign({}, params))}`);
             const pagination = (0, utils_1.extractPaginationFromHeaders)(headers);
             return { products, pagination };
         });
