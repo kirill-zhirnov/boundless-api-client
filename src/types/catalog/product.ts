@@ -78,9 +78,19 @@ export interface ICartProduct {
 export interface IProductText {
 	product_id: number;
 	title: string;
-	custom_title: string|null;
-	custom_header: string|null;
-	meta_description: string|null;
+	custom_title: string | null;
+	custom_header: string | null;
+	meta_description: string | null;
+	url_key: string | null;
+	description: string | null;
+}
+
+export interface IVwItemProduct {
+	product_id: number;
+	sku: string|null;
+	has_variants: boolean;
+	title: string;
 	url_key: string|null;
-	description: string|null;
+	default_category_id: number;
+	manufacturer_id: number|null;
 }

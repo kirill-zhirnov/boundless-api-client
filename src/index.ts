@@ -7,6 +7,7 @@ export * from './types/catalog/product';
 export * from './types/catalog/category';
 export * from './types/catalog/characteristic';
 export * from './types/catalog/variant';
+export * from './types/catalog/item';
 
 export * from './types/orders/cart';
 

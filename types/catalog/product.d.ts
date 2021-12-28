@@ -80,3 +80,12 @@ export interface IProductText {
     url_key: string | null;
     description: string | null;
 }
+export interface IVwItemProduct {
+    product_id: number;
+    sku: string | null;
+    has_variants: boolean;
+    title: string;
+    url_key: string | null;
+    default_category_id: number;
+    manufacturer_id: number | null;
+}

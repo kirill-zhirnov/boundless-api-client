@@ -1,3 +1,5 @@
+import {IVwItem, IItemPrice} from '../catalog/item';
+
 export interface ICartInfo {
 	id: string;
 	created_at: string;
@@ -15,5 +17,11 @@ export interface ICart {
 }
 
 export interface ICartItem {
-
+	basket_item_id: number;
+	item_id: number;
+	qty: number;
+	item_price_id: number;
+	created_at: string;
+	itemPrice: IItemPrice;
+	vwItem: IVwItem;
 }
