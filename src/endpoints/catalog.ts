@@ -125,7 +125,7 @@ export interface IFilterFieldRange {
 		min: string;
 		max: string;
 	}
-	manufacturers?: (IProductManufacturer & {product_qty: number})[]
+	manufacturers?: (IProductManufacturer & {products_qty: number})[]
 	characteristic_id?: number;
 	characteristic?: ICharacteristic;
 }

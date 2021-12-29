@@ -79,7 +79,7 @@ export interface IFilterFieldRange {
         max: string;
     };
     manufacturers?: (IProductManufacturer & {
-        product_qty: number;
+        products_qty: number;
     })[];
     characteristic_id?: number;
     characteristic?: ICharacteristic;
