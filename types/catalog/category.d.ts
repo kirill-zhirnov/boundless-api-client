@@ -52,7 +52,7 @@ interface ICategoryText {
     custom_header: string | null;
     meta_description: string | null;
     meta_keywords: string | null;
-    url_key: string | number | null;
+    url_key: string | null;
     description_top: string | null;
     description_bottom: string | null;
 }
