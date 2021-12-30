@@ -1,4 +1,5 @@
 import {IPagination} from './types/common';
+import {TThumbRatio} from './types/image';
 
 export function extractPaginationFromHeaders(headers: {[key: string]: string}): IPagination {
 	const parsedHeaders = {};
@@ -41,7 +42,7 @@ export function createGetStr(params: TGetParams, skipRoot: string[] = [], prefix
 			name = key;
 		}
 
-		if ((typeof(val) === 'object' && val !== null) || Array.isArray(val)) {
+		if ((typeof (val) === 'object' && val !== null) || Array.isArray(val)) {
 			out.push(createGetStr(val as {}, [], name));
 		} else {
 			if (val === null) {
@@ -55,3 +56,29 @@ export function createGetStr(params: TGetParams, skipRoot: string[] = [], prefix
 
 	return out.join('&');
 }
+
+export function calcThumbSizeByProportion(maxSize: number, imgRatio: TThumbRatio) {
+	let thumbHeight:number, thumbWidth:number;
+	const parts = imgRatio.split('-');
+
+	const width = parseInt(parts[0]);
+	const height = parseInt(parts[1]);
+
+	if (width === Math.max(width, height)) {
+		thumbWidth = maxSize;
+		thumbHeight = calcProportion(maxSize, height, width);
+	} else {
+		thumbWidth = calcProportion(maxSize, width, height);
+		thumbHeight = maxSize;
+	}
+
+	return {
+		width: thumbWidth,
+		height: thumbHeight
+	};
+}
+
+export function calcProportion(mul1: number, mul2: number, divider: number): number {
+	return Math.round((mul1 * mul2) / divider);
+}
+
