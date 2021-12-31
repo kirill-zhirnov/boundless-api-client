@@ -37,7 +37,7 @@ export interface ICategoryItem {
 export interface ICategoryFlatItem {
 	category_id: number;
 	parent_id: number|null;
-	title: string|null;
+	title: string;
 	url_key: string|null;
 	level: number;
 	tree_sort: string;
