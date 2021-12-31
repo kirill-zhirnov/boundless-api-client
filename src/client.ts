@@ -87,8 +87,8 @@ export class BoundlessClient {
 		return this;
 	}
 
-	public makeThumb(localPath: string, maxSize: number): BoundlessThumb {
-		const thumb = new BoundlessThumb(localPath, maxSize);
+	public makeThumb(localPath: string, maxSize: number, originalWidth?: number, originalHeight?: number): BoundlessThumb {
+		const thumb = new BoundlessThumb(localPath, maxSize, originalWidth, originalHeight);
 
 		if (this.instanceId) {
 			thumb.setInstanceId(this.instanceId);

@@ -5,9 +5,11 @@ const image_1 = require("./types/image");
 const utils_1 = require("./utils");
 const DEFAULT_MEDIA_SERVER = 'https://dev-img.boundless-commerce.com';
 class BoundlessThumb {
-    constructor(imgLocalPath, maxSize) {
+    constructor(imgLocalPath, maxSize, originalWidth, originalHeight) {
         this.imgLocalPath = imgLocalPath;
         this.maxSize = maxSize;
+        this.originalWidth = originalWidth;
+        this.originalHeight = originalHeight;
         this.mediaServerUrl = DEFAULT_MEDIA_SERVER;
         this.mode = image_1.TThumbMode.scale;
     }
@@ -44,6 +46,14 @@ class BoundlessThumb {
             params.blur = this.blur;
         }
         return `${this.mediaServerUrl}/${subPath.join('/')}?${(0, utils_1.createGetStr)(params)}`;
+    }
+    getAttrs() {
+        const { width, height } = this.calcScaledThumbSize();
+        return {
+            src: this.getSrc(),
+            width,
+            height
+        };
     }
     setMaxSize(size) {
         this.maxSize = size;
@@ -88,6 +98,36 @@ class BoundlessThumb {
     setGrayscale(value) {
         this.grayscale = value;
         return this;
+    }
+    calcScaledThumbSize() {
+        if (this.ratio) {
+            return (0, utils_1.calcThumbSizeByProportion)(this.maxSize, this.ratio);
+        }
+        else {
+            if (!this.originalHeight || !this.originalWidth)
+                throw new Error('Image size should be provided');
+            let requestedWidth = this.maxSize;
+            let requestedHeight = this.maxSize;
+            let thumbWidth, thumbHeight;
+            if (requestedWidth > this.originalWidth) {
+                requestedWidth = this.originalWidth;
+            }
+            if (requestedHeight > this.originalHeight) {
+                requestedHeight = this.originalHeight;
+            }
+            if (this.originalWidth > this.originalHeight) {
+                thumbWidth = requestedWidth;
+                thumbHeight = (0, utils_1.calcProportion)(this.originalHeight, requestedWidth, this.originalWidth);
+            }
+            else {
+                thumbWidth = (0, utils_1.calcProportion)(this.originalWidth, requestedHeight, this.originalHeight);
+                thumbHeight = requestedHeight;
+            }
+            return {
+                width: thumbWidth,
+                height: thumbHeight
+            };
+        }
     }
 }
 exports.BoundlessThumb = BoundlessThumb;

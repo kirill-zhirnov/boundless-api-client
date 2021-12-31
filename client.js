@@ -72,8 +72,8 @@ class BoundlessClient {
         this.mediaServerUrl = url;
         return this;
     }
-    makeThumb(localPath, maxSize) {
-        const thumb = new thumb_1.BoundlessThumb(localPath, maxSize);
+    makeThumb(localPath, maxSize, originalWidth, originalHeight) {
+        const thumb = new thumb_1.BoundlessThumb(localPath, maxSize, originalWidth, originalHeight);
         if (this.instanceId) {
             thumb.setInstanceId(this.instanceId);
         }

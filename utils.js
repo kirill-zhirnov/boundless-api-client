@@ -1,7 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createGetStr = exports.extractPaginationFromHeaders = void 0;
+exports.calcProportion = exports.calcThumbSizeByProportion = exports.createGetStr = exports.extractPaginationFromHeaders = void 0;
 function extractPaginationFromHeaders(headers) {
+    const parsedHeaders = {};
+    for (const [key, value] of Object.entries(headers)) {
+        parsedHeaders[key.toLowerCase()] = value;
+    }
     const headers2Keys = {
         'x-pagination-total-count': 'totalCount',
         'x-pagination-page-count': 'pageCount',
@@ -10,8 +14,8 @@ function extractPaginationFromHeaders(headers) {
     };
     const pagination = {};
     for (const [header, key] of Object.entries(headers2Keys)) {
-        if (header in headers) {
-            pagination[key] = parseInt(headers[header]);
+        if (header in parsedHeaders) {
+            pagination[key] = parseInt(parsedHeaders[header]);
         }
     }
     return pagination;
@@ -45,3 +49,26 @@ function createGetStr(params, skipRoot = [], prefix = '') {
     return out.join('&');
 }
 exports.createGetStr = createGetStr;
+function calcThumbSizeByProportion(maxSize, imgRatio) {
+    let thumbHeight, thumbWidth;
+    const parts = imgRatio.split('-');
+    const width = parseInt(parts[0]);
+    const height = parseInt(parts[1]);
+    if (width === Math.max(width, height)) {
+        thumbWidth = maxSize;
+        thumbHeight = calcProportion(maxSize, height, width);
+    }
+    else {
+        thumbWidth = calcProportion(maxSize, width, height);
+        thumbHeight = maxSize;
+    }
+    return {
+        width: thumbWidth,
+        height: thumbHeight
+    };
+}
+exports.calcThumbSizeByProportion = calcThumbSizeByProportion;
+function calcProportion(mul1, mul2, divider) {
+    return Math.round((mul1 * mul2) / divider);
+}
+exports.calcProportion = calcProportion;

@@ -11,19 +11,24 @@
   "exports": {
     ".": "./index.js",
     "./token.js": "./token.js",
-    "./token": "./token.js"
+    "./token": "./token.js",
+    "./utils.js": "./utils.js",
+    "./utils": "./utils.js"
   },
   "typesVersions": {
     "*": {
       "token": [
         "token.d.ts"
+      ],
+      "utils": [
+        "utils.d.ts"
       ]
     }
   },
   "scripts": {
     "build": "npx tsc",
     "lint": "npx eslint --ext .ts ./src/",
-		"clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js"
+		"clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js ./utils.d.ts ./utils.js ./thumb.d.ts ./thumb.js"
   },
   "dependencies": {
     "axios": "^0.24.0",

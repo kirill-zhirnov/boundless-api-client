@@ -6,6 +6,18 @@ export interface IImage {
     alt: string | null;
     tags: string | null;
 }
+export interface ICategoryImage {
+    image_id: number;
+    name: string;
+    size: number;
+    path: string;
+    width: number;
+    height: number;
+    used_in: string[];
+    created_at: string;
+    deleted_at: string | null;
+    mime_type: string | null;
+}
 export declare enum TThumbMode {
     scale = "scale"
 }

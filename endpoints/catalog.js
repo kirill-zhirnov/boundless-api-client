@@ -17,7 +17,7 @@ class CatalogApi {
     }
     getProducts(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { headers, data: products } = yield this.client.createRequest().get('/catalog/products', { params });
+            const { headers, data: products } = yield this.client.createRequest().get(`/catalog/products?${(0, utils_1.createGetStr)(Object.assign({}, params))}`);
             const pagination = (0, utils_1.extractPaginationFromHeaders)(headers);
             return { products, pagination };
         });
@@ -25,6 +25,42 @@ class CatalogApi {
     getCategoryTree(params = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data } = yield this.client.createRequest().get('/catalog/categories/tree', { params });
+            return data;
+        });
+    }
+    getCategoryItem(slugOrId, params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, { params });
+            return data;
+        });
+    }
+    getFlatCategories(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/categories/flat', { params });
+            return data;
+        });
+    }
+    getCategoryParents(categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/categories/parents', { params: { category: categoryId } });
+            return data;
+        });
+    }
+    getFilters(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get('/catalog/filters', { params });
+            return data;
+        });
+    }
+    getFiltersByCategory(categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/catalog/filters/by-category/${categoryId}`);
+            return data;
+        });
+    }
+    getFilterFieldsRanges(request) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
             return data;
         });
     }
