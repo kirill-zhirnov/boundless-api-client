@@ -4,7 +4,7 @@ import { IFilter } from './filter';
 export interface ICategory {
     category_id: number;
     parent_id: number | null;
-    title: string | null;
+    title: string;
     url_key: string | null;
     tree_sort: string | null;
     level: number;
