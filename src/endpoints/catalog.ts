@@ -1,8 +1,8 @@
 import {BoundlessClient} from '../client';
 import {IProduct} from '../types/catalog/product';
-import {IFilter} from '../types/catalog/filter';
+import {IFilter, TFilterFieldType} from '../types/catalog/filter';
 import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
-import {extractPaginationFromHeaders} from '../utils';
+import {createGetStr, extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 import {IProductManufacturer} from '../types/catalog/product';
 import {ICharacteristic} from '..';
@@ -11,7 +11,7 @@ export default class CatalogApi {
 	constructor(protected client: BoundlessClient) { }
 
 	async getProducts(params: IGetProductsParams = {}): Promise<{products: IProduct[], pagination: IPagination}> {
-		const {headers, data: products} = await this.client.createRequest().get('/catalog/products', {params});
+		const {headers, data: products} = await this.client.createRequest().get(`/catalog/products?${createGetStr({...params})}`);
 		const pagination = extractPaginationFromHeaders(headers);
 
 		return {products, pagination};
@@ -24,8 +24,6 @@ export default class CatalogApi {
 	}
 
 	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}): Promise<ICategoryItem> {
-		if (!slugOrId) return null;
-
 		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, {params});
 
 		return data;
@@ -45,6 +43,12 @@ export default class CatalogApi {
 
 	async getFilters(params: IGetFiltersParams = {}): Promise<IFilter[]> {
 		const {data} = await this.client.createRequest().get('/catalog/filters', {params});
+
+		return data;
+	}
+
+	async getFiltersByCategory(categoryId: number): Promise<IFilter[]> {
+		const {data} = await this.client.createRequest().get(`/catalog/filters/by-category/${categoryId}`);
 
 		return data;
 	}
@@ -90,9 +94,10 @@ export interface IGetCategoryFlatParams {
 }
 
 export interface IGetCategoryItemParams {
-	with_children?: 0 | 1;
-	with_siblings?: 0 | 1;
-	with_parents?: 0 | 1;
+	with_children?: string | number;
+	with_siblings?: string | number;
+	with_parents?: string | number;
+	with_filter?: string | number;
 }
 
 export interface IGetFiltersParams {
@@ -106,26 +111,21 @@ export interface IFilterFieldsRequest {
 
 export interface IFilterFieldsRangesResponse {
 	ranges: IFilterFieldRange[];
+	totalProducts: number;
 }
 
 export interface IFilterFieldRequest {
-	type: TFilterType,
-	characteristic_id?: number;
-}
-
-export enum TFilterType {
-	price_range =	'price_range',
-	manufacturer = 'manufacturer',
-	characteristic = 'characteristic'
+	type: TFilterFieldType,
+	characteristic_id?: number | string;
 }
 
 export interface IFilterFieldRange {
-	type: TFilterType,
+	type: TFilterFieldType,
 	range?: {
 		min: string;
 		max: string;
 	}
-	manufacturers?: (IProductManufacturer & {product_qty: number})[]
+	manufacturers?: (IProductManufacturer & {products_qty: number})[]
 	characteristic_id?: number;
 	characteristic?: ICharacteristic;
 }

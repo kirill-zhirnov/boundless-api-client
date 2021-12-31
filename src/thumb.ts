@@ -1,5 +1,5 @@
 import {TThumbMode, TThumbQuality, TThumbRatio} from './types/image';
-import {createGetStr} from './utils';
+import {calcProportion, calcThumbSizeByProportion, createGetStr} from './utils';
 
 const DEFAULT_MEDIA_SERVER = 'https://dev-img.boundless-commerce.com';
 
@@ -15,7 +15,7 @@ export class BoundlessThumb {
 	protected background?: string;
 	protected blur?: number;
 
-	constructor(protected imgLocalPath: string, protected maxSize: number) {
+	constructor(protected imgLocalPath: string, protected maxSize: number, protected originalWidth?: number, protected originalHeight?: number) {
 	}
 
 	getSrc(): string {
@@ -71,6 +71,16 @@ export class BoundlessThumb {
 		return `${this.mediaServerUrl}/${subPath.join('/')}?${createGetStr(params)}`;
 	}
 
+	getAttrs() {
+		const {width, height} = this.calcScaledThumbSize();
+
+		return {
+			src: this.getSrc(),
+			width,
+			height
+		};
+	}
+
 	setMaxSize(size: number) {
 		this.maxSize = size;
 		return this;
@@ -124,5 +134,38 @@ export class BoundlessThumb {
 	setGrayscale(value: boolean) {
 		this.grayscale = value;
 		return this;
+	}
+
+	protected calcScaledThumbSize() {
+		if (this.ratio) {
+			return calcThumbSizeByProportion(this.maxSize, this.ratio);
+		} else {
+			if (!this.originalHeight || !this.originalWidth) throw new Error('Image size should be provided');
+
+			let requestedWidth = this.maxSize;
+			let requestedHeight = this.maxSize;
+			let thumbWidth:number, thumbHeight:number;
+
+			if (requestedWidth > this.originalWidth) {
+				requestedWidth = this.originalWidth;
+			}
+
+			if (requestedHeight > this.originalHeight) {
+				requestedHeight = this.originalHeight;
+			}
+
+			if (this.originalWidth > this.originalHeight) {
+				thumbWidth = requestedWidth;
+				thumbHeight = calcProportion(this.originalHeight, requestedWidth, this.originalWidth);
+			} else {
+				thumbWidth = calcProportion(this.originalWidth, requestedHeight, this.originalHeight);
+				thumbHeight = requestedHeight;
+			}
+
+			return {
+				width: thumbWidth,
+				height: thumbHeight
+			};
+		}
 	}
 }

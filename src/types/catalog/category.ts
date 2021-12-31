@@ -1,10 +1,11 @@
 import {TPublishingStatus} from '../common';
 import {ICategoryImage} from '../image';
+import {IFilter} from './filter';
 
 export interface ICategory {
 	category_id: number;
 	parent_id: number|null;
-	title: string|null;
+	title: string;
 	url_key: string|null;
 	tree_sort: string|null;
 	level: number;
@@ -30,12 +31,13 @@ export interface ICategoryItem {
 	children?: ICategoryFlatItem[];
 	siblings?: ICategoryFlatItem[];
 	parents?: ICategoryFlatItem[];
+	filter?: IFilter;
 }
 
 export interface ICategoryFlatItem {
 	category_id: number;
 	parent_id: number|null;
-	title: string|null;
+	title: string;
 	url_key: string|null;
 	level: number;
 	tree_sort: string;
@@ -54,7 +56,7 @@ interface ICategoryText {
 	custom_header: string|null;
 	meta_description: string|null;
 	meta_keywords: string|null;
-	url_key: string|number|null;
+	url_key: string|null;
 	description_top: string|null;
 	description_bottom: string|null;
 }
