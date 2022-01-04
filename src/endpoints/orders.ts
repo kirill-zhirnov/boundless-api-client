@@ -64,18 +64,13 @@ export default class OrdersApi {
 	}
 }
 
-export type IAddToCartResponse = IAddToCartSuccess | IAddToCartChooseVariant;
-
-export interface IAddToCartSuccess {
-	result: true;
-	cartTotal: ICartTotal;
-	added: {
+export interface IAddToCartResponse {
+	result?: true;
+	cartTotal?: ICartTotal;
+	added?: {
 		item: IVwItem;
 		qty: number;
 	}
-}
-
-export interface IAddToCartChooseVariant {
 	actionRequired?: 'chooseVariant'
 	product?: ICartProduct;
 	variants?: IVariant[];
