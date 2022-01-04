@@ -1,4 +1,4 @@
-import { ICartProduct } from '..';
+import { ICartProduct, IVwItem } from '..';
 import { BoundlessClient } from '../client';
 import { ICartInfo, ICart, ICartTotal } from '../types/orders/cart';
 import { IVariant } from '../types/catalog/variant';
@@ -19,12 +19,19 @@ export default class OrdersApi {
         result: true;
     }>;
 }
-export interface IAddToCartResponse {
-    result?: true;
+export declare type IAddToCartResponse = IAddToCartSuccess | IAddToCartChooseVariant;
+export interface IAddToCartSuccess {
+    result: true;
+    cartTotal: ICartTotal;
+    added: {
+        item: IVwItem;
+        qty: number;
+    };
+}
+export interface IAddToCartChooseVariant {
     actionRequired?: 'chooseVariant';
     product?: ICartProduct;
     variants?: IVariant[];
-    cartTotal?: ICartTotal;
 }
 export interface IItemsQty {
     item_id: number;

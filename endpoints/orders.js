@@ -21,24 +21,18 @@ class OrdersApi {
     }
     getCartInfo(cartId) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId)
-                throw new Error('Cart ID should be specified');
             const { data } = yield this.client.createRequest().get(`/orders/cart/${cartId}/total`);
             return data;
         });
     }
     getCartItems(cartId) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId)
-                throw new Error('Cart ID should be specified');
             const { data } = yield this.client.createRequest().get(`/orders/cart/${cartId}/items`);
             return data;
         });
     }
     addItemToCart(cartId, itemId, qty) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId || !itemId || !qty)
-                throw new Error('Cart ID, item ID and quantity are required');
             const { data } = yield this.client.createRequest().post('/orders/cart/add', {
                 cart_id: cartId,
                 item_id: itemId,
@@ -49,8 +43,6 @@ class OrdersApi {
     }
     removeFromCart(cartId, items) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId || !items)
-                throw new Error('Cart ID and item IDs are required');
             const { data } = yield this.client.createRequest().post('/orders/cart/rm-items', {
                 cart_id: cartId,
                 items,
@@ -60,8 +52,6 @@ class OrdersApi {
     }
     setCartItemsQty(cartId, items) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId || !items)
-                throw new Error('Cart ID and item are required');
             const { data } = yield this.client.createRequest().post('/orders/cart/set-qty', {
                 cart_id: cartId,
                 items,
@@ -71,8 +61,6 @@ class OrdersApi {
     }
     addCustomItemToCart(cartId, title, price, qty) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!cartId || !price || !title || !qty)
-                throw new Error('Cart ID, title, price and quantity are required');
             const { data } = yield this.client.createRequest().post('/orders/cart/add-custom-item', {
                 cart_id: cartId,
                 price,

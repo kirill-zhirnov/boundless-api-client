@@ -1,4 +1,4 @@
-import {ICartProduct} from '..';
+import {ICartProduct, IVwItem} from '..';
 import {BoundlessClient} from '../client';
 import {ICartInfo, ICart, ICartTotal} from '../types/orders/cart';
 import {IVariant} from '../types/catalog/variant';
@@ -13,24 +13,18 @@ export default class OrdersApi {
 	}
 
 	async getCartInfo(cartId: string): Promise<ICartInfo> {
-		if (!cartId) throw new Error('Cart ID should be specified');
-
 		const {data} = await this.client.createRequest().get(`/orders/cart/${cartId}/total`);
 
 		return data;
 	}
 
 	async getCartItems(cartId: string): Promise<ICart> {
-		if (!cartId) throw new Error('Cart ID should be specified');
-
 		const {data} = await this.client.createRequest().get(`/orders/cart/${cartId}/items`);
 
 		return data;
 	}
 
 	async addItemToCart(cartId: string, itemId: number, qty: number): Promise<IAddToCartResponse> {
-		if (!cartId || !itemId || !qty) throw new Error('Cart ID, item ID and quantity are required');
-
 		const {data} = await this.client.createRequest().post('/orders/cart/add', {
 			cart_id: cartId,
 			item_id: itemId,
@@ -41,8 +35,6 @@ export default class OrdersApi {
 	}
 
 	async removeFromCart(cartId: string, items: number[]): Promise<{result: true}> {
-		if (!cartId || !items) throw new Error('Cart ID and item IDs are required');
-
 		const {data} = await this.client.createRequest().post('/orders/cart/rm-items', {
 			cart_id: cartId,
 			items,
@@ -52,8 +44,6 @@ export default class OrdersApi {
 	}
 
 	async setCartItemsQty(cartId: string, items: IItemsQty[]): Promise<{result: true}> {
-		if (!cartId || !items) throw new Error('Cart ID and item are required');
-
 		const {data} = await this.client.createRequest().post('/orders/cart/set-qty', {
 			cart_id: cartId,
 			items,
@@ -63,8 +53,6 @@ export default class OrdersApi {
 	}
 
 	async addCustomItemToCart(cartId: string, title: string, price: number, qty: number): Promise<{result: true}> {
-		if (!cartId || !price || !title ||  !qty) throw new Error('Cart ID, title, price and quantity are required');
-
 		const {data} = await this.client.createRequest().post('/orders/cart/add-custom-item', {
 			cart_id: cartId,
 			price,
@@ -76,12 +64,21 @@ export default class OrdersApi {
 	}
 }
 
-export interface IAddToCartResponse {
-	result?: true;
+export type IAddToCartResponse = IAddToCartSuccess | IAddToCartChooseVariant;
+
+export interface IAddToCartSuccess {
+	result: true;
+	cartTotal: ICartTotal;
+	added: {
+		item: IVwItem;
+		qty: number;
+	}
+}
+
+export interface IAddToCartChooseVariant {
 	actionRequired?: 'chooseVariant'
 	product?: ICartProduct;
 	variants?: IVariant[];
-	cartTotal?: ICartTotal;
 }
 
 export interface IItemsQty {
