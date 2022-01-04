@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoundlessClient = void 0;
 const axios_1 = require("axios");
 const catalog_1 = require("./endpoints/catalog");
+const orders_1 = require("./endpoints/orders");
 const thumb_1 = require("./thumb");
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 /**
@@ -20,6 +21,7 @@ class BoundlessClient {
         this.baseUrl = baseUrl;
         this.instanceId = null;
         this.catalog = new catalog_1.default(this);
+        this.orders = new orders_1.default(this);
     }
     /**
     * Sets your shop instance ID for getting images.
