@@ -9,26 +9,21 @@ export interface ICharacteristic {
 	cases?: ICharacteristicCase[]
 }
 
-export interface INonVariantCaracteristic {
-	characteristic_id: number;
-	title: string;
-	is_folder?: boolean;
-	children?: INonVariantChild[];
-	value?: string;
-}
-
-export interface INonVariantChild {
-	characteristic_id: number;
-	title: string;
-	cases: [
-		{id: number; value: string;}
-	]
-}
-
 export interface IVariantCharacteristic {
 	id: number;
 	title: string;
 	cases: [
+		{id: number; title: string;}
+	]
+}
+
+export interface INonVariantCaracteristic {
+	id: number;
+	title: string;
+	is_folder?: boolean;
+	children?: Omit<INonVariantCaracteristic, 'is_folder' | 'children'>;
+	value?: string;
+	cases?: [
 		{id: number; title: string;}
 	]
 }
