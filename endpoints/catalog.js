@@ -64,6 +64,12 @@ class CatalogApi {
             return data;
         });
     }
+    getProduct(slugOrId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/catalog/products/item/${slugOrId}`);
+            return data;
+        });
+    }
 }
 exports.default = CatalogApi;
 var TGetProductsInStock;

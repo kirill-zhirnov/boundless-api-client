@@ -1,5 +1,5 @@
 import { TPublishingStatus } from '../common';
-import { ICategoryImage } from '../image';
+import { IImageItem } from '../image';
 import { IFilter } from './filter';
 export interface ICategory {
     category_id: number;
@@ -8,7 +8,7 @@ export interface ICategory {
     url_key: string | null;
     tree_sort: string | null;
     level: number;
-    image?: ICategoryImage | null;
+    image?: IImageItem | null;
     custom_link: string | null;
     children?: ICategory[] | null;
 }
@@ -23,9 +23,9 @@ export interface ICategoryItem {
     created_by: number | null;
     image_id: number | null;
     products_qty?: number;
-    image?: ICategoryImage | null;
+    image?: IImageItem | null;
     text: ICategoryText | null;
-    props: ICategoryProps | null;
+    props?: ICategoryProps | null;
     children?: ICategoryFlatItem[];
     siblings?: ICategoryFlatItem[];
     parents?: ICategoryFlatItem[];
@@ -39,7 +39,7 @@ export interface ICategoryFlatItem {
     level: number;
     tree_sort: string;
     joined_title: string | null;
-    image?: ICategoryImage | null;
+    image?: IImageItem | null;
     custom_link: string | null;
     products_qty?: number;
     children_qty?: number;
@@ -61,5 +61,10 @@ interface ICategoryProps {
     use_filter: boolean;
     filter_id: number | null;
     custom_link: string | null;
+}
+export interface IProductCategoryRels {
+    category_id: number;
+    is_default: boolean;
+    category: ICategoryItem;
 }
 export {};

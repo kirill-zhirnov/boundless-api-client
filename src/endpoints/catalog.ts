@@ -1,5 +1,5 @@
 import {BoundlessClient} from '../client';
-import {IProduct} from '../types/catalog/product';
+import {IProduct, IProductItem} from '../types/catalog/product';
 import {IFilter, TFilterFieldType} from '../types/catalog/filter';
 import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/category';
 import {createGetStr, extractPaginationFromHeaders} from '../utils';
@@ -55,6 +55,12 @@ export default class CatalogApi {
 
 	async getFilterFieldsRanges(request: IFilterFieldsRequest): Promise<IFilterFieldsRangesResponse> {
 		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
+
+		return data;
+	}
+
+	async getProduct(slugOrId: number | string): Promise<IProductItem> {
+		const {data} = await this.client.createRequest().get(`/catalog/products/item/${slugOrId}`);
 
 		return data;
 	}

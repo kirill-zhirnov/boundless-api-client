@@ -26,7 +26,7 @@ export interface IVwItem {
 	product: IVwItemProduct;
 	commodity_group: IVwItemCommodityGroup;
 	image: IImageShort;
-	prices: IItemPrice[];
+	prices: IVwItemPrice[];
 	labels: ILabel[];
 }
 
@@ -37,7 +37,7 @@ export interface IVwItemCommodityGroup {
 	trackInventory: boolean;
 }
 
-export interface IItemPrice {
+export interface IVwItemPrice {
 	point_id: number;
 	price_id: number;
 	alias: string;
@@ -49,4 +49,11 @@ export interface IItemPrice {
 	old: number|null;
 	old_min: number|null;
 	old_max: number|null;
+}
+
+export interface IItemSize {
+	width?: number | string;
+	height?: number | string;
+	length?: number | string;
+	weight?: number | string;
 }

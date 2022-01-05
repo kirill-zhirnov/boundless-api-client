@@ -8,6 +8,33 @@ export interface ICharacteristic {
     title: string;
     cases?: ICharacteristicCase[];
 }
+export interface INonVariantCaracteristic {
+    characteristic_id: number;
+    title: string;
+    is_folder?: boolean;
+    children?: INonVariantChild[];
+    value?: string;
+}
+export interface INonVariantChild {
+    characteristic_id: number;
+    title: string;
+    cases: [
+        {
+            id: number;
+            value: string;
+        }
+    ];
+}
+export interface IVariantCharacteristic {
+    id: number;
+    title: string;
+    cases: [
+        {
+            id: number;
+            title: string;
+        }
+    ];
+}
 export declare enum TCharacteristicType {
     checkbox = "checkbox",
     radio = "radio",
