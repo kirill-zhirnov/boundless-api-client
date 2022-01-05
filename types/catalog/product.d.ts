@@ -58,3 +58,34 @@ export interface IProductProps {
     } | null;
 }
 export declare type IProductCategory = Pick<ICategory, 'category_id' | 'title' | 'url_key'>;
+export interface ICartProduct {
+    product_id: number;
+    sku: string | null;
+    manufacturer_id: number | null;
+    has_variants: boolean;
+    group_id: number;
+    created_at: string;
+    deleted_at: string | null;
+    external_id: number | string | null;
+    status: TPublishingStatus;
+    created_by: number | null;
+    text: IProductText;
+}
+export interface IProductText {
+    product_id: number;
+    title: string;
+    custom_title: string | null;
+    custom_header: string | null;
+    meta_description: string | null;
+    url_key: string | null;
+    description: string | null;
+}
+export interface IVwItemProduct {
+    product_id: number;
+    sku: string | null;
+    has_variants: boolean;
+    title: string;
+    url_key: string | null;
+    default_category_id: number;
+    manufacturer_id: number | null;
+}

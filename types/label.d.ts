@@ -4,4 +4,5 @@ export interface ILabel {
     color: string | null;
     text_color: string | null;
     icon: string | null;
+    remove_after?: string | null;
 }

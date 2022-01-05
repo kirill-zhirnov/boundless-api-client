@@ -7,6 +7,12 @@ export interface IImage {
 	tags: string | null;
 }
 
+export interface IImageShort {
+	path: string;
+	width: number;
+	height: number;
+}
+
 export interface ICategoryImage {
 	image_id: number;
 	name: string;

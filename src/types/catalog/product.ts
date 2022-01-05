@@ -6,25 +6,25 @@ import {ICategory} from './category';
 export interface IProduct {
 	product_id: number;
 	title: string;
-	sku?: string|null;
-	url_key?: string|null;
+	sku?: string | null;
+	url_key?: string | null;
 	has_variants: boolean;
-	item_id?: number|null;
-	commodity_group?: IProductCommodityGroup|null;
-	manufacturer_id?: number|null;
-	manufacturer: IProductManufacturer|null;
-	price_id?: number|null;
+	item_id?: number | null;
+	commodity_group?: IProductCommodityGroup | null;
+	manufacturer_id?: number | null;
+	manufacturer: IProductManufacturer | null;
+	price_id?: number | null;
 	price_alias?: string;
 	point_id: number;
-	price: IProductPrice|null;
-	props: IProductProps|null;
-	default_category: IProductCategory|null;
-	images: IImage[]|null;
-	labels: ILabel[]|null;
-	sort_price: string|number|null;
-	sort_in_stock: number|null;
+	price: IProductPrice | null;
+	props: IProductProps | null;
+	default_category: IProductCategory | null;
+	images: IImage[] | null;
+	labels: ILabel[] | null;
+	sort_price: string | number | null;
+	sort_in_stock: number | null;
 	status: TPublishingStatus;
-	deleted_at: string|null;
+	deleted_at: string | null;
 	in_stock: boolean;
 }
 
@@ -38,25 +38,59 @@ export interface IProductCommodityGroup {
 export interface IProductManufacturer {
 	manufacturer_id: number,
 	title: string,
-	url_key?: string|null,
-	image?: string|null,
+	url_key?: string | null,
+	image?: string | null,
 }
 
 export interface IProductPrice {
-	value: string|number|null;
-	min: number|null;
-	max: number|null;
-	old: number|null;
-	old_min: number|null;
-	old_max: number|null;
-	currency_alias: string|null;
+	value: string | number | null;
+	min: number | null;
+	max: number | null;
+	old: number | null;
+	old_min: number | null;
+	old_max: number | null;
+	currency_alias: string | null;
 }
 
 export interface IProductProps {
-	available_qty: number|null;
-	country_of_origin: number|null;
-	extra: {[key: string]:any}|null;
-	size: {[key: string]:number}|null;
+	available_qty: number | null;
+	country_of_origin: number | null;
+	extra: {[key: string]: any} | null;
+	size: {[key: string]: number} | null;
 }
 
-export type IProductCategory = Pick<ICategory, 'category_id'|'title'|'url_key'>;
+export type IProductCategory = Pick<ICategory, 'category_id' | 'title' | 'url_key'>;
+
+export interface ICartProduct {
+	product_id: number;
+	sku: string | null;
+	manufacturer_id: number | null;
+	has_variants: boolean;
+	group_id: number;
+	created_at: string;
+	deleted_at: string | null;
+	external_id: number | string | null,
+	status: TPublishingStatus;
+	created_by: number | null;
+	text: IProductText;
+}
+
+export interface IProductText {
+	product_id: number;
+	title: string;
+	custom_title: string | null;
+	custom_header: string | null;
+	meta_description: string | null;
+	url_key: string | null;
+	description: string | null;
+}
+
+export interface IVwItemProduct {
+	product_id: number;
+	sku: string|null;
+	has_variants: boolean;
+	title: string;
+	url_key: string|null;
+	default_category_id: number;
+	manufacturer_id: number|null;
+}
