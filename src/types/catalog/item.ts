@@ -2,6 +2,7 @@ import {TPublishingStatus} from '../common';
 import {IImageShort} from '../image';
 import {ILabel} from '../label';
 import {IVwItemProduct} from './product';
+import {IVariant} from './variant';
 
 export interface IItemPrice {
 	item_price_id: number;
@@ -28,6 +29,7 @@ export interface IVwItem {
 	image: IImageShort;
 	prices: IVwItemPrice[];
 	labels: ILabel[];
+	variant?: Omit<IVariant, 'product_id' | 'created_at' | 'inventoryItem'>;
 }
 
 export interface IVwItemCommodityGroup {
