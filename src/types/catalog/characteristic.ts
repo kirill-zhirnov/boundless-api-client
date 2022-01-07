@@ -21,7 +21,7 @@ export interface INonVariantCaracteristic {
 	id: number;
 	title: string;
 	is_folder?: boolean;
-	children?: Omit<INonVariantCaracteristic, 'is_folder' | 'children'>;
+	children?: Omit<INonVariantCaracteristic, 'is_folder' | 'children'>[];
 	value?: string;
 	cases?: [
 		{id: number; title: string;}
