@@ -1,9 +1,5 @@
 import { TThumbMode, TThumbQuality, TThumbRatio } from './types/image';
 export declare class BoundlessThumb {
-    protected imgLocalPath: string;
-    protected maxSize: number;
-    protected originalWidth?: number;
-    protected originalHeight?: number;
     protected mediaServerUrl: string;
     protected mode: TThumbMode;
     protected instanceId?: number;
@@ -14,7 +10,16 @@ export declare class BoundlessThumb {
     protected grayscale?: boolean;
     protected background?: string;
     protected blur?: number;
-    constructor(imgLocalPath: string, maxSize: number, originalWidth?: number, originalHeight?: number);
+    protected imgLocalPath?: string;
+    protected maxSize?: number;
+    protected originalWidth?: number;
+    protected originalHeight?: number;
+    constructor(params: {
+        imgLocalPath?: string;
+        maxSize?: number;
+        originalWidth?: number;
+        originalHeight?: number;
+    });
     getSrc(): string;
     getAttrs(): {
         src: string;
