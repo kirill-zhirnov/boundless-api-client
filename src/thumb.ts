@@ -33,6 +33,10 @@ export class BoundlessThumb {
 			throw new Error('instanceId is not specified. Call setInstanceId(ID) before calling getSrc().');
 		}
 
+		if (!this.maxSize || !this.imgLocalPath) {
+			throw new Error('Image path and thumb max size are not specified. Call setImgLocalPath(path) and setMaxSize(size) before calling getSrc().');
+		}
+
 		const subPath = ['thumb'];
 		if (this.folderPrefix) {
 			subPath.push(this.folderPrefix);
@@ -147,6 +151,8 @@ export class BoundlessThumb {
 	}
 
 	protected calcScaledThumbSize() {
+		if (!this.maxSize) throw new Error('Thumb max size should be provided');
+
 		if (this.ratio) {
 			return calcThumbSizeByProportion(this.maxSize, this.ratio);
 		} else {
