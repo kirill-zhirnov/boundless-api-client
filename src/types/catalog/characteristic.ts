@@ -9,6 +9,25 @@ export interface ICharacteristic {
 	cases?: ICharacteristicCase[]
 }
 
+export interface IVariantCharacteristic {
+	id: number;
+	title: string;
+	cases: [
+		{id: number; title: string;}
+	]
+}
+
+export interface INonVariantCaracteristic {
+	id: number;
+	title: string;
+	is_folder?: boolean;
+	children?: Omit<INonVariantCaracteristic, 'is_folder' | 'children'>[];
+	value?: string;
+	cases?: [
+		{id: number; title: string;}
+	]
+}
+
 export enum TCharacteristicType {
 	checkbox = 'checkbox',
 	radio = 'radio',

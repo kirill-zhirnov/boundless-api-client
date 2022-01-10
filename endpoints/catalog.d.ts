@@ -1,5 +1,5 @@
 import { BoundlessClient } from '../client';
-import { IProduct } from '../types/catalog/product';
+import { IProduct, IProductItem } from '../types/catalog/product';
 import { IFilter, TFilterFieldType } from '../types/catalog/filter';
 import { ICategory, ICategoryFlatItem, ICategoryItem } from '../types/catalog/category';
 import { IPagination } from '../types/common';
@@ -19,6 +19,7 @@ export default class CatalogApi {
     getFilters(params?: IGetFiltersParams): Promise<IFilter[]>;
     getFiltersByCategory(categoryId: number): Promise<IFilter[]>;
     getFilterFieldsRanges(request: IFilterFieldsRequest): Promise<IFilterFieldsRangesResponse>;
+    getProduct(slugOrId: number | string): Promise<IProductItem>;
 }
 export declare enum TGetProductsInStock {
     inStock = "1",

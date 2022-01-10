@@ -46,5 +46,10 @@ export declare class BoundlessClient {
     createRequest(config?: AxiosRequestConfig): AxiosInstance;
     setS3FolderPrefix(prefix: string): this;
     setMediaServerUrl(url: string): this;
-    makeThumb(localPath: string, maxSize: number, originalWidth?: number, originalHeight?: number): BoundlessThumb;
+    makeThumb(params: {
+        imgLocalPath?: string;
+        maxSize?: number;
+        originalWidth?: number;
+        originalHeight?: number;
+    }): BoundlessThumb;
 }

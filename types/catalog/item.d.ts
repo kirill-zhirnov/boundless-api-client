@@ -2,6 +2,7 @@ import { TPublishingStatus } from '../common';
 import { IImageShort } from '../image';
 import { ILabel } from '../label';
 import { IVwItemProduct } from './product';
+import { IVariant } from './variant';
 export interface IItemPrice {
     item_price_id: number;
     price_id: number;
@@ -24,8 +25,9 @@ export interface IVwItem {
     product: IVwItemProduct;
     commodity_group: IVwItemCommodityGroup;
     image: IImageShort;
-    prices: IItemPrice[];
+    prices: IVwItemPrice[];
     labels: ILabel[];
+    variant?: Omit<IVariant, 'product_id' | 'created_at' | 'inventoryItem'>;
 }
 export interface IVwItemCommodityGroup {
     group_id: number;
@@ -33,7 +35,7 @@ export interface IVwItemCommodityGroup {
     title: string;
     trackInventory: boolean;
 }
-export interface IItemPrice {
+export interface IVwItemPrice {
     point_id: number;
     price_id: number;
     alias: string;
@@ -45,4 +47,10 @@ export interface IItemPrice {
     old: number | null;
     old_min: number | null;
     old_max: number | null;
+}
+export interface IItemSize {
+    width?: number | string;
+    height?: number | string;
+    length?: number | string;
+    weight?: number | string;
 }

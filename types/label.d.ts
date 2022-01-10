@@ -5,4 +5,6 @@ export interface ILabel {
     text_color: string | null;
     icon: string | null;
     remove_after?: string | null;
+    created_at?: string;
+    deleted_at?: string | null;
 }
