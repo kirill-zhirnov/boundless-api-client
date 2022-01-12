@@ -9,10 +9,8 @@ class BoundlessThumb {
         this.mediaServerUrl = DEFAULT_MEDIA_SERVER;
         this.mode = image_1.TThumbMode.scale;
         const { imgLocalPath, maxSize, originalWidth, originalHeight } = params;
-        if (imgLocalPath)
-            this.imgLocalPath = imgLocalPath;
-        if (maxSize)
-            this.maxSize = maxSize;
+        this.imgLocalPath = imgLocalPath;
+        this.maxSize = maxSize;
         if (originalWidth)
             this.originalWidth = originalWidth;
         if (originalHeight)
@@ -21,9 +19,6 @@ class BoundlessThumb {
     getSrc() {
         if (!this.instanceId) {
             throw new Error('instanceId is not specified. Call setInstanceId(ID) before calling getSrc().');
-        }
-        if (!this.maxSize || !this.imgLocalPath) {
-            throw new Error('Image path and thumb max size are not specified. Call setImgLocalPath(path) and setMaxSize(size) before calling getSrc().');
         }
         const subPath = ['thumb'];
         if (this.folderPrefix) {
@@ -108,8 +103,6 @@ class BoundlessThumb {
         return this;
     }
     calcScaledThumbSize() {
-        if (!this.maxSize)
-            throw new Error('Thumb max size should be provided');
         if (this.ratio) {
             return (0, utils_1.calcThumbSizeByProportion)(this.maxSize, this.ratio);
         }

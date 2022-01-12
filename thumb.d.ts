@@ -10,13 +10,13 @@ export declare class BoundlessThumb {
     protected grayscale?: boolean;
     protected background?: string;
     protected blur?: number;
-    protected imgLocalPath?: string;
-    protected maxSize?: number;
+    protected imgLocalPath: string;
+    protected maxSize: number;
     protected originalWidth?: number;
     protected originalHeight?: number;
     constructor(params: {
-        imgLocalPath?: string;
-        maxSize?: number;
+        imgLocalPath: string;
+        maxSize: number;
         originalWidth?: number;
         originalHeight?: number;
     });

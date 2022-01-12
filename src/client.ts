@@ -90,7 +90,7 @@ export class BoundlessClient {
 		return this;
 	}
 
-	public makeThumb(params: {imgLocalPath?: string, maxSize?: number, originalWidth?: number, originalHeight?: number}): BoundlessThumb {
+	public makeThumb(params: {imgLocalPath: string, maxSize: number, originalWidth?: number, originalHeight?: number}): BoundlessThumb {
 		const thumb = new BoundlessThumb(params);
 
 		if (this.instanceId) {

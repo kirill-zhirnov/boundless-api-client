@@ -14,16 +14,16 @@ export class BoundlessThumb {
 	protected grayscale?: boolean;
 	protected background?: string;
 	protected blur?: number;
-	protected imgLocalPath?: string;
-	protected maxSize?: number;
+	protected imgLocalPath: string;
+	protected maxSize: number;
 	protected originalWidth?: number;
 	protected originalHeight?: number;
 
-	constructor(params: {imgLocalPath?: string, maxSize?: number, originalWidth?: number, originalHeight?: number}) {
+	constructor(params: {imgLocalPath: string, maxSize: number, originalWidth?: number, originalHeight?: number}) {
 		const {imgLocalPath, maxSize, originalWidth, originalHeight} = params;
 
-		if (imgLocalPath) this.imgLocalPath = imgLocalPath;
-		if (maxSize) this.maxSize = maxSize;
+		this.imgLocalPath = imgLocalPath;
+		this.maxSize = maxSize;
 		if (originalWidth) this.originalWidth = originalWidth;
 		if (originalHeight) this.originalHeight = originalHeight;
 	}
@@ -31,10 +31,6 @@ export class BoundlessThumb {
 	getSrc(): string {
 		if (!this.instanceId) {
 			throw new Error('instanceId is not specified. Call setInstanceId(ID) before calling getSrc().');
-		}
-
-		if (!this.maxSize || !this.imgLocalPath) {
-			throw new Error('Image path and thumb max size are not specified. Call setImgLocalPath(path) and setMaxSize(size) before calling getSrc().');
 		}
 
 		const subPath = ['thumb'];
@@ -151,8 +147,6 @@ export class BoundlessThumb {
 	}
 
 	protected calcScaledThumbSize() {
-		if (!this.maxSize) throw new Error('Thumb max size should be provided');
-
 		if (this.ratio) {
 			return calcThumbSizeByProportion(this.maxSize, this.ratio);
 		} else {

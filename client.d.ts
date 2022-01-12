@@ -47,8 +47,8 @@ export declare class BoundlessClient {
     setS3FolderPrefix(prefix: string): this;
     setMediaServerUrl(url: string): this;
     makeThumb(params: {
-        imgLocalPath?: string;
-        maxSize?: number;
+        imgLocalPath: string;
+        maxSize: number;
         originalWidth?: number;
         originalHeight?: number;
     }): BoundlessThumb;
