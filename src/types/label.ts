@@ -1,3 +1,12 @@
+export enum TLabelIcon {
+	star = 'star',
+	flag = 'flag',
+	fire = 'fire',
+	ok = 'ok',
+	tag = 'tag',
+	heart = 'heart'
+}
+
 export interface ILabel {
 	label_id: number;
 	title: string;
@@ -7,13 +16,4 @@ export interface ILabel {
 	remove_after?: string|null;
 	created_at?: string;
 	deleted_at?: string|null;
-}
-
-export enum TLabelIcon {
-	star = 'star',
-	flag = 'flag',
-	fire = 'fire',
-	ok = 'ok',
-	tag = 'tag',
-	heart = 'heart'
 }
