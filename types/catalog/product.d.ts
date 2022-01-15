@@ -1,4 +1,4 @@
-import { ILabel } from '../label';
+import { ILabel } from './label';
 import { IImage, IImageItem, IProductImage } from '../image';
 import { TPublishingStatus } from '../common';
 import { ICategory, IProductCategoryRels } from './category';

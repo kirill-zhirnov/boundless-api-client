@@ -1,6 +1,6 @@
 import { TPublishingStatus } from '../common';
 import { IImageShort } from '../image';
-import { ILabel } from '../label';
+import { ILabel } from './label';
 import { IVwItemProduct } from './product';
 import { IVariant } from './variant';
 export interface IItemPrice {
