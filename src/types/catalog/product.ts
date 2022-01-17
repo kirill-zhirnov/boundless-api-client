@@ -12,7 +12,7 @@ export interface IProduct {
 	sku?: string | null;
 	url_key?: string | null;
 	has_variants: boolean;
-	item_id?: number | null;
+	item_id: number;
 	commodity_group?: IProductCommodityGroup | null;
 	manufacturer_id?: number | null;
 	manufacturer: IProductManufacturer | null;

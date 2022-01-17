@@ -102,6 +102,11 @@ class BoundlessThumb {
         this.grayscale = value;
         return this;
     }
+    setOriginalSize(width, height) {
+        this.originalWidth = width;
+        this.originalHeight = height;
+        return this;
+    }
     calcScaledThumbSize() {
         if (this.ratio) {
             return (0, utils_1.calcThumbSizeByProportion)(this.maxSize, this.ratio);

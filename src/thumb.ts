@@ -146,6 +146,13 @@ export class BoundlessThumb {
 		return this;
 	}
 
+	setOriginalSize(width: number, height: number) {
+		this.originalWidth = width;
+		this.originalHeight = height;
+
+		return this;
+	}
+
 	protected calcScaledThumbSize() {
 		if (this.ratio) {
 			return calcThumbSizeByProportion(this.maxSize, this.ratio);

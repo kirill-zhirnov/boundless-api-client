@@ -37,6 +37,7 @@ export declare class BoundlessThumb {
     setBlur(value: number): this;
     setBackground(value: string): this;
     setGrayscale(value: boolean): this;
+    setOriginalSize(width: number, height: number): this;
     protected calcScaledThumbSize(): {
         width: number;
         height: number;
