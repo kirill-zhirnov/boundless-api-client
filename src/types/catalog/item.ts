@@ -26,7 +26,7 @@ export interface IVwItem {
 	deleted_at: string | null;
 	product: IVwItemProduct;
 	commodity_group: IVwItemCommodityGroup;
-	image: IImageShort;
+	image: IImageShort | null;
 	prices: IVwItemPrice[];
 	labels: ILabel[];
 	variant?: Omit<IVariant, 'product_id' | 'created_at' | 'inventoryItem'>;
