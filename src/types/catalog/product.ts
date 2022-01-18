@@ -140,8 +140,8 @@ export interface IProductItem {
 	external_id: number | string | null;
 	status: TPublishingStatus;
 	created_by: number | null;
-	price: number;
-	old_price: number | null;
+	price: number | number[];
+	old_price: number | number[] | null;
 	in_stock: boolean;
 	item_id: number;
 	text: IProductText;
