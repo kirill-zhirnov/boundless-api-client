@@ -42,7 +42,7 @@ export interface IProductManufacturer {
     image?: string | null;
 }
 export interface IProductPrice {
-    value: string | number | null;
+    value: number | null;
     min: number | null;
     max: number | null;
     old: number | null;
