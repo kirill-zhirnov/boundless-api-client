@@ -42,9 +42,9 @@ export interface IExtendedVariants {
 }
 
 export interface IVariantCombination {
-	[key: string | number]: string[];
+	[variantId: string | number]: string[];
 }
 
 export interface IVariantIdCombinations {
-	[key: string | number]: {[key: string | number]: number};
+	[variantId: string | number]: {[characteristicId: string | number]: number};
 }
