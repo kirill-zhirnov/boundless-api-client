@@ -22,8 +22,8 @@ export interface IProductVariant {
     variant_id: number;
     sku: string | null;
     title: string;
-    price: string;
-    price_old: string | null;
+    price: number | null;
+    price_old: number | null;
     item_id: number;
     track_inventory: boolean;
     available_qty: number;
