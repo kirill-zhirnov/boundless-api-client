@@ -64,14 +64,17 @@ export interface ICartProduct {
     sku: string | null;
     manufacturer_id: number | null;
     has_variants: boolean;
+    item_id: number;
     group_id: number;
     created_at: string;
     deleted_at: string | null;
+    price: IProductPrice | null;
     external_id: number | string | null;
     status: TPublishingStatus;
     created_by: number | null;
     text: IProductText;
     extendedVariants: IExtendedVariants;
+    in_stock: boolean;
 }
 export interface IProductText {
     product_id: number;
