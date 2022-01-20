@@ -80,6 +80,7 @@ export interface ICartProduct {
 	text: IProductText;
 	extendedVariants: IExtendedVariants;
 	in_stock: boolean;
+	images: IProductImage[];
 }
 
 export interface IProductText {
