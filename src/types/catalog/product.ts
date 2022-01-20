@@ -76,6 +76,7 @@ export interface ICartProduct {
 	status: TPublishingStatus;
 	created_by: number | null;
 	text: IProductText;
+	extendedVariants: IExtendedVariants;
 }
 
 export interface IProductText {

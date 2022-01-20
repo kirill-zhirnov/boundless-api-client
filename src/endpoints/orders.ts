@@ -72,7 +72,6 @@ export interface IAddToCartResponse {
 	}
 	actionRequired?: 'chooseVariant'
 	product?: ICartProduct;
-	variants?: IExtendedVariants;
 }
 
 export interface IItemsQty {
