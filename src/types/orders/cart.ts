@@ -1,4 +1,4 @@
-import {IVwItem, IItemPrice} from '../catalog/item';
+import {IVwItem, IItemPrice} from '../catalog/inventoryItem';
 
 export interface ICartInfo {
 	id: string;

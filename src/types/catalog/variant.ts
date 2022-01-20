@@ -1,5 +1,5 @@
 import {IVariantCharacteristic} from './characteristic';
-import {IItemSize} from './item';
+import {IItemSize} from './inventoryItem';
 
 export interface IVariant {
 	variant_id: number;

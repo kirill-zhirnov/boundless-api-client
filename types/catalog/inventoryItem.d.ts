@@ -40,6 +40,7 @@ export interface IVwItemPrice {
     price_id: number;
     alias: string;
     currency_id: number;
+    currency_alias: string;
     value: number | null;
     min: number | null;
     max: number | null;

@@ -4,7 +4,7 @@ import { TPublishingStatus } from '../common';
 import { ICategory, IProductCategoryRels } from './category';
 import { INonVariantCaracteristic } from './characteristic';
 import { IExtendedVariants } from './variant';
-import { IItemSize } from './item';
+import { IItemSize } from './inventoryItem';
 export interface IProduct {
     product_id: number;
     title: string;
