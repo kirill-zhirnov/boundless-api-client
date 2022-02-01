@@ -12,5 +12,8 @@ export * from './types/catalog/label';
 
 export * from './types/orders/cart';
 
+export * from './types/settings';
+
 export * from './endpoints/catalog'; // FIXME organize exports
-export * from './endpoints/orders'; // FIXME organize exports
+export * from './endpoints/orders';
+export * from './endpoints/checkout';

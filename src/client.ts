@@ -2,6 +2,7 @@ import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import CatalogApi from './endpoints/catalog';
 import OrdersApi from './endpoints/orders';
 import {BoundlessThumb} from './thumb';
+import CheckoutApi from './endpoints/checkout';
 
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 
@@ -15,6 +16,7 @@ export class BoundlessClient {
 	protected mediaServerUrl?: string;
 	public readonly catalog: CatalogApi;
 	public readonly orders: OrdersApi;
+	public readonly checkout: CheckoutApi;
 
 	/**
 	* Create an instance of Boundless Commerce API client.
@@ -25,6 +27,7 @@ export class BoundlessClient {
 	constructor(protected token: string|null = null, protected baseUrl: string = DEFAULT_BASE_URL) {
 		this.catalog = new CatalogApi(this);
 		this.orders = new OrdersApi(this);
+		this.checkout = new CheckoutApi(this);
 	}
 
 	/**

@@ -8,5 +8,7 @@ export * from './types/catalog/variant';
 export * from './types/catalog/inventoryItem';
 export * from './types/catalog/label';
 export * from './types/orders/cart';
+export * from './types/settings';
 export * from './endpoints/catalog';
 export * from './endpoints/orders';
+export * from './endpoints/checkout';
