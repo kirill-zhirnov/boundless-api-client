@@ -11,6 +11,8 @@ export * from './types/catalog/inventoryItem';
 export * from './types/catalog/label';
 
 export * from './types/orders/cart';
+export * from './types/orders/checkout';
+export * from './types/orders/orders';
 
 export * from './types/settings';
 
