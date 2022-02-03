@@ -1,6 +1,7 @@
 import { BoundlessClient } from '../client';
 import { ICartItem, IOrder } from '../types/orders/cart';
 import { ICheckoutPageSettings } from '../types/settings';
+import { ICheckoutPostContactsData } from '../types/orders/checkout';
 export default class CheckoutApi {
     protected client: BoundlessClient;
     constructor(client: BoundlessClient);
@@ -9,4 +10,5 @@ export default class CheckoutApi {
         order: IOrder;
         settings: ICheckoutPageSettings;
     }>;
+    saveContactsData(contactsData: ICheckoutPostContactsData): Promise<any>;
 }

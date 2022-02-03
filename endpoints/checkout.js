@@ -21,5 +21,11 @@ class CheckoutApi {
             return data;
         });
     }
+    saveContactsData(contactsData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/contact', contactsData);
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;
