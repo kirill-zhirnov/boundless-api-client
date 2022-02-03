@@ -30,18 +30,20 @@ export interface ICheckoutStepper {
 	}
 }
 
+export interface ICheckoutSettingsContactFields {
+	email: {
+		show: boolean;
+		required: boolean;
+	},
+	phone: {
+		show: boolean;
+		required: boolean;
+	}
+}
+
 export interface ICheckoutPageSettings {
 	logo: string|null;
-	contactFields: {
-		email: {
-			show: boolean;
-			required: boolean;
-		},
-		phone: {
-			show: boolean;
-			required: boolean;
-		}
-	},
+	contactFields: ICheckoutSettingsContactFields,
 	accountPolicy: TCheckoutAccountPolicy,
 	customerNameRequired: TCheckoutCustomerName[],
 	addressLine2: TCheckoutFieldStatus,
