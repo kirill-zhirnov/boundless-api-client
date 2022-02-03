@@ -1,5 +1,4 @@
 import { IVwItem, IItemPrice } from '../catalog/inventoryItem';
-import { TPublishingStatus } from '../common';
 export interface ICartInfo {
     id: string;
     created_at: string;
@@ -21,14 +20,4 @@ export interface ICartItem {
     created_at: string;
     itemPrice: IItemPrice;
     vwItem: IVwItem;
-}
-export interface IOrder {
-    id: string;
-    status_id: null | number;
-    service_total_price: null | string;
-    total_price: null | string;
-    discount_for_order: null | string;
-    paid_at: null | string;
-    publishing_status: TPublishingStatus;
-    created_at: string;
 }
