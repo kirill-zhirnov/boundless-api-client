@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TCheckoutStep = exports.TCheckoutFieldStatus = exports.TCheckoutAccountPolicy = exports.TCheckoutCustomerName = void 0;
+exports.TCheckoutFieldStatus = exports.TCheckoutAccountPolicy = exports.TCheckoutCustomerName = void 0;
 var TCheckoutCustomerName;
 (function (TCheckoutCustomerName) {
     TCheckoutCustomerName["first"] = "first";
@@ -17,10 +17,3 @@ var TCheckoutFieldStatus;
     TCheckoutFieldStatus["optional"] = "optional";
     TCheckoutFieldStatus["required"] = "required";
 })(TCheckoutFieldStatus = exports.TCheckoutFieldStatus || (exports.TCheckoutFieldStatus = {}));
-var TCheckoutStep;
-(function (TCheckoutStep) {
-    TCheckoutStep["contactInfo"] = "contact-info";
-    TCheckoutStep["shippingAddress"] = "shipping-address";
-    TCheckoutStep["shippingMethod"] = "shipping-method";
-    TCheckoutStep["paymentMethod"] = "payment-method";
-})(TCheckoutStep = exports.TCheckoutStep || (exports.TCheckoutStep = {}));

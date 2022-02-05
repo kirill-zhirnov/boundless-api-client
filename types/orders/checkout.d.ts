@@ -4,3 +4,14 @@ export interface ICheckoutPostContactsData {
     email?: string;
     receive_marketing_info?: '1';
 }
+export declare enum TCheckoutStep {
+    contactInfo = "contact-info",
+    shippingAddress = "shipping-address",
+    shippingMethod = "shipping-method",
+    paymentMethod = "payment-method"
+}
+export interface ICheckoutStepper {
+    filledSteps: TCheckoutStep[];
+    currentStep: TCheckoutStep;
+    steps: TCheckoutStep[];
+}

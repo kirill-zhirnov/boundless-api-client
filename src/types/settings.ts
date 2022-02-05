@@ -14,22 +14,6 @@ export enum TCheckoutFieldStatus {
 	required = 'required',
 }
 
-export enum TCheckoutStep {
-	contactInfo = 'contact-info',
-	shippingAddress = 'shipping-address',
-	shippingMethod = 'shipping-method',
-	paymentMethod = 'payment-method',
-}
-
-export interface ICheckoutStepper {
-	steps: TCheckoutStep[],
-	filledSteps: TCheckoutStep[],
-	nextStep: TCheckoutStep,
-	summaryByStep?: {
-		[K in TCheckoutStep]: string
-	}
-}
-
 export interface ICheckoutSettingsContactFields {
 	email: {
 		show: boolean;
@@ -52,5 +36,4 @@ export interface ICheckoutPageSettings {
 	loggedInCustomer: null|{},
 	hasCouponCampaigns: boolean,
 	needShipping: boolean,
-	stepper: ICheckoutStepper
 }
