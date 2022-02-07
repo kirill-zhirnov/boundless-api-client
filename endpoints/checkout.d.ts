@@ -11,6 +11,7 @@ export default class CheckoutApi {
         order: IOrder;
         settings: ICheckoutPageSettings;
         stepper: ICheckoutStepper;
+        loggedInCustomer: ICustomer | null;
     }>;
     saveContactsData(contactsData: ICheckoutPostContactsData): Promise<{
         customer: ICustomer;

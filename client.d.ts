@@ -3,6 +3,7 @@ import CatalogApi from './endpoints/catalog';
 import OrdersApi from './endpoints/orders';
 import { BoundlessThumb } from './thumb';
 import CheckoutApi from './endpoints/checkout';
+import CustomerApi from './endpoints/customer';
 /**
 * Boundless Commerce API client.
 */
@@ -12,9 +13,11 @@ export declare class BoundlessClient {
     protected instanceId: number | null;
     protected s3FolderPrefix?: string;
     protected mediaServerUrl?: string;
+    protected customerAuthToken: string | null;
     readonly catalog: CatalogApi;
     readonly orders: OrdersApi;
     readonly checkout: CheckoutApi;
+    readonly customer: CustomerApi;
     /**
     * Create an instance of Boundless Commerce API client.
     *
@@ -45,7 +48,7 @@ export declare class BoundlessClient {
     *
     * @param {AxiosRequestConfig} config - additional axios request config
     */
-    createRequest(config?: AxiosRequestConfig): AxiosInstance;
+    createRequest(config?: AxiosRequestConfig, appendCustomerAuthToken?: boolean): AxiosInstance;
     setS3FolderPrefix(prefix: string): this;
     setMediaServerUrl(url: string): this;
     makeThumb(params: {
@@ -54,4 +57,6 @@ export declare class BoundlessClient {
         originalWidth?: number;
         originalHeight?: number;
     }): BoundlessThumb;
+    setCustomerAuthToken(token: string | null): this;
+    getCustomerAuthToken(): string | null;
 }

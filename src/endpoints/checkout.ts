@@ -12,7 +12,8 @@ export default class CheckoutApi {
 		items: ICartItem[],
 		order: IOrder,
 		settings: ICheckoutPageSettings,
-		stepper: ICheckoutStepper
+		stepper: ICheckoutStepper,
+		loggedInCustomer: ICustomer|null
 	}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/init', {
 			cart_id

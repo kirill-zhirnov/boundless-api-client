@@ -1,4 +1,5 @@
-import { ICartProduct, IVwItem } from '..';
+import { ICartProduct } from '../types/catalog/product';
+import { IVwItem } from '../types/catalog/inventoryItem';
 import { BoundlessClient } from '../client';
 import { ICartInfo, ICart, ICartTotal } from '../types/orders/cart';
 export default class OrdersApi {

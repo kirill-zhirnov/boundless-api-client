@@ -6,6 +6,7 @@ const catalog_1 = require("./endpoints/catalog");
 const orders_1 = require("./endpoints/orders");
 const thumb_1 = require("./thumb");
 const checkout_1 = require("./endpoints/checkout");
+const customer_1 = require("./endpoints/customer");
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 /**
 * Boundless Commerce API client.
@@ -21,9 +22,11 @@ class BoundlessClient {
         this.token = token;
         this.baseUrl = baseUrl;
         this.instanceId = null;
+        this.customerAuthToken = null;
         this.catalog = new catalog_1.default(this);
         this.orders = new orders_1.default(this);
         this.checkout = new checkout_1.default(this);
+        this.customer = new customer_1.default(this);
     }
     /**
     * Sets your shop instance ID for getting images.
@@ -57,7 +60,7 @@ class BoundlessClient {
     *
     * @param {AxiosRequestConfig} config - additional axios request config
     */
-    createRequest(config = {}) {
+    createRequest(config = {}, appendCustomerAuthToken = true) {
         if (!this.token) {
             throw new Error('Token is required for authorization, use setAuthToken to set the token');
         }
@@ -66,6 +69,9 @@ class BoundlessClient {
             proxy: false
         }, config));
         instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+        if (appendCustomerAuthToken && this.customerAuthToken) {
+            instance.defaults.headers.common['X-Customer'] = this.customerAuthToken;
+        }
         return instance;
     }
     setS3FolderPrefix(prefix) {
@@ -88,6 +94,13 @@ class BoundlessClient {
             thumb.setMediaServerUrl(this.mediaServerUrl);
         }
         return thumb;
+    }
+    setCustomerAuthToken(token) {
+        this.customerAuthToken = token;
+        return this;
+    }
+    getCustomerAuthToken() {
+        return this.customerAuthToken;
     }
 }
 exports.BoundlessClient = BoundlessClient;

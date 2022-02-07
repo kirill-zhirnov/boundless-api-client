@@ -1,3 +1,4 @@
+import { ICustomer } from './orders/orders';
 export declare enum TCheckoutCustomerName {
     first = "first",
     last = "last"
@@ -32,7 +33,7 @@ export interface ICheckoutPageSettings {
         title: string;
         url: string;
     }[];
-    loggedInCustomer: null | {};
+    loggedInCustomer: null | ICustomer;
     hasCouponCampaigns: boolean;
     needShipping: boolean;
 }

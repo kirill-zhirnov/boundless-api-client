@@ -3,6 +3,7 @@ import CatalogApi from './endpoints/catalog';
 import OrdersApi from './endpoints/orders';
 import {BoundlessThumb} from './thumb';
 import CheckoutApi from './endpoints/checkout';
+import CustomerApi from './endpoints/customer';
 
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 
@@ -14,9 +15,12 @@ export class BoundlessClient {
 	protected instanceId: number|null = null;
 	protected s3FolderPrefix?: string;
 	protected mediaServerUrl?: string;
+	protected customerAuthToken: string|null = null;
+
 	public readonly catalog: CatalogApi;
 	public readonly orders: OrdersApi;
 	public readonly checkout: CheckoutApi;
+	public readonly customer: CustomerApi;
 
 	/**
 	* Create an instance of Boundless Commerce API client.
@@ -28,6 +32,7 @@ export class BoundlessClient {
 		this.catalog = new CatalogApi(this);
 		this.orders = new OrdersApi(this);
 		this.checkout = new CheckoutApi(this);
+		this.customer = new CustomerApi(this);
 	}
 
 	/**
@@ -68,7 +73,7 @@ export class BoundlessClient {
 	*
 	* @param {AxiosRequestConfig} config - additional axios request config
 	*/
-	public createRequest(config: AxiosRequestConfig = {}): AxiosInstance {
+	public createRequest(config: AxiosRequestConfig = {}, appendCustomerAuthToken = true): AxiosInstance {
 		if (!this.token) {
 			throw new Error('Token is required for authorization, use setAuthToken to set the token');
 		}
@@ -79,6 +84,10 @@ export class BoundlessClient {
 		}, config));
 
 		instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+
+		if (appendCustomerAuthToken && this.customerAuthToken) {
+			instance.defaults.headers.common['X-Customer'] = this.customerAuthToken;
+		}
 
 		return instance;
 	}
@@ -109,5 +118,14 @@ export class BoundlessClient {
 		}
 
 		return thumb;
+	}
+
+	public setCustomerAuthToken(token: string|null) {
+		this.customerAuthToken = token;
+		return this;
+	}
+
+	public getCustomerAuthToken(): string|null {
+		return this.customerAuthToken;
 	}
 }

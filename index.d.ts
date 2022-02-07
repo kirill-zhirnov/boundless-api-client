@@ -11,6 +11,8 @@ export * from './types/orders/cart';
 export * from './types/orders/checkout';
 export * from './types/orders/orders';
 export * from './types/settings';
+export * from './types/customer';
 export * from './endpoints/catalog';
 export * from './endpoints/orders';
 export * from './endpoints/checkout';
+export * from './endpoints/customer';
