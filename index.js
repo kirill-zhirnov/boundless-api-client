@@ -26,6 +26,7 @@ __exportStar(require("./types/catalog/label"), exports);
 __exportStar(require("./types/orders/cart"), exports);
 __exportStar(require("./types/orders/checkout"), exports);
 __exportStar(require("./types/orders/orders"), exports);
+__exportStar(require("./types/orders/payment"), exports);
 __exportStar(require("./types/settings"), exports);
 __exportStar(require("./types/customer"), exports);
 __exportStar(require("./endpoints/catalog"), exports); // FIXME organize exports

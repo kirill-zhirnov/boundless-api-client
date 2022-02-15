@@ -27,5 +27,17 @@ class CheckoutApi {
             return data;
         });
     }
+    getPaymentPage(orderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/orders/checkout/payment/${orderId}`);
+            return data;
+        });
+    }
+    setPaymentMethod(paymentsData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/payment/set', paymentsData);
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;

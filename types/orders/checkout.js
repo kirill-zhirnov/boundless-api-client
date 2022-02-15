@@ -7,4 +7,5 @@ var TCheckoutStep;
     TCheckoutStep["shippingAddress"] = "shipping-address";
     TCheckoutStep["shippingMethod"] = "shipping-method";
     TCheckoutStep["paymentMethod"] = "payment-method";
+    TCheckoutStep["thankYou"] = "thank-you";
 })(TCheckoutStep = exports.TCheckoutStep || (exports.TCheckoutStep = {}));

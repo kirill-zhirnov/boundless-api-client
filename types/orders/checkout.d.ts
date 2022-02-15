@@ -8,10 +8,12 @@ export declare enum TCheckoutStep {
     contactInfo = "contact-info",
     shippingAddress = "shipping-address",
     shippingMethod = "shipping-method",
-    paymentMethod = "payment-method"
+    paymentMethod = "payment-method",
+    thankYou = "thank-you"
 }
 export interface ICheckoutStepper {
     filledSteps: TCheckoutStep[];
     currentStep: TCheckoutStep;
     steps: TCheckoutStep[];
 }
+export declare type TCheckoutRedirect = TCheckoutStep | 'url';
