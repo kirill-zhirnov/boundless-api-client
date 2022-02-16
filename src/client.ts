@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import CatalogApi from './endpoints/catalog';
-import OrdersApi from './endpoints/orders';
+import CartApi from './endpoints/cart';
 import {BoundlessThumb} from './thumb';
 import CheckoutApi from './endpoints/checkout';
 import CustomerApi from './endpoints/customer';
@@ -18,7 +18,7 @@ export class BoundlessClient {
 	protected customerAuthToken: string|null = null;
 
 	public readonly catalog: CatalogApi;
-	public readonly orders: OrdersApi;
+	public readonly cart: CartApi;
 	public readonly checkout: CheckoutApi;
 	public readonly customer: CustomerApi;
 
@@ -30,7 +30,7 @@ export class BoundlessClient {
 	*/
 	constructor(protected token: string|null = null, protected baseUrl: string = DEFAULT_BASE_URL) {
 		this.catalog = new CatalogApi(this);
-		this.orders = new OrdersApi(this);
+		this.cart = new CartApi(this);
 		this.checkout = new CheckoutApi(this);
 		this.customer = new CustomerApi(this);
 	}

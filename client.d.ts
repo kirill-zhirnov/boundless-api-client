@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import CatalogApi from './endpoints/catalog';
-import OrdersApi from './endpoints/orders';
+import CartApi from './endpoints/cart';
 import { BoundlessThumb } from './thumb';
 import CheckoutApi from './endpoints/checkout';
 import CustomerApi from './endpoints/customer';
@@ -15,7 +15,7 @@ export declare class BoundlessClient {
     protected mediaServerUrl?: string;
     protected customerAuthToken: string | null;
     readonly catalog: CatalogApi;
-    readonly orders: OrdersApi;
+    readonly cart: CartApi;
     readonly checkout: CheckoutApi;
     readonly customer: CustomerApi;
     /**

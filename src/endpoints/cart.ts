@@ -3,7 +3,7 @@ import {IVwItem} from '../types/catalog/inventoryItem';
 import {BoundlessClient} from '../client';
 import {ICartInfo, ICart, ICartTotal} from '../types/orders/cart';
 
-export default class OrdersApi {
+export default class CartApi {
 	constructor(protected client: BoundlessClient) { }
 
 	async retrieveCart(): Promise<ICartInfo> {
