@@ -39,5 +39,11 @@ class CheckoutApi {
             return data;
         });
     }
+    paypalCapture(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/payment/paypal-capture', { id });
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;

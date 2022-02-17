@@ -38,8 +38,14 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async setPaymentMethod(paymentsData: ICheckoutPostPaymentPageData): Promise<{redirectTo: TCheckoutRedirect}> {
+	async setPaymentMethod(paymentsData: ICheckoutPostPaymentPageData): Promise<{redirectTo: TCheckoutRedirect, url?: string, error?: string}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/payment/set', paymentsData);
+
+		return data;
+	}
+
+	async paypalCapture(id: string): Promise<{result: boolean, order?: IOrder}> {
+		const {data} = await this.client.createRequest().post('/orders/checkout/payment/paypal-capture', {id});
 
 		return data;
 	}

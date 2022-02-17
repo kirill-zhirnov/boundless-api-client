@@ -20,5 +20,11 @@ export default class CheckoutApi {
     getPaymentPage(orderId: string): Promise<ICheckoutPaymentPageData>;
     setPaymentMethod(paymentsData: ICheckoutPostPaymentPageData): Promise<{
         redirectTo: TCheckoutRedirect;
+        url?: string;
+        error?: string;
+    }>;
+    paypalCapture(id: string): Promise<{
+        result: boolean;
+        order?: IOrder;
     }>;
 }

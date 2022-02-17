@@ -1,4 +1,5 @@
 import { TPublishingStatus } from '../common';
+import { IPaymentMethod } from './payment';
 export interface IOrder {
     id: string;
     status_id: null | number;
@@ -9,6 +10,7 @@ export interface IOrder {
     publishing_status: TPublishingStatus;
     created_at: string;
     customer?: ICustomer;
+    paymentMethod?: IPaymentMethod;
 }
 export interface ICustomer {
     id: string;
