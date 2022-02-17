@@ -10,6 +10,7 @@ export interface IOrder {
 	publishing_status: TPublishingStatus;
 	created_at: string;
 	customer?: ICustomer;
+	discounts?: IDiscountRow[]
 }
 
 export interface ICustomer {
@@ -49,4 +50,9 @@ export interface ICustomerAddress {
 export enum TDiscountType {
 	fixed = 'fixed',
 	percent = 'percent'
+}
+
+export interface IDiscountRow {
+	type: TDiscountType,
+	value: number
 }
