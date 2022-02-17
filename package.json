@@ -28,10 +28,11 @@
   "scripts": {
     "build": "npx tsc",
     "lint": "npx eslint --ext .ts ./src/",
-		"clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js ./utils.d.ts ./utils.js ./thumb.d.ts ./thumb.js"
+    "clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js ./utils.d.ts ./utils.js ./thumb.d.ts ./thumb.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "currency.js": "^2.0.4",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {

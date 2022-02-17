@@ -45,3 +45,8 @@ export interface ICustomerAddress {
 	phone: string|null;
 	created_at: string;
 }
+
+export enum TDiscountType {
+	fixed = 'fixed',
+	percent = 'percent'
+}
