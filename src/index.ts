@@ -20,6 +20,6 @@ export * from './types/settings';
 export * from './types/customer';
 
 export * from './endpoints/catalog'; // FIXME organize exports
-export * from './endpoints/orders';
+export * from './endpoints/cart';
 export * from './endpoints/checkout';
 export * from './endpoints/customer';

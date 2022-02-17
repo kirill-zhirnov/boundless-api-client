@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoundlessClient = void 0;
 const axios_1 = require("axios");
 const catalog_1 = require("./endpoints/catalog");
-const orders_1 = require("./endpoints/orders");
+const cart_1 = require("./endpoints/cart");
 const thumb_1 = require("./thumb");
 const checkout_1 = require("./endpoints/checkout");
 const customer_1 = require("./endpoints/customer");
@@ -24,7 +24,7 @@ class BoundlessClient {
         this.instanceId = null;
         this.customerAuthToken = null;
         this.catalog = new catalog_1.default(this);
-        this.orders = new orders_1.default(this);
+        this.cart = new cart_1.default(this);
         this.checkout = new checkout_1.default(this);
         this.customer = new customer_1.default(this);
     }

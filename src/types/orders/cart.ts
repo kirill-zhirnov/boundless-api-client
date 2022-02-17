@@ -1,5 +1,4 @@
 import {IVwItem, IItemPrice} from '../catalog/inventoryItem';
-import {TPublishingStatus} from '../common';
 
 export interface ICartInfo {
 	id: string;

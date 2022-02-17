@@ -140,7 +140,7 @@ export interface IProductItem {
     text: IProductText;
     images: IProductImage[];
     props: IProductItemProps;
-    manufacturer: IProductItemManufacturer;
+    manufacturer: IProductItemManufacturer | null;
     categoryRels: IProductCategoryRels[];
     commodityGroup: IProductCommodityGroup;
     labels: ILabel[];

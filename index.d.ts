@@ -14,6 +14,6 @@ export * from './types/orders/payment';
 export * from './types/settings';
 export * from './types/customer';
 export * from './endpoints/catalog';
-export * from './endpoints/orders';
+export * from './endpoints/cart';
 export * from './endpoints/checkout';
 export * from './endpoints/customer';
