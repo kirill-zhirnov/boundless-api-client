@@ -13,6 +13,8 @@ export default class CheckoutApi {
         settings: ICheckoutPageSettings;
         stepper: ICheckoutStepper;
         loggedInCustomer: ICustomer | null;
+        hasCouponCampaigns: boolean;
+        needShipping: boolean;
     }>;
     saveContactsData(contactsData: ICheckoutPostContactsData): Promise<{
         customer: ICustomer;
