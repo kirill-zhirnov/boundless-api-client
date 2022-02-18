@@ -10,6 +10,7 @@ export interface IOrder {
     publishing_status: TPublishingStatus;
     created_at: string;
     customer?: ICustomer;
+    discounts?: IOrderDiscount[];
     paymentMethod?: IPaymentMethod;
 }
 export interface ICustomer {
@@ -44,4 +45,21 @@ export interface ICustomerAddress {
     zip: string | null;
     phone: string | null;
     created_at: string;
+}
+export declare enum TDiscountType {
+    fixed = "fixed",
+    percent = "percent"
+}
+export declare enum TDiscountSource {
+    manual = "manual",
+    coupon = "coupon"
+}
+export interface IOrderDiscount {
+    discount_id: number;
+    title: string | null;
+    discount_type: TDiscountType | null;
+    value: string;
+    source: TDiscountSource | null;
+    code_id: number | null;
+    created_at?: string;
 }

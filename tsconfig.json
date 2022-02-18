@@ -9,6 +9,7 @@
 	},
 	"files": [
 		"./src/index.ts",
-		"./src/token.ts"
+		"./src/token.ts",
+		"./src/totalCalculator.ts"
 	]
 }

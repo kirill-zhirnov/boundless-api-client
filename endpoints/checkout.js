@@ -45,5 +45,22 @@ class CheckoutApi {
             return data;
         });
     }
+    addDiscountCode(orderId, discountCode) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/discount-code', {
+                order_id: orderId,
+                code: discountCode
+            });
+            return data;
+        });
+    }
+    clearDiscounts(orderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/clear-discounts', {
+                order_id: orderId,
+            });
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;
