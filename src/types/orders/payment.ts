@@ -1,3 +1,5 @@
+import {IVWCountry} from '../delivery';
+
 export enum TPaymentGatewayAlias {
 	cashOnDelivery = 'cashOnDelivery',
 	paypal = 'paypal'
@@ -13,10 +15,22 @@ export interface IPaymentMethod {
 }
 
 export interface ICheckoutPaymentPageData {
-	paymentMethods: IPaymentMethod[]
+	paymentMethods: IPaymentMethod[],
+	requiredBillingAddress: boolean,
+	countries: IVWCountry[]
 }
 
 export interface ICheckoutPostPaymentPageData {
 	order_id: string;
 	payment_method_id: number;
+	payment_address_the_same?: string;
+	first_name?: string;
+	last_name?: string;
+	company?: string;
+	address_line_1?: string;
+	address_line_2?: string;
+	city?: string;
+	state?: string;
+	country_id?: number;
+	zip?: string;
 }
