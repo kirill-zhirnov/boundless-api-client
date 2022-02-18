@@ -1,5 +1,6 @@
 export enum TPaymentGatewayAlias {
-	cashOnDelivery = 'cashOnDelivery'
+	cashOnDelivery = 'cashOnDelivery',
+	paypal = 'paypal'
 }
 
 export interface IPaymentMethod {

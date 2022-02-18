@@ -4,4 +4,5 @@ exports.TPaymentGatewayAlias = void 0;
 var TPaymentGatewayAlias;
 (function (TPaymentGatewayAlias) {
     TPaymentGatewayAlias["cashOnDelivery"] = "cashOnDelivery";
+    TPaymentGatewayAlias["paypal"] = "paypal";
 })(TPaymentGatewayAlias = exports.TPaymentGatewayAlias || (exports.TPaymentGatewayAlias = {}));

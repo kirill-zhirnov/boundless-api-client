@@ -1,5 +1,6 @@
 export declare enum TPaymentGatewayAlias {
-    cashOnDelivery = "cashOnDelivery"
+    cashOnDelivery = "cashOnDelivery",
+    paypal = "paypal"
 }
 export interface IPaymentMethod {
     payment_method_id: number;
