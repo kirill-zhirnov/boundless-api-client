@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calcProportion = exports.calcThumbSizeByProportion = exports.createGetStr = exports.extractPaginationFromHeaders = exports.TotalCalculator = void 0;
-var totalCalculator_1 = require("./utils/totalCalculator");
-Object.defineProperty(exports, "TotalCalculator", { enumerable: true, get: function () { return totalCalculator_1.TotalCalculator; } });
+exports.calcProportion = exports.calcThumbSizeByProportion = exports.createGetStr = exports.extractPaginationFromHeaders = void 0;
 function extractPaginationFromHeaders(headers) {
     const parsedHeaders = {};
     for (const [key, value] of Object.entries(headers)) {

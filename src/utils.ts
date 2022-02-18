@@ -1,8 +1,6 @@
 import {IPagination} from './types/common';
 import {TThumbRatio} from './types/image';
 
-export {TotalCalculator} from './utils/totalCalculator';
-
 export function extractPaginationFromHeaders(headers: {[key: string]: string}): IPagination {
 	const parsedHeaders = {};
 	for (const [key, value] of Object.entries(headers)) {

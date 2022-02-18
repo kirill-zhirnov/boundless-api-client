@@ -1,4 +1,4 @@
-import { TDiscountType } from '../types/orders/orders';
+import { TDiscountType } from './types/orders/orders';
 interface IItem {
     id: number;
     price: number;

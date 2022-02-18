@@ -1,6 +1,5 @@
 import { IPagination } from './types/common';
 import { TThumbRatio } from './types/image';
-export { TotalCalculator } from './utils/totalCalculator';
 export declare function extractPaginationFromHeaders(headers: {
     [key: string]: string;
 }): IPagination;

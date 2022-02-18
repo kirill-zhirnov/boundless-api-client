@@ -10,7 +10,7 @@ export interface IOrder {
     publishing_status: TPublishingStatus;
     created_at: string;
     customer?: ICustomer;
-    discounts?: IDiscountRow[];
+    discounts?: IOrderDiscount[];
     paymentMethod?: IPaymentMethod;
 }
 export interface ICustomer {
@@ -50,7 +50,16 @@ export declare enum TDiscountType {
     fixed = "fixed",
     percent = "percent"
 }
-export interface IDiscountRow {
-    type: TDiscountType;
-    value: number;
+export declare enum TDiscountSource {
+    manual = "manual",
+    coupon = "coupon"
+}
+export interface IOrderDiscount {
+    discount_id: number;
+    title: string | null;
+    discount_type: TDiscountType | null;
+    value: string;
+    source: TDiscountSource | null;
+    code_id: number | null;
+    created_at: string;
 }
