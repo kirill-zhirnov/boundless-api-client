@@ -1,4 +1,5 @@
 import { TPublishingStatus } from '../common';
+import { IPaymentMethod } from './payment';
 export interface IOrder {
     id: string;
     status_id: null | number;
@@ -10,6 +11,7 @@ export interface IOrder {
     created_at: string;
     customer?: ICustomer;
     discounts?: IDiscountRow[];
+    paymentMethod?: IPaymentMethod;
 }
 export interface ICustomer {
     id: string;
