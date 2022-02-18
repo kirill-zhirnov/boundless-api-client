@@ -2,7 +2,7 @@ import {BoundlessClient} from '../client';
 import {ICartItem} from '../types/orders/cart';
 import {ICheckoutPageSettings} from '../types/settings';
 import {ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect} from '../types/orders/checkout';
-import {ICustomer, IOrder} from '../types/orders/orders';
+import {ICustomer, IOrder, IOrderDiscount} from '../types/orders/orders';
 import {
 	ICheckoutPaymentPageData,
 	ICheckoutPostPaymentPageData
@@ -46,6 +46,23 @@ export default class CheckoutApi {
 
 	async paypalCapture(id: string): Promise<{result: boolean, order?: IOrder}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/payment/paypal-capture', {id});
+
+		return data;
+	}
+
+	async addDiscountCode(orderId: string, discountCode: string): Promise<{discount: IOrderDiscount}> {
+		const {data} = await this.client.createRequest().post('/orders/checkout/discount-code', {
+			order_id: orderId,
+			code: discountCode
+		});
+
+		return data;
+	}
+
+	async clearDiscounts(orderId: string): Promise<{order_id: string}> {
+		const {data} = await this.client.createRequest().post('/orders/checkout/clear-discounts', {
+			order_id: orderId,
+		});
 
 		return data;
 	}

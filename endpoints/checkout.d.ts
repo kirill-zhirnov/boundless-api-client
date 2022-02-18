@@ -2,7 +2,7 @@ import { BoundlessClient } from '../client';
 import { ICartItem } from '../types/orders/cart';
 import { ICheckoutPageSettings } from '../types/settings';
 import { ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect } from '../types/orders/checkout';
-import { ICustomer, IOrder } from '../types/orders/orders';
+import { ICustomer, IOrder, IOrderDiscount } from '../types/orders/orders';
 import { ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
 export default class CheckoutApi {
     protected client: BoundlessClient;
@@ -26,5 +26,11 @@ export default class CheckoutApi {
     paypalCapture(id: string): Promise<{
         result: boolean;
         order?: IOrder;
+    }>;
+    addDiscountCode(orderId: string, discountCode: string): Promise<{
+        discount: IOrderDiscount;
+    }>;
+    clearDiscounts(orderId: string): Promise<{
+        order_id: string;
     }>;
 }

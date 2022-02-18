@@ -1,21 +1,5 @@
 import * as currency from 'currency.js';
-import {TDiscountType} from './types/orders/orders';
-
-interface IItem {
-	id: number,
-	price: number,
-	qty: number
-}
-
-interface IItemsTotal {
-	price: number,
-	qty: number
-}
-
-interface IDiscountRow {
-	type: TDiscountType,
-	value: number
-}
+import {TDiscountType, IOrderDiscount} from './types/orders/orders';
 
 export class TotalCalculator {
 	public itemsList: IItem[] = [];
@@ -35,6 +19,8 @@ export class TotalCalculator {
 	};
 
 	public discounts: IDiscountRow[] = [];
+
+	public paymentMarkUp: number = 0;
 
 	addItem(id: number, price: number, qty: number) {
 		if (this.itemsList.some(el => el.id === id)) return this;
@@ -106,17 +92,23 @@ export class TotalCalculator {
 		return this;
 	}
 
-	clearDiscounts() {
-		this.discounts = [];
-	}
-
-	setDiscounts(discounts: IDiscountRow[]) {
-		discounts.forEach(row => this.addDiscount(row.type, row.value));
+	setPaymentMarkUp(val: number) {
+		this.paymentMarkUp = val;
 
 		return this;
 	}
 
-	addDiscount(type: TDiscountType, value: number) {
+	clearDiscounts() {
+		this.discounts = [];
+	}
+
+	setDiscounts(discounts: IOrderDiscount[]) {
+		discounts.forEach(row => this.addDiscount(row.discount_type, row.value));
+
+		return this;
+	}
+
+	addDiscount(type: TDiscountType, value: number|string) {
 		this.discounts.push({
 			type,
 			value
@@ -131,14 +123,14 @@ export class TotalCalculator {
 		return this.items;
 	}
 
-	calcTotal(): {price: string, discount: string} {
+	calcTotal(): {price: string, discount: string, paymentMarkUp: string} {
 		let price = currency(this.items.price)
 			.add(this.shipping.price)
 			.add(this.services.price)
 			.format()
 			;
 
-		let discount = '';
+		let discount = currency(0).format();
 		this.discounts.forEach((row) => {
 			switch (row.type) {
 				case 'fixed':
@@ -148,7 +140,7 @@ export class TotalCalculator {
 
 				case 'percent': {
 					//apply discount only to items, not services:
-					const rowVal = currency(row.value / 100).multiply(this.items.price).format();
+					const rowVal = currency(row.value).divide(100).multiply(this.items.price).format();
 
 					discount = currency(discount).add(rowVal).format();
 					price = currency(price).subtract(rowVal).format();
@@ -157,10 +149,32 @@ export class TotalCalculator {
 			}
 		});
 
+		let paymentMarkUp = currency(0).format();
+		if (this.paymentMarkUp) {
+			paymentMarkUp = currency(price).multiply(currency(this.paymentMarkUp)).divide(100).format();
+			price = currency(price).add(paymentMarkUp).format();
+		}
 
 		return {
 			price,
-			discount
+			discount,
+			paymentMarkUp
 		};
 	}
+}
+
+interface IItem {
+	id: number,
+	price: number,
+	qty: number
+}
+
+interface IItemsTotal {
+	price: number,
+	qty: number
+}
+
+interface IDiscountRow {
+	type: TDiscountType,
+	value: number|string;
 }

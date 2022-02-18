@@ -61,5 +61,6 @@ export interface IOrderDiscount {
     value: string;
     source: TDiscountSource | null;
     code_id: number | null;
-    created_at: string;
+    created_at?: string;
+    order_id?: number;
 }

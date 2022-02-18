@@ -12,6 +12,8 @@
     ".": "./index.js",
     "./token.js": "./token.js",
     "./token": "./token.js",
+    "./totalCalculator": "./totalCalculator.js",
+    "./totalCalculator.js": "./totalCalculator.js",
     "./utils.js": "./utils.js",
     "./utils": "./utils.js"
   },
@@ -22,6 +24,9 @@
       ],
       "utils": [
         "utils.d.ts"
+      ],
+      "totalCalculator": [
+        "totalCalculator.d.ts"
       ]
     }
   },

@@ -17,6 +17,7 @@ class TotalCalculator {
             qty: 0
         };
         this.discounts = [];
+        this.paymentMarkUp = 0;
     }
     addItem(id, price, qty) {
         if (this.itemsList.some(el => el.id === id))
@@ -74,11 +75,15 @@ class TotalCalculator {
         };
         return this;
     }
+    setPaymentMarkUp(val) {
+        this.paymentMarkUp = val;
+        return this;
+    }
     clearDiscounts() {
         this.discounts = [];
     }
     setDiscounts(discounts) {
-        discounts.forEach(row => this.addDiscount(row.type, row.value));
+        discounts.forEach(row => this.addDiscount(row.discount_type, row.value));
         return this;
     }
     addDiscount(type, value) {
@@ -98,7 +103,7 @@ class TotalCalculator {
             .add(this.shipping.price)
             .add(this.services.price)
             .format();
-        let discount = '';
+        let discount = currency(0).format();
         this.discounts.forEach((row) => {
             switch (row.type) {
                 case 'fixed':
@@ -107,16 +112,22 @@ class TotalCalculator {
                     break;
                 case 'percent': {
                     //apply discount only to items, not services:
-                    const rowVal = currency(row.value / 100).multiply(this.items.price).format();
+                    const rowVal = currency(row.value).divide(100).multiply(this.items.price).format();
                     discount = currency(discount).add(rowVal).format();
                     price = currency(price).subtract(rowVal).format();
                     break;
                 }
             }
         });
+        let paymentMarkUp = currency(0).format();
+        if (this.paymentMarkUp) {
+            paymentMarkUp = currency(price).multiply(currency(this.paymentMarkUp)).divide(100).format();
+            price = currency(price).add(paymentMarkUp).format();
+        }
         return {
             price,
-            discount
+            discount,
+            paymentMarkUp
         };
     }
 }
