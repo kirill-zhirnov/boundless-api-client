@@ -68,4 +68,10 @@ export default class CheckoutApi {
 
 		return data;
 	}
+
+	async getShippingPage(orderId: string): Promise<{order_id: string}> {
+		const {data} = await this.client.createRequest().get(`/orders/checkout/shipping/${orderId}`);
+
+		return data;
+	}
 }
