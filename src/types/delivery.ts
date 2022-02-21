@@ -23,6 +23,7 @@ export interface ICheckoutShippingPageData {
 	requiredBillingAddress: boolean,
 	person: ICustomer;
 	options: {
+		delivery: IDelivery[];
 		country: IVWCountry[];
 	};
 }
