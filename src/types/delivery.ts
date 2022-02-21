@@ -1,4 +1,4 @@
-import {IPerson} from './customer';
+import {ICustomer} from './customer';
 
 export interface IVWCountry {
 	country_id: number,
@@ -21,7 +21,7 @@ export interface IDelivery {
 export interface ICheckoutShippingPageData {
 	shippingAddress: IAddress|null,
 	requiredBillingAddress: boolean,
-	person: IPerson;
+	person: ICustomer;
 	options: {
 		country: IVWCountry[];
 	};
@@ -46,18 +46,18 @@ export enum TDeliveryCalcMethod {
 
 export interface IAddress {
 	id: string;
-	type: TAddressType;
+	type: TAddressType | null;
 	is_default: boolean;
-	first_name: string|null;
-	last_name: string|null;
-	company: string|null;
-	address_line_1: string|null;
-	address_line_2: string|null;
-	city: string|null;
-	state: string|null;
-	country_id: number|null;
-	zip: string|null;
-	phone: string|null;
+	first_name: string | null;
+	last_name: string | null;
+	company: string | null;
+	address_line_1: string | null;
+	address_line_2: string | null;
+	city: string | null;
+	state: string | null;
+	country_id: number | null;
+	zip: string | null;
+	phone: string | null;
 	created_at: string;
 }
 

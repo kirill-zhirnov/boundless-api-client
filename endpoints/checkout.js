@@ -62,5 +62,11 @@ class CheckoutApi {
             return data;
         });
     }
+    getShippingPage(orderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().get(`/orders/checkout/shipping/${orderId}`);
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;

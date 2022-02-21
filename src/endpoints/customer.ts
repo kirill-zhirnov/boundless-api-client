@@ -1,6 +1,5 @@
 import {BoundlessClient} from '../client';
-import {IRegisterCustomerData} from '../types/customer';
-import {ICustomer} from '../types/orders/orders';
+import {ICustomer, IRegisterCustomerData} from '../types/customer';
 
 export default class CustomerApi {
 	constructor(protected client: BoundlessClient) {

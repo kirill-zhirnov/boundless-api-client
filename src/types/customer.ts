@@ -13,14 +13,14 @@ export interface IRegisterCustomerData {
 	}
 }
 
-export interface IPerson {
+export interface ICustomer {
 	id: string;
-	email: string;
-	created_at: string;
-	first_name: string|null;
-	last_name: string|null;
-	phone: string|null;
-	receive_marketing_info: boolean;
-	custom_attrs: {[key: string]: any} | null,
+	email: string | null;
+	created_at: string,
+	first_name: string | null,
+	last_name: string | null,
+	phone: string | null,
+	receive_marketing_info: boolean,
+	custom_attrs: {[key: string]: any},
 	addresses: IAddress[]
 }

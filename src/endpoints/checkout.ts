@@ -2,7 +2,8 @@ import {BoundlessClient} from '../client';
 import {ICartItem} from '../types/orders/cart';
 import {ICheckoutPageSettings} from '../types/settings';
 import {ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect} from '../types/orders/checkout';
-import {ICustomer, IOrder, IOrderDiscount} from '../types/orders/orders';
+import {IOrder, IOrderDiscount} from '../types/orders/orders';
+import {ICustomer} from '../types/customer';
 import {
 	ICheckoutPaymentPageData,
 	ICheckoutPostPaymentPageData
