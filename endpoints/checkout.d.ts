@@ -1,7 +1,7 @@
 import { BoundlessClient } from '../client';
 import { ICartItem } from '../types/orders/cart';
 import { ICheckoutPageSettings } from '../types/settings';
-import { ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect } from '../types/orders/checkout';
+import { ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect, ICheckoutPostAddressData } from '../types/orders/checkout';
 import { IOrder, IOrderDiscount } from '../types/orders/orders';
 import { ICustomer } from '../types/customer';
 import { ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
@@ -38,4 +38,8 @@ export default class CheckoutApi {
         order_id: string;
     }>;
     getShippingPage(orderId: string): Promise<ICheckoutShippingPageData>;
+    setDeliveryMethod(orderId: string, deliveryId: number): Promise<boolean>;
+    setShippingAddress(shipmentData: ICheckoutPostAddressData): Promise<{
+        person: ICustomer;
+    }>;
 }

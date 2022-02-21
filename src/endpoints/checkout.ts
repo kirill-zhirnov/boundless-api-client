@@ -1,7 +1,7 @@
 import {BoundlessClient} from '../client';
 import {ICartItem} from '../types/orders/cart';
 import {ICheckoutPageSettings} from '../types/settings';
-import {ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect} from '../types/orders/checkout';
+import {ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect, ICheckoutPostAddressData} from '../types/orders/checkout';
 import {IOrder, IOrderDiscount} from '../types/orders/orders';
 import {ICustomer} from '../types/customer';
 import {
@@ -19,7 +19,7 @@ export default class CheckoutApi {
 		order: IOrder,
 		settings: ICheckoutPageSettings,
 		stepper: ICheckoutStepper,
-		loggedInCustomer: ICustomer|null,
+		loggedInCustomer: ICustomer | null,
 		hasCouponCampaigns: boolean,
 		needShipping: boolean
 	}> {
@@ -73,6 +73,21 @@ export default class CheckoutApi {
 
 	async getShippingPage(orderId: string): Promise<ICheckoutShippingPageData> {
 		const {data} = await this.client.createRequest().get(`/orders/checkout/shipping/${orderId}`);
+
+		return data;
+	}
+
+	async setDeliveryMethod(orderId: string, deliveryId: number): Promise<boolean> {
+		const {data} = await this.client.createRequest().post('/orders/checkout/shipping/delivery-method', {
+			order_id: orderId,
+			delivery_id: deliveryId
+		});
+
+		return data;
+	}
+
+	async setShippingAddress(shipmentData: ICheckoutPostAddressData): Promise<{person: ICustomer}> {
+		const {data} = await this.client.createRequest().post('/orders/checkout/shipping/address', shipmentData);
 
 		return data;
 	}

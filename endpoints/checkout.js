@@ -68,5 +68,20 @@ class CheckoutApi {
             return data;
         });
     }
+    setDeliveryMethod(orderId, deliveryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/shipping/delivery-method', {
+                order_id: orderId,
+                delivery_id: deliveryId
+            });
+            return data;
+        });
+    }
+    setShippingAddress(shipmentData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { data } = yield this.client.createRequest().post('/orders/checkout/shipping/address', shipmentData);
+            return data;
+        });
+    }
 }
 exports.default = CheckoutApi;

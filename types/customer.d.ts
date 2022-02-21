@@ -21,6 +21,6 @@ export interface ICustomer {
     receive_marketing_info: boolean;
     custom_attrs: {
         [key: string]: any;
-    };
+    } | null;
     addresses: IAddress[];
 }

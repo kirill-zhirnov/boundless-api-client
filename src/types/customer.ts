@@ -21,6 +21,6 @@ export interface ICustomer {
 	last_name: string | null,
 	phone: string | null,
 	receive_marketing_info: boolean,
-	custom_attrs: {[key: string]: any},
+	custom_attrs: {[key: string]: any}|null,
 	addresses: IAddress[]
 }
