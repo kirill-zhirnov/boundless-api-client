@@ -8,6 +8,7 @@ import {
 	ICheckoutPaymentPageData,
 	ICheckoutPostPaymentPageData
 } from '../types/orders/payment';
+import {ICheckoutShippingPageData} from '../types/delivery';
 
 export default class CheckoutApi {
 	constructor(protected client: BoundlessClient) {
@@ -70,7 +71,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async getShippingPage(orderId: string): Promise<{order_id: string}> {
+	async getShippingPage(orderId: string): Promise<ICheckoutShippingPageData> {
 		const {data} = await this.client.createRequest().get(`/orders/checkout/shipping/${orderId}`);
 
 		return data;

@@ -5,6 +5,7 @@ import { ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect } from '
 import { IOrder, IOrderDiscount } from '../types/orders/orders';
 import { ICustomer } from '../types/customer';
 import { ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
+import { ICheckoutShippingPageData } from '../types/delivery';
 export default class CheckoutApi {
     protected client: BoundlessClient;
     constructor(client: BoundlessClient);
@@ -36,7 +37,5 @@ export default class CheckoutApi {
     clearDiscounts(orderId: string): Promise<{
         order_id: string;
     }>;
-    getShippingPage(orderId: string): Promise<{
-        order_id: string;
-    }>;
+    getShippingPage(orderId: string): Promise<ICheckoutShippingPageData>;
 }
