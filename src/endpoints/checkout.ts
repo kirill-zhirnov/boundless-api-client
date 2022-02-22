@@ -1,9 +1,8 @@
 import {BoundlessClient} from '../client';
-import {ICartItem} from '../types/orders/cart';
-import {ICheckoutPageSettings} from '../types/settings';
-import {ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect} from '../types/orders/checkout';
+import {ICheckoutPostContactsData, TCheckoutRedirect} from '../types/orders/checkout';
 import {ICustomer, IOrder, IOrderDiscount} from '../types/orders/orders';
 import {
+	ICheckoutInitData,
 	ICheckoutPaymentPageData,
 	ICheckoutPostPaymentPageData
 } from '../types/orders/payment';
@@ -12,15 +11,7 @@ export default class CheckoutApi {
 	constructor(protected client: BoundlessClient) {
 	}
 
-	async init(cart_id: string): Promise<{
-		items: ICartItem[],
-		order: IOrder,
-		settings: ICheckoutPageSettings,
-		stepper: ICheckoutStepper,
-		loggedInCustomer: ICustomer|null,
-		hasCouponCampaigns: boolean,
-		needShipping: boolean
-	}> {
+	async init(cart_id: string): Promise<ICheckoutInitData> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/init', {
 			cart_id
 		});

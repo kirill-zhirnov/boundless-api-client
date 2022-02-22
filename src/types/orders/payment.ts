@@ -1,4 +1,18 @@
 import {IVWCountry} from '../delivery';
+import {ICartItem} from './cart';
+import {ICustomer, IOrder} from './orders';
+import {ICheckoutPageSettings} from '../settings';
+import {ICheckoutStepper} from './checkout';
+
+export interface ICheckoutInitData {
+	items: ICartItem[],
+	order: IOrder,
+	settings: ICheckoutPageSettings,
+	stepper: ICheckoutStepper,
+	loggedInCustomer: ICustomer|null,
+	hasCouponCampaigns: boolean,
+	needShipping: boolean
+}
 
 export enum TPaymentGatewayAlias {
 	cashOnDelivery = 'cashOnDelivery',
