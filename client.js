@@ -7,6 +7,7 @@ const cart_1 = require("./endpoints/cart");
 const thumb_1 = require("./thumb");
 const checkout_1 = require("./endpoints/checkout");
 const customer_1 = require("./endpoints/customer");
+const customerOrder_1 = require("./endpoints/customerOrder");
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 /**
 * Boundless Commerce API client.
@@ -27,6 +28,7 @@ class BoundlessClient {
         this.cart = new cart_1.default(this);
         this.checkout = new checkout_1.default(this);
         this.customer = new customer_1.default(this);
+        this.customerOrder = new customerOrder_1.default(this);
     }
     /**
     * Sets your shop instance ID for getting images.

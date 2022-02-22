@@ -1,23 +1,13 @@
 import { BoundlessClient } from '../client';
-import { ICartItem } from '../types/orders/cart';
-import { ICheckoutPageSettings } from '../types/settings';
-import { ICheckoutPostContactsData, ICheckoutStepper, TCheckoutRedirect, ICheckoutPostAddressData } from '../types/orders/checkout';
+import { ICheckoutPostContactsData, TCheckoutRedirect, ICheckoutPostAddressData } from '../types/orders/checkout';
 import { IOrder, IOrderDiscount } from '../types/orders/orders';
 import { ICustomer } from '../types/customer';
-import { ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
+import { ICheckoutInitData, ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
 import { ICheckoutShippingPageData } from '../types/delivery';
 export default class CheckoutApi {
     protected client: BoundlessClient;
     constructor(client: BoundlessClient);
-    init(cart_id: string): Promise<{
-        items: ICartItem[];
-        order: IOrder;
-        settings: ICheckoutPageSettings;
-        stepper: ICheckoutStepper;
-        loggedInCustomer: ICustomer | null;
-        hasCouponCampaigns: boolean;
-        needShipping: boolean;
-    }>;
+    init(cart_id: string): Promise<ICheckoutInitData>;
     saveContactsData(contactsData: ICheckoutPostContactsData): Promise<{
         customer: ICustomer;
     }>;

@@ -6,14 +6,16 @@ export interface IVWCountry {
 }
 export interface IDelivery {
     delivery_id: number;
-    title: string;
+    title: string | number;
     alias: string | null;
     shipping_id: number | null;
-    shipping_config: IShippingConfig;
-    free_shipping_from: string | null;
-    calc_method: TDeliveryCalcMethod;
+    shipping_config: {
+        [key: string]: any;
+    } | null;
+    free_shipping_from: null | string;
+    calc_method: TDeliveryCalcMethod | null;
     created_at: string;
-    shipping: IShippingData | null;
+    shipping?: IVwShipping | null;
 }
 export interface ICheckoutShippingPageData {
     shippingAddress: IAddress | null;
@@ -24,19 +26,21 @@ export interface ICheckoutShippingPageData {
         country: IVWCountry[];
     };
 }
-export interface IShippingData {
-    shipping_id: number;
-    shipping_title: string;
-    alias: string;
-    settings: null;
-}
-export interface IShippingConfig {
-    address?: string;
-    price?: number;
-}
 export declare enum TDeliveryCalcMethod {
     byShippingService = "byShippingService",
+    byOwnRates = "byOwnRates",
     single = "single"
+}
+export declare enum TShippingAlias {
+    selfPickup = "selfPickup"
+}
+export interface IVwShipping {
+    shipping_id: number;
+    shipping_title: string;
+    alias: TShippingAlias | null;
+    settings: null | {
+        [key: string]: any;
+    };
 }
 export interface IAddress {
     id: string;
