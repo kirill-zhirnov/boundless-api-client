@@ -4,6 +4,7 @@ import CartApi from './endpoints/cart';
 import { BoundlessThumb } from './thumb';
 import CheckoutApi from './endpoints/checkout';
 import CustomerApi from './endpoints/customer';
+import CustomerOrderApi from './endpoints/customerOrder';
 /**
 * Boundless Commerce API client.
 */
@@ -18,6 +19,7 @@ export declare class BoundlessClient {
     readonly cart: CartApi;
     readonly checkout: CheckoutApi;
     readonly customer: CustomerApi;
+    readonly customerOrder: CustomerOrderApi;
     /**
     * Create an instance of Boundless Commerce API client.
     *

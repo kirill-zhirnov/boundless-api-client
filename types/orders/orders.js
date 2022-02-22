@@ -1,6 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TDiscountSource = exports.TDiscountType = exports.TAddressType = void 0;
+exports.TOrderStockLocation = exports.TDiscountSource = exports.TDiscountType = exports.TAddressType = exports.TShippingAlias = exports.TDeliveryCalcMethod = void 0;
+var TDeliveryCalcMethod;
+(function (TDeliveryCalcMethod) {
+    TDeliveryCalcMethod["byShippingService"] = "byShippingService";
+    TDeliveryCalcMethod["byOwnRates"] = "byOwnRates";
+    TDeliveryCalcMethod["single"] = "single";
+})(TDeliveryCalcMethod = exports.TDeliveryCalcMethod || (exports.TDeliveryCalcMethod = {}));
+var TShippingAlias;
+(function (TShippingAlias) {
+    TShippingAlias["selfPickup"] = "selfPickup";
+})(TShippingAlias = exports.TShippingAlias || (exports.TShippingAlias = {}));
 var TAddressType;
 (function (TAddressType) {
     TAddressType["billing"] = "billing";
@@ -16,3 +26,9 @@ var TDiscountSource;
     TDiscountSource["manual"] = "manual";
     TDiscountSource["coupon"] = "coupon";
 })(TDiscountSource = exports.TDiscountSource || (exports.TDiscountSource = {}));
+var TOrderStockLocation;
+(function (TOrderStockLocation) {
+    TOrderStockLocation["inside"] = "inside";
+    TOrderStockLocation["outside"] = "outside";
+    TOrderStockLocation["basket"] = "basket";
+})(TOrderStockLocation = exports.TOrderStockLocation || (exports.TOrderStockLocation = {}));
