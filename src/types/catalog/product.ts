@@ -134,6 +134,15 @@ export interface IProductCommodityGroup {
 	trackInventory: boolean;
 }
 
+export interface IItemSeo {
+	compiledTitle: null|string,
+	compiledMetaDescription: null|string,
+	customTitle: null|string,
+	customMetaDesc: null|string,
+	title: string,
+	metaDesc: null|string
+}
+
 export interface IProductItem {
 	product_id: number;
 	sku: string | null;
@@ -157,6 +166,7 @@ export interface IProductItem {
 	labels: ILabel[],
 	nonVariantCharacteristics: INonVariantCaracteristic[];
 	extendedVariants?: IExtendedVariants;
+	seo: IItemSeo;
 }
 
 export interface IProductItemProps {

@@ -1,6 +1,7 @@
 import {TPublishingStatus} from '../common';
 import {IImageItem} from '../image';
 import {IFilter} from './filter';
+import {IItemSeo} from './product';
 
 export interface ICategory {
 	category_id: number;
@@ -32,6 +33,7 @@ export interface ICategoryItem {
 	siblings?: ICategoryFlatItem[];
 	parents?: ICategoryFlatItem[];
 	filter?: IFilter;
+	seo: IItemSeo;
 }
 
 export interface ICategoryFlatItem {
