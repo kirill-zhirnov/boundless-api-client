@@ -1,3 +1,4 @@
+import { IAddress } from './delivery';
 export interface IRegisterCustomerData {
     email: string;
     password: string;
@@ -9,4 +10,17 @@ export interface IRegisterCustomerData {
     custom_attrs?: {
         [key: string]: any;
     };
+}
+export interface ICustomer {
+    id: string;
+    email: string | null;
+    created_at: string;
+    first_name: string | null;
+    last_name: string | null;
+    phone: string | null;
+    receive_marketing_info: boolean;
+    custom_attrs: {
+        [key: string]: any;
+    } | null;
+    addresses: IAddress[];
 }

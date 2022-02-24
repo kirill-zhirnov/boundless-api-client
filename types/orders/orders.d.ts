@@ -1,6 +1,8 @@
 import { TPublishingStatus } from '../common';
+import { ICustomer } from '../customer';
 import { IPaymentMethod } from './payment';
 import { IItemPrice, IVwItem } from '../catalog/inventoryItem';
+import { IDelivery } from '../delivery';
 export interface IOrder {
     id: string;
     status_id: null | number;
@@ -60,68 +62,6 @@ export interface IOrderServiceDelivery {
         [key: string]: any;
     } | null;
     delivery?: IDelivery;
-}
-export declare enum TDeliveryCalcMethod {
-    byShippingService = "byShippingService",
-    byOwnRates = "byOwnRates",
-    single = "single"
-}
-export interface IDelivery {
-    delivery_id: number;
-    title: string | number;
-    alias: string | null;
-    shipping_id: number | null;
-    shipping_config: {
-        [key: string]: any;
-    } | null;
-    free_shipping_from: null | string;
-    calc_method: TDeliveryCalcMethod | null;
-    created_at: string;
-    shipping?: IVwShipping;
-}
-export declare enum TShippingAlias {
-    selfPickup = "selfPickup"
-}
-export interface IVwShipping {
-    shipping_id: number;
-    shipping_title: string;
-    alias: TShippingAlias | null;
-    settings: null | {
-        [key: string]: any;
-    };
-}
-export interface ICustomer {
-    id: string;
-    email: string | null;
-    created_at: string;
-    first_name: string | null;
-    last_name: string | null;
-    phone: string | null;
-    receive_marketing_info: boolean;
-    custom_attrs: {
-        [key: string]: any;
-    };
-    addresses: ICustomerAddress[];
-}
-export declare enum TAddressType {
-    billing = "billing",
-    shipping = "shipping"
-}
-export interface ICustomerAddress {
-    id: string;
-    type: TAddressType | null;
-    is_default: boolean;
-    first_name: string | null;
-    last_name: string | null;
-    company: string | null;
-    address_line_1: string | null;
-    address_line_2: string | null;
-    city: string | null;
-    state: string | null;
-    country_id: number | null;
-    zip: string | null;
-    phone: string | null;
-    created_at: string;
 }
 export declare enum TDiscountType {
     fixed = "fixed",

@@ -1,4 +1,4 @@
-import { ICustomer } from './orders/orders';
+import { ICustomer } from './customer';
 export declare enum TCheckoutCustomerName {
     first = "first",
     last = "last"

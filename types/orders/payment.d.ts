@@ -1,8 +1,9 @@
 import { IVWCountry } from '../delivery';
 import { ICartItem } from './cart';
-import { ICustomer, IOrder } from './orders';
+import { IOrder } from './orders';
 import { ICheckoutPageSettings } from '../settings';
 import { ICheckoutStepper } from './checkout';
+import { ICustomer } from '../customer';
 export interface ICheckoutInitData {
     items: ICartItem[];
     order: IOrder;

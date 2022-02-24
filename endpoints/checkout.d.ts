@@ -1,7 +1,9 @@
 import { BoundlessClient } from '../client';
-import { ICheckoutPostContactsData, TCheckoutRedirect } from '../types/orders/checkout';
-import { ICustomer, IOrder, IOrderDiscount } from '../types/orders/orders';
+import { ICheckoutPostContactsData, TCheckoutRedirect, ICheckoutPostAddressData } from '../types/orders/checkout';
+import { IOrder } from '../types/orders/orders';
+import { ICustomer } from '../types/customer';
 import { ICheckoutInitData, ICheckoutPaymentPageData, ICheckoutPostPaymentPageData } from '../types/orders/payment';
+import { ICheckoutShippingPageData } from '../types/delivery';
 export default class CheckoutApi {
     protected client: BoundlessClient;
     constructor(client: BoundlessClient);
@@ -20,9 +22,16 @@ export default class CheckoutApi {
         order?: IOrder;
     }>;
     addDiscountCode(orderId: string, discountCode: string): Promise<{
-        discount: IOrderDiscount;
+        order: IOrder;
     }>;
     clearDiscounts(orderId: string): Promise<{
-        order_id: string;
+        order: IOrder;
+    }>;
+    getShippingPage(orderId: string): Promise<ICheckoutShippingPageData>;
+    setDeliveryMethod(orderId: string, deliveryId: number): Promise<{
+        order: IOrder;
+    }>;
+    setShippingAddress(shipmentData: ICheckoutPostAddressData): Promise<{
+        person: ICustomer;
     }>;
 }
