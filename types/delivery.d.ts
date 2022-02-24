@@ -57,6 +57,7 @@ export interface IAddress {
     zip: string | null;
     phone: string | null;
     created_at: string;
+    vwCountry: IVWCountry | null;
 }
 export declare enum TAddressType {
     shipping = "shipping",
