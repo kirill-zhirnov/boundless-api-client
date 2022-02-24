@@ -45,7 +45,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async addDiscountCode(orderId: string, discountCode: string): Promise<IOrder> {
+	async addDiscountCode(orderId: string, discountCode: string): Promise<{order: IOrder}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/discount-code', {
 			order_id: orderId,
 			code: discountCode
@@ -54,7 +54,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async clearDiscounts(orderId: string): Promise<IOrder> {
+	async clearDiscounts(orderId: string): Promise<{order: IOrder}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/clear-discounts', {
 			order_id: orderId,
 		});
@@ -68,7 +68,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async setDeliveryMethod(orderId: string, deliveryId: number): Promise<IOrder> {
+	async setDeliveryMethod(orderId: string, deliveryId: number): Promise<{order: IOrder}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/shipping/delivery-method', {
 			order_id: orderId,
 			delivery_id: deliveryId

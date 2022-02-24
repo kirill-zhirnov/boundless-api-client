@@ -21,10 +21,16 @@ export default class CheckoutApi {
         result: boolean;
         order?: IOrder;
     }>;
-    addDiscountCode(orderId: string, discountCode: string): Promise<IOrder>;
-    clearDiscounts(orderId: string): Promise<IOrder>;
+    addDiscountCode(orderId: string, discountCode: string): Promise<{
+        order: IOrder;
+    }>;
+    clearDiscounts(orderId: string): Promise<{
+        order: IOrder;
+    }>;
     getShippingPage(orderId: string): Promise<ICheckoutShippingPageData>;
-    setDeliveryMethod(orderId: string, deliveryId: number): Promise<IOrder>;
+    setDeliveryMethod(orderId: string, deliveryId: number): Promise<{
+        order: IOrder;
+    }>;
     setShippingAddress(shipmentData: ICheckoutPostAddressData): Promise<{
         person: ICustomer;
     }>;
