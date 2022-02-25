@@ -74,7 +74,7 @@ export enum TGetProductsInStock {
 export interface IGetProductsParams {
 	product?: (string | number)[];
 	category?: (number | string)[];
-	collection?: number[];
+	collection?: number[]|string[];
 	props?: {[key: number]: string | number | (string | number)[]};
 	in_stock?: TGetProductsInStock;
 	price_min?: number;

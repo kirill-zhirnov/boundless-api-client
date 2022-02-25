@@ -28,7 +28,7 @@ export declare enum TGetProductsInStock {
 export interface IGetProductsParams {
     product?: (string | number)[];
     category?: (number | string)[];
-    collection?: number[];
+    collection?: number[] | string[];
     props?: {
         [key: number]: string | number | (string | number)[];
     };
