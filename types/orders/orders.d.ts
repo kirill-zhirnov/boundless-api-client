@@ -19,6 +19,7 @@ export interface IOrder {
     services?: IOrderService[];
 }
 export interface IDetailedOrder extends IOrder {
+    order_id: number;
     items: IOrderItem[];
     props: {
         client_comment: string | null;
