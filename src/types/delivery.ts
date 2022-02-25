@@ -16,6 +16,8 @@ export interface IDelivery {
 	calc_method: TDeliveryCalcMethod|null;
 	created_at: string;
 	shipping?: IVwShipping|null;
+	img: string|null;
+	description: string|null;
 }
 
 export interface ICheckoutShippingPageData {
