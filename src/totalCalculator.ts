@@ -1,4 +1,4 @@
-import * as currency from 'currency.js';
+import currency from 'currency.js';
 import {TDiscountType, IOrderDiscount} from './types/orders/orders';
 
 export class TotalCalculator {

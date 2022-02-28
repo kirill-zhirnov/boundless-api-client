@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TotalCalculator = void 0;
-const currency = require("currency.js");
+const currency_js_1 = __importDefault(require("currency.js"));
 class TotalCalculator {
     constructor() {
         this.itemsList = [];
@@ -99,30 +102,30 @@ class TotalCalculator {
         return this.items;
     }
     calcTotal() {
-        let price = currency(this.items.price)
+        let price = (0, currency_js_1.default)(this.items.price)
             .add(this.shipping.price)
             .add(this.services.price)
             .format();
-        let discount = currency(0).format();
+        let discount = (0, currency_js_1.default)(0).format();
         this.discounts.forEach((row) => {
             switch (row.type) {
                 case 'fixed':
-                    discount = currency(discount).add(row.value).format();
-                    price = currency(price).subtract(row.value).format();
+                    discount = (0, currency_js_1.default)(discount).add(row.value).format();
+                    price = (0, currency_js_1.default)(price).subtract(row.value).format();
                     break;
                 case 'percent': {
                     //apply discount only to items, not services:
-                    const rowVal = currency(row.value).divide(100).multiply(this.items.price).format();
-                    discount = currency(discount).add(rowVal).format();
-                    price = currency(price).subtract(rowVal).format();
+                    const rowVal = (0, currency_js_1.default)(row.value).divide(100).multiply(this.items.price).format();
+                    discount = (0, currency_js_1.default)(discount).add(rowVal).format();
+                    price = (0, currency_js_1.default)(price).subtract(rowVal).format();
                     break;
                 }
             }
         });
-        let paymentMarkUp = currency(0).format();
+        let paymentMarkUp = (0, currency_js_1.default)(0).format();
         if (this.paymentMarkUp) {
-            paymentMarkUp = currency(price).multiply(currency(this.paymentMarkUp)).divide(100).format();
-            price = currency(price).add(paymentMarkUp).format();
+            paymentMarkUp = (0, currency_js_1.default)(price).multiply((0, currency_js_1.default)(this.paymentMarkUp)).divide(100).format();
+            price = (0, currency_js_1.default)(price).add(paymentMarkUp).format();
         }
         return {
             price,

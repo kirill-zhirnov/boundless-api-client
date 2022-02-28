@@ -5,7 +5,8 @@
 		"declaration": true,
 		"outDir": "./",
 		"sourceMap": false,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"esModuleInterop": true
 	},
 	"files": [
 		"./src/index.ts",

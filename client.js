@@ -1,13 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BoundlessClient = void 0;
-const axios_1 = require("axios");
-const catalog_1 = require("./endpoints/catalog");
-const cart_1 = require("./endpoints/cart");
+const axios_1 = __importDefault(require("axios"));
+const catalog_1 = __importDefault(require("./endpoints/catalog"));
+const cart_1 = __importDefault(require("./endpoints/cart"));
 const thumb_1 = require("./thumb");
-const checkout_1 = require("./endpoints/checkout");
-const customer_1 = require("./endpoints/customer");
-const customerOrder_1 = require("./endpoints/customerOrder");
+const checkout_1 = __importDefault(require("./endpoints/checkout"));
+const customer_1 = __importDefault(require("./endpoints/customer"));
+const customerOrder_1 = __importDefault(require("./endpoints/customerOrder"));
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 /**
 * Boundless Commerce API client.
