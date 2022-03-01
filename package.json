@@ -1,6 +1,6 @@
 {
  "name": "boundless-api-client",
- "version": "0.0.2",
+ "version": "0.0.3",
  "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
  "license": "BSD-3-Clause",
  "scripts": {
