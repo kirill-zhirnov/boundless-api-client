@@ -103,7 +103,7 @@ export class TotalCalculator {
 	}
 
 	setDiscounts(discounts: IOrderDiscount[]) {
-		discounts.forEach(row => this.addDiscount(row.discount_type, row.value));
+		discounts.forEach(row => this.addDiscount(row.discount_type!, row.value));
 
 		return this;
 	}

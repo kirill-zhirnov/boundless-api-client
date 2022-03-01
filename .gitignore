@@ -1,6 +1,7 @@
 /.idea
 /node_modules
 /tmp.ts
+/dist
 .DS_Store
 yarn-error.log
 yarn-debug.log

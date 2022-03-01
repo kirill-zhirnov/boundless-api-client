@@ -1,51 +1,57 @@
 {
   "name": "boundless-api-client",
   "version": "0.0.1",
-  "main": "index.js",
-  "types": "index.d.ts",
   "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
   "license": "BSD-3-Clause",
-  "files": [
-    "/"
-  ],
-  "exports": {
-    ".": "./index.js",
-    "./token.js": "./token.js",
-    "./token": "./token.js",
-    "./totalCalculator": "./totalCalculator.js",
-    "./totalCalculator.js": "./totalCalculator.js",
-    "./utils.js": "./utils.js",
-    "./utils": "./utils.js"
-  },
-  "typesVersions": {
-    "*": {
-      "token": [
-        "token.d.ts"
-      ],
-      "utils": [
-        "utils.d.ts"
-      ],
-      "totalCalculator": [
-        "totalCalculator.d.ts"
-      ]
-    }
-  },
   "scripts": {
-    "build": "npx tsc",
-    "lint": "npx eslint --ext .ts ./src/",
-    "clear": "rm -rf ./endpoints/ ./token/ ./types/ ./client.d.ts ./client.js ./index.d.ts ./index.js ./token.d.ts ./token.js ./utils.d.ts ./utils.js ./thumb.d.ts ./thumb.js ./totalCalculator.d.ts ./totalCalculator.js"
+    "build": "rm -rf ./dist && npx rollup --config rollup.prod.js",
+    "lint": "npx eslint --ext .ts ./src/"
   },
+  "private": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+	"exports": {
+		".": "./dist/index.js",
+		"./token": "./dist/token.js"
+	},
+	"typesVersions": {
+		"*": {
+			"token": ["./dist/token.d.ts"]
+		}
+	},
   "dependencies": {
     "axios": "^0.26.0",
     "currency.js": "^2.0.4",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^16.11.12",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^8.4.1",
+    "rollup": "^2.68.0",
+    "rollup-plugin-terser": "^7.0.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.3"
-  }
+  },
+	"browserslist": [
+		"last 3 chrome versions",
+		"last 3 chromeandroid versions",
+		"last 3 firefox versions",
+		"last 3 opera versions",
+		"last 2 edge versions",
+		"safari >= 10",
+		"ios >= 10"
+	]
 }

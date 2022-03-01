@@ -20,7 +20,7 @@ export interface IOrder {
 	services?: IOrderService[];
 }
 
-export interface IDetailedOrder extends IOrder {
+export interface IDetailedOrder extends Omit<IOrder, 'customer' | 'paymentMethod'> {
 	order_id: number;
 	items: IOrderItem[],
 	props: {

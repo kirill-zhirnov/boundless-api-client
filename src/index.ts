@@ -1,5 +1,6 @@
 export {BoundlessClient} from './client';
 export {BoundlessThumb} from './thumb';
+export {TotalCalculator} from './totalCalculator';
 
 //Types exports:
 export * from './types/catalog/filter';
