@@ -22,6 +22,10 @@ export * from './types/customer';
 
 export * from './types/delivery';
 
+export * from './types/common';
+
+export * from './types/image';
+
 export * from './endpoints/catalog'; // FIXME organize exports
 export * from './endpoints/cart';
 export * from './endpoints/checkout';
