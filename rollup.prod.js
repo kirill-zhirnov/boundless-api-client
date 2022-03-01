@@ -7,7 +7,7 @@ import {terser} from 'rollup-plugin-terser';
 
 export default {
 	external: ['axios', 'jsonwebtoken'],
-	input: ['src/index.ts', 'src/token.ts'],
+	input: ['src/index.ts', 'src/token.ts', 'src/utils.ts'],
 	plugins: [
 		nodeResolve({
 			extensions: ['.ts', '.mjs', '.js', '.json', '.node'],
