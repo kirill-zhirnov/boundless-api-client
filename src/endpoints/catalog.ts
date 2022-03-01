@@ -81,6 +81,8 @@ export interface IGetProductsParams {
 	price_max?: number;
 	brand?: number[];
 	page?: number;
+	cross_sell_category?: 'related' | 'similar';
+	cross_sell_product?: number;
 	'per-page'?: number;
 	sort?: string;
 }
