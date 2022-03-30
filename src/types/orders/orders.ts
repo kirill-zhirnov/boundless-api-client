@@ -34,6 +34,19 @@ export interface IDetailedOrder extends Omit<IOrder, 'customer' | 'paymentMethod
 	services: IOrderService[];
 }
 
+export interface IAdminOrderInList extends Omit<IOrder, 'customer' | 'paymentMethod'> {
+	order_id: number;
+	props: {
+		client_comment: string|null;
+		custom_attrs: null|{[key: string]: any}
+	}
+	discounts: IOrderDiscount[];
+	customer: ICustomer|null;
+	status: IOrderStatus|null;
+	paymentMethod: IPaymentMethod|null;
+	services: IOrderService[];
+}
+
 export interface IOrderItem {
 	reserve_item_id?: number;
 	basket_item_id?: number;

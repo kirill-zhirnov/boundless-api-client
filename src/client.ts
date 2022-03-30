@@ -5,6 +5,7 @@ import {BoundlessThumb} from './thumb';
 import CheckoutApi from './endpoints/checkout';
 import CustomerApi from './endpoints/customer';
 import CustomerOrderApi from './endpoints/customerOrder';
+import AdminOrderApi from './endpoints/adminOrder';
 
 const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
 
@@ -23,6 +24,7 @@ export class BoundlessClient {
 	public readonly checkout: CheckoutApi;
 	public readonly customer: CustomerApi;
 	public readonly customerOrder: CustomerOrderApi;
+	public readonly adminOrder: AdminOrderApi;
 
 	/**
 	* Create an instance of Boundless Commerce API client.
@@ -36,6 +38,7 @@ export class BoundlessClient {
 		this.checkout = new CheckoutApi(this);
 		this.customer = new CustomerApi(this);
 		this.customerOrder = new CustomerOrderApi(this);
+		this.adminOrder = new AdminOrderApi(this);
 	}
 
 	/**
