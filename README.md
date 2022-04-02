@@ -56,9 +56,9 @@ apiClient.setInstanceId('<YOUR INSTANCE ID>');
 apiClient.catalog.getProducts().then(data => console.log(data));
 ```
 
-### Library structure
+## Library structure
 
-#### API client
+### API client
 
 ```js
 import {BoundlessClient} from 'boundless-api-client';
@@ -68,7 +68,7 @@ apiClient.setInstanceId('<INSTANCE ID>');
 
 The client splits into these parts:
 
-##### Catalog
+#### Catalog
 
 Consists methods for working with the catalog (products, categories, etc.):
 
