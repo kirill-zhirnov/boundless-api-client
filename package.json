@@ -1,6 +1,10 @@
 {
  "name": "boundless-api-client",
  "version": "0.0.6",
+ "description": "The official JavaScript + TypeScript client library for Boundless Commerce",
+ "keywords": [
+  "boundless", "boundless-commerce", "cms", "headless", "ecommerce", "api", "checkout", "typescript", "cms", "cart"
+ ],
  "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
  "license": "BSD-3-Clause",
  "scripts": {

@@ -7,7 +7,7 @@ import CustomerApi from './endpoints/customer';
 import CustomerOrderApi from './endpoints/customerOrder';
 import AdminOrderApi from './endpoints/adminOrder';
 
-const DEFAULT_BASE_URL = 'https://api.rick.dev.boundless-commerce.com';
+const DEFAULT_BASE_URL = 'https://v1.api.boundless-commerce.com';
 
 /**
 * Boundless Commerce API client.
