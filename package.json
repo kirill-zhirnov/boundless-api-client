@@ -15,6 +15,7 @@
   "cart"
  ],
  "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
+ "author": "Kirill Zhirnov <ekvixgroup@gmail.com>",
  "license": "BSD-3-Clause",
  "scripts": {
   "build": "rm -rf ./dist && npx rollup --config rollup.prod.js",
