@@ -16,7 +16,7 @@ Just clone and go!
 
 **Ready to use checkout area:**
 
-[Checkout React component](https://github.com/kirill-zhirnov/boundless-checkout-react)
+- [Checkout React component](https://github.com/kirill-zhirnov/boundless-checkout-react)
 
 ## Installation
 
@@ -80,7 +80,7 @@ const categories = await apiClient.catalog.getCategoryTree();
 
 For a full list of methods please visit the official documentation.
 
-##### Cart
+#### Cart
 
 Consists methods for working with the cart.
 
@@ -101,7 +101,7 @@ const data = await apiClient.cart.addItemToCart('<CART ID>', '<ITEM ID>', '<QTY>
 
 For a full list of methods please visit the official documentation.
 
-##### Checkout
+#### Checkout
 
 Consists methods for working with the checkout.
 
@@ -113,7 +113,7 @@ const {customer} = await apiClient.checkout.saveContactsData({order_id: '<ORDER 
 
 For a full list of methods please visit the official documentation.
 
-##### Customer
+#### Customer
 
 Consists methods for working with the customer.
 
@@ -136,7 +136,7 @@ apiClient.getCustomerAuthToken();
 
 For a full list of methods please visit the official documentation.
 
-##### Public order's methods
+#### Public order's methods
 
 Consists methods for working with customer's orders:
 
@@ -148,7 +148,7 @@ await apiClient.customerOrder.setCustomAttrs({order_id, attrs});
 
 For a full list of methods please visit the official documentation.
 
-##### Private order's methods
+#### Private order's methods
 
 **Access is available only for generated tokens.**
 
