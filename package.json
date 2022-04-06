@@ -1,6 +1,6 @@
 {
  "name": "boundless-api-client",
- "version": "0.0.7",
+ "version": "0.0.8",
  "description": "The official JavaScript + TypeScript client library for Boundless Commerce",
  "keywords": [
   "boundless",
@@ -16,7 +16,7 @@
  ],
  "repository": "https://github.com/kirill-zhirnov/boundless-api-client",
  "author": "Kirill Zhirnov <ekvixgroup@gmail.com>",
- "license": "BSD-3-Clause",
+ "license": "MIT",
  "scripts": {
   "build": "rm -rf ./dist && npx rollup --config rollup.prod.js",
   "lint": "npx eslint --ext .ts ./src/"
