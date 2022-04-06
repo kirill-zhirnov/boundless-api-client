@@ -1,7 +1,7 @@
 import {TThumbMode, TThumbQuality, TThumbRatio} from './types/image';
 import {calcProportion, calcThumbSizeByProportion, createGetStr} from './utils';
 
-const DEFAULT_MEDIA_SERVER = 'https://dev-img.boundless-commerce.com';
+const DEFAULT_MEDIA_SERVER = 'https://media.boundless-commerce.com';
 
 export class BoundlessThumb {
 	protected mediaServerUrl: string = DEFAULT_MEDIA_SERVER;
