@@ -46,6 +46,6 @@ export interface ICheckoutPostPaymentPageData {
 	address_line_2?: string;
 	city?: string;
 	state?: string;
-	country_id?: number;
+	country_id?: number | string;
 	zip?: string;
 }

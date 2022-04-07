@@ -30,7 +30,7 @@ export interface ICheckoutPostAddressData {
 	address_line_2?: string;
 	city: string;
 	state?: string;
-	country_id: number;
+	country_id: number|string;
 	zip: string;
 	phone?: string;
 	comment?: string;
