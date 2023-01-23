@@ -80,6 +80,7 @@ export interface IGetProductsParams {
 	price_min?: number;
 	price_max?: number;
 	brand?: number[];
+	text_search?: string;
 	page?: number;
 	cross_sell_category?: 'related' | 'similar';
 	cross_sell_product?: number;
