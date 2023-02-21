@@ -1,6 +1,6 @@
 export {BoundlessClient} from './client';
 export {BoundlessThumb} from './thumb';
-export {TotalCalculator} from './totalCalculator';
+// export {TotalCalculator} from './totalCalculator';
 
 //Types exports:
 export * from './types/catalog/filter';
@@ -17,6 +17,7 @@ export * from './types/orders/orders';
 export * from './types/orders/payment';
 
 export * from './types/settings';
+export * from './types/system';
 
 export * from './types/customer';
 
@@ -25,6 +26,7 @@ export * from './types/delivery';
 export * from './types/common';
 
 export * from './types/image';
+export * from './types/total';
 
 export * from './endpoints/catalog'; // FIXME organize exports
 export * from './endpoints/cart';

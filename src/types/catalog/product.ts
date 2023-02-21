@@ -6,6 +6,11 @@ import {INonVariantCaracteristic} from './characteristic';
 import {IExtendedVariants} from './variant';
 import {IItemSize} from './inventoryItem';
 
+export enum TTaxStatus {
+	taxable = 'taxable',
+	none = 'none'
+}
+
 export interface IProduct {
 	product_id: number;
 	title: string;
@@ -60,6 +65,9 @@ export interface IProductProps {
 	country_of_origin: number | null;
 	extra: {[key: string]: any} | null;
 	size: IItemSize | null;
+	characteristic: {[key: string]:any}|null;
+	tax_status: TTaxStatus;
+	tax_class_id: number|null;
 }
 
 export type IProductCategory = Pick<ICategory, 'category_id' | 'title' | 'url_key'>;

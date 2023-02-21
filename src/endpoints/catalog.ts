@@ -12,7 +12,7 @@ export default class CatalogApi {
 
 	async getProducts(params: IGetProductsParams = {}): Promise<{products: IProduct[], pagination: IPagination}> {
 		const {headers, data: products} = await this.client.createRequest().get(`/catalog/products?${createGetStr({...params})}`);
-		const pagination = extractPaginationFromHeaders(headers);
+		const pagination = extractPaginationFromHeaders(headers as {[key: string]: string});
 
 		return {products, pagination};
 	}
