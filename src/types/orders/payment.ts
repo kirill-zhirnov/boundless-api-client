@@ -1,4 +1,4 @@
-import {IVWCountry} from '../delivery';
+import {IAddress, IVWCountry} from '../delivery';
 import {ICartItem} from './cart';
 import {IOrder} from './orders';
 import {ICheckoutPageSettings, ILocaleSettings, ISystemTax} from '../settings';
@@ -37,7 +37,8 @@ export interface IPaymentMethod {
 
 export interface ICheckoutPaymentPageData {
 	paymentMethods: IPaymentMethod[],
-	requiredBillingAddress: boolean,
+	billingAddress: IAddress|null,
+	// requiredBillingAddress: boolean,
 	countries: IVWCountry[]
 }
 

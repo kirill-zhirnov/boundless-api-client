@@ -15,6 +15,7 @@ export * from './types/orders/cart';
 export * from './types/orders/checkout';
 export * from './types/orders/orders';
 export * from './types/orders/payment';
+export * from './types/orders/customerOrder';
 
 export * from './types/settings';
 export * from './types/system';
