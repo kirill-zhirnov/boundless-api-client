@@ -44,7 +44,6 @@
  },
  "dependencies": {
   "axios": "0",
-  "currency.js": "^2.0.4",
   "jsonwebtoken": "^9.0.0"
  },
  "devDependencies": {
