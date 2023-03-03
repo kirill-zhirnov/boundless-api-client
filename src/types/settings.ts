@@ -39,3 +39,28 @@ export interface ICheckoutPageSettings {
 	hasCouponCampaigns: boolean,
 	needShipping: boolean,
 }
+
+export interface ILocaleSettings {
+	money: IFormatMoneyOptions
+}
+
+export interface IFormatMoneyOptions {
+	decimal: string;
+	thousand: string;
+	precision: number,
+	format: string;
+	symbol: string;
+}
+
+export enum TCalculateTaxBasedOn {
+	storeLocation = 'storeLocation',
+	customerShippingAddress = 'customerShippingAddress',
+	customerBillingAddress = 'customerBillingAddress',
+}
+
+export interface ISystemTax {
+	turnedOn: boolean,
+	pricesEnteredWithTax: boolean,
+	calculateTaxBasedOn: TCalculateTaxBasedOn,
+	taxTitle: string
+}

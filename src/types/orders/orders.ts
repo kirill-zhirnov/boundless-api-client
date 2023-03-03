@@ -3,14 +3,17 @@ import {ICustomer} from '../customer';
 import {IPaymentMethod} from './payment';
 import {IItemPrice, IVwItem} from '../catalog/inventoryItem';
 import {IDelivery} from '../delivery';
+import {ITotal} from '../total';
 
 export interface IOrder {
 	id: string;
 	status_id: null | number;
 	payment_method_id: null|number;
 	service_total_price: null | string;
+	payment_mark_up: null | string;
 	total_price: null | string;
 	discount_for_order: null | string;
+	tax_amount: null | string;
 	paid_at: null | string;
 	publishing_status: TPublishingStatus;
 	created_at: string;
@@ -18,6 +21,7 @@ export interface IOrder {
 	discounts?: IOrderDiscount[];
 	paymentMethod?: IPaymentMethod;
 	services?: IOrderService[];
+	tax_calculations: ITotal | null;
 }
 
 export interface IDetailedOrder extends Omit<IOrder, 'customer' | 'paymentMethod'> {

@@ -1,18 +1,24 @@
-import {IVWCountry} from '../delivery';
+import {IAddress, IVWCountry} from '../delivery';
 import {ICartItem} from './cart';
 import {IOrder} from './orders';
-import {ICheckoutPageSettings} from '../settings';
+import {ICheckoutPageSettings, ILocaleSettings, ISystemTax} from '../settings';
 import {ICheckoutStepper} from './checkout';
 import {ICustomer} from '../customer';
+import {ICurrency} from '../system';
+import {ITotal} from '../total';
 
 export interface ICheckoutInitData {
 	items: ICartItem[],
 	order: IOrder,
 	settings: ICheckoutPageSettings,
-	stepper: ICheckoutStepper,
+	currency: ICurrency,
+	localeSettings: ILocaleSettings,
+	taxSettings: ISystemTax,
 	loggedInCustomer: ICustomer|null,
 	hasCouponCampaigns: boolean,
-	needShipping: boolean
+	needShipping: boolean,
+	stepper: ICheckoutStepper,
+	total: ITotal
 }
 
 export enum TPaymentGatewayAlias {
@@ -31,7 +37,8 @@ export interface IPaymentMethod {
 
 export interface ICheckoutPaymentPageData {
 	paymentMethods: IPaymentMethod[],
-	requiredBillingAddress: boolean,
+	billingAddress: IAddress|null,
+	// requiredBillingAddress: boolean,
 	countries: IVWCountry[]
 }
 

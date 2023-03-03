@@ -1,4 +1,5 @@
 import {ICustomer} from './customer';
+import {IOrderService} from './orders/orders';
 
 export interface IVWCountry {
 	country_id: number,
@@ -22,7 +23,8 @@ export interface IDelivery {
 
 export interface ICheckoutShippingPageData {
 	shippingAddress: IAddress|null,
-	requiredBillingAddress: boolean,
+	billingAddress: IAddress|null,
+	orderServiceDelivery: IOrderService|null,
 	person: ICustomer;
 	options: {
 		delivery: IDelivery[];
@@ -69,3 +71,9 @@ export enum TAddressType {
 	shipping = 'shipping',
 	billing = 'billing'
 }
+
+export type IAddressFields = Pick<
+	IAddress,
+	'first_name' | 'last_name' | 'company' | 'address_line_1' | 'address_line_2' | 'city' | 'state' | 'country_id' |
+	'zip' | 'phone'
+>;

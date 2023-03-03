@@ -8,6 +8,7 @@ import {
 	ICheckoutPostPaymentPageData
 } from '../types/orders/payment';
 import {ICheckoutShippingPageData} from '../types/delivery';
+import {ITotal} from '../types/total';
 
 export default class CheckoutApi {
 	constructor(protected client: BoundlessClient) {
@@ -45,7 +46,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async addDiscountCode(orderId: string, discountCode: string): Promise<{order: IOrder}> {
+	async addDiscountCode(orderId: string, discountCode: string): Promise<{order: IOrder, total: ITotal}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/discount-code', {
 			order_id: orderId,
 			code: discountCode
@@ -54,7 +55,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async clearDiscounts(orderId: string): Promise<{order: IOrder}> {
+	async clearDiscounts(orderId: string): Promise<{order: IOrder, total: ITotal}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/clear-discounts', {
 			order_id: orderId,
 		});
@@ -68,7 +69,7 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async setDeliveryMethod(orderId: string, deliveryId: number): Promise<{order: IOrder}> {
+	async setDeliveryMethod(orderId: string, deliveryId: number): Promise<{order: IOrder, total: ITotal}> {
 		const {data} = await this.client.createRequest().post('/orders/checkout/shipping/delivery-method', {
 			order_id: orderId,
 			delivery_id: deliveryId

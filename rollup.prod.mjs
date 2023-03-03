@@ -3,7 +3,8 @@ import typescript from '@rollup/plugin-typescript';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import {babel} from '@rollup/plugin-babel';
-import {terser} from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
+import json from '@rollup/plugin-json';
 
 export default {
 	external: ['axios', 'jsonwebtoken'],
@@ -13,12 +14,13 @@ export default {
 			extensions: ['.ts', '.mjs', '.js', '.json', '.node'],
 		}),
 		commonjs(),
-		typescript({tsconfig: './tsconfig.json'}),
+		typescript({compilerOptions: {module: 'esnext'}}),
 		babel({
 			babelHelpers: 'bundled',
 			exclude: 'node_modules/**',
 		}),
-		terser()
+		terser(),
+		json()
 	],
 	output: {
 		dir: './dist',

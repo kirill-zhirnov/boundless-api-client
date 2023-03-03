@@ -9,7 +9,7 @@ export default class AdminOrderApi {
 
 	async getOrders(params: IGetOrdersParams): Promise<{orders: IAdminOrderInList[], pagination: IPagination}> {
 		const {headers, data: orders} = await this.client.createRequest().get(`/orders/admin/orders?${createGetStr({...params})}`);
-		const pagination = extractPaginationFromHeaders(headers);
+		const pagination = extractPaginationFromHeaders(headers as {[key: string]: string});
 
 		return {orders, pagination};
 	}
