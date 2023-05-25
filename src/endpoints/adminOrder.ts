@@ -7,7 +7,7 @@ export default class AdminOrderApi {
 	constructor(protected client: BoundlessClient) {
 	}
 
-	async getOrders(params: IGetOrdersParams): Promise<{orders: IAdminOrderInList[], pagination: IPagination}> {
+	async getOrders(params: IGetOrdersParams = {}): Promise<{orders: IAdminOrderInList[], pagination: IPagination}> {
 		const {headers, data: orders} = await this.client.createRequest().get(`/orders/admin/orders?${createGetStr({...params})}`);
 		const pagination = extractPaginationFromHeaders(headers as {[key: string]: string});
 
