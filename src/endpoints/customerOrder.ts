@@ -1,7 +1,10 @@
 import {BoundlessClient} from '../client';
-import {IDetailedOrder, IOrder} from '../types/orders/orders';
+import {IAdminOrderInList, IDetailedOrder, IOrder} from '../types/orders/orders';
 import {ISetAddressesData} from '../types/orders/customerOrder';
 import {ITotal} from '../types/total';
+import {IPagination} from '../types/common';
+import {createGetStr, extractPaginationFromHeaders} from '../utils';
+import {IGetOrdersParams} from './adminOrder';
 
 export default class CustomerOrderApi {
 	constructor(protected client: BoundlessClient) {
@@ -29,5 +32,12 @@ export default class CustomerOrderApi {
 		const {data} = await this.client.createRequest().post('/orders/customer/order/set-addresses', postData);
 
 		return data;
+	}
+
+	async getOrders(params: Omit<IGetOrdersParams, 'customer_id'> = {}): Promise<{orders: IAdminOrderInList[], pagination: IPagination}> {
+		const {headers, data: orders} = await this.client.createRequest().get(`/orders/customer/my-orders?${createGetStr({...params})}`);
+		const pagination = extractPaginationFromHeaders(headers as {[key: string]: string});
+
+		return {orders, pagination};
 	}
 }

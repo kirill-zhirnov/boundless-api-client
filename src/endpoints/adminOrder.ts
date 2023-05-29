@@ -13,6 +13,19 @@ export default class AdminOrderApi {
 
 		return {orders, pagination};
 	}
+
+	async updateOrder(uuId: string, request: IUpdateOrderRequest): Promise<IAdminOrderInList> {
+		const {data: order} = await this.client.createRequest().post(`/orders/admin/order/${uuId}`, request);
+
+		return order;
+	}
+}
+
+export interface IUpdateOrderRequest {
+	payment_method_id?: number|null,
+	customer_id?: string|null,
+	is_paid?: boolean,
+	internal_comment?: string;
 }
 
 export interface IGetOrdersParams {
