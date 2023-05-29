@@ -15,7 +15,7 @@ export default class AdminOrderApi {
 	}
 
 	async updateOrder(uuId: string, request: IUpdateOrderRequest): Promise<IAdminOrderInList> {
-		const {data: order} = await this.client.createRequest().post(`/orders/admin/order/${uuId}`, request);
+		const {data: order} = await this.client.createRequest().put(`/orders/admin/order/${uuId}`, request);
 
 		return order;
 	}
