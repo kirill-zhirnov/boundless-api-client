@@ -1,4 +1,4 @@
-export interface IImage {
+export interface IProductListImage {
 	image_id: number;
 	path: string;
 	is_default: boolean;
@@ -22,13 +22,12 @@ export interface IImageItem {
 	height: number;
 	used_in: string[],
 	created_at: string;
-	deleted_at: string | null;
+	deleted_at?: string | null;
 	mime_type: string | null;
 }
 
 export interface IProductImage {
 	product_image_id: number;
-	image_id: number;
 	is_default: boolean;
 	sort: number;
 	description: string | null;

@@ -18,6 +18,15 @@ Just clone and go!
 
 - [Checkout React component](https://github.com/kirill-zhirnov/boundless-checkout-react)
 
+
+**WIX version:**
+
+- [Wix Boundless Store](https://www.wix.com/app-market/boundless-store)
+
+### API
+
+[API Specification](https://docs.boundless-commerce.com/)
+
 ## Installation
 
 `yarn add boundless-api-client` or `npm install boundless-api-client --save`
@@ -25,11 +34,6 @@ Just clone and go!
 ## Getting Started
 
 Generate access token in the control panel.
-
-### Token types
-
-There are 2 types of access tokens: permanent tokens and generated ones. A permanent token allows fetching almost 
-everything except sensitive data, like orders list. In most cases for frontend usage a permanent token is the best choice.
 
 #### Setting up with a permanent token
 
@@ -43,6 +47,8 @@ apiClient.catalog.getProducts().then(data => console.log(data));
 ```
 
 #### Generate token and make a request
+
+Generate a token yourself is more secure way. Use the following approach to issue an access-token:
 
 ```js
 import {BoundlessClient} from 'boundless-api-client';
@@ -150,7 +156,7 @@ For a full list of methods please visit the official documentation.
 
 #### Private order's methods
 
-**Access is available only for generated tokens.**
+**Access is available only for tokens with the management rights.**
 
 ```js
 const {orders, pagination} = await apiClient.adminOrder.getOrders();
@@ -200,6 +206,42 @@ thumb.setGrayscale(value);
 //get resulting SRC:
 thumb.getSrc();
 ```
+
+## Arbitrary requests
+
+There are methods in the [API](https://docs.boundless-commerce.com/) which aren't covered by the interface access, so you need to execute requests manually:
+
+```js
+//setup the client in the same way:
+import {BoundlessClient} from 'boundless-api-client';
+const apiClient = new BoundlessClient('<YOUR TOKEN>');
+
+//executing GET request
+const {data, headers} = await apiClient.createRequest().get('/catalog/attributes');
+
+//POST
+await apiClient.createRequest().post('/catalog/products', {
+	title: 'My new product',
+	slug: '...'
+});
+
+//PUT
+await apiClient.createRequest().put('/catalog/products/1', {title: 'my new title'});
+```
+
+`apiClient.createRequest()` returns instance of `AxiosInstance` - pre-configured instance for API requests.
+
+Example of files uploader (where `file` is instance of `File`):
+
+```js
+const formData = new FormData();
+formData.append('file_name', file.name);
+formData.append('file', file);
+formData.append('for_product_id', 1);
+
+const {data} = await apiClient.createRequest().post('/files/images/upload', formData);
+```
+
 
 ## How to build library?
 

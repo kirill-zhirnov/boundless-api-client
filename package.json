@@ -44,7 +44,7 @@
  },
  "dependencies": {
   "axios": "0",
-  "jsonwebtoken": "^9.0.0"
+  "jsonwebtoken": "^9.0.2"
  },
  "devDependencies": {
   "@babel/cli": "^7.20.7",

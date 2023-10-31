@@ -17,23 +17,24 @@ export interface ICategory {
 
 export interface ICategoryItem {
 	category_id: number;
+	title: string,
+	url_key?: string | null,
 	parent_id: number | null;
-	sort: number;
-	created_at: string;
-	deleted_at: string | null;
-	external_id: number | string | null;
-	status: TPublishingStatus;
-	created_by: number | null;
-	image_id: number | null;
+	external_id:  string | null;
 	products_qty?: number;
-	image?: IImageItem | null;
 	text: ICategoryText | null;
 	props?: ICategoryProps | null;
+	image?: IImageItem | null;
 	children?: ICategoryFlatItem[];
 	siblings?: ICategoryFlatItem[];
 	parents?: ICategoryFlatItem[];
 	filter?: IFilter;
 	seo: IItemSeo;
+	status: TPublishingStatus;
+	created_by: number | null;
+	created_at: string;
+	deleted_at?: string | null;
+	sort: number;
 }
 
 export interface ICategoryFlatItem {
@@ -51,27 +52,25 @@ export interface ICategoryFlatItem {
 }
 
 interface ICategoryText {
-	category_id: number;
-	lang_id: number;
-	title: string;
+	// title: string;
 	custom_title: string | null;
-	custom_header: string | null;
+	// custom_header: string | null;
 	meta_description: string | null;
-	meta_keywords: string | null;
-	url_key: string | null;
+	// meta_keywords: string | null;
+	// url_key: string | null;
 	description_top: string | null;
 	description_bottom: string | null;
 }
 
 interface ICategoryProps {
-	category_id: number;
+	// category_id: number;
 	use_filter: boolean;
 	filter_id: number | null;
 	custom_link: string | null;
+	arbitrary_data: {[key: string]:any}|null;
 }
 
 export interface IProductCategoryRels {
-	category_id: number;
 	is_default: boolean;
 	category: ICategoryItem;
 }

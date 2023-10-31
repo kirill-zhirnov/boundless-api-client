@@ -1,6 +1,6 @@
 export {BoundlessClient} from './client';
 export {BoundlessThumb} from './thumb';
-// export {TotalCalculator} from './totalCalculator';
+export {extractPaginationFromHeaders, createGetStr, calcThumbSizeByProportion, calcProportion} from './utils';
 
 //Types exports:
 export * from './types/catalog/filter';
