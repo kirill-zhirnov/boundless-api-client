@@ -22,8 +22,9 @@ export default class CheckoutApi {
 		return data;
 	}
 
-	async saveContactsData(contactsData: ICheckoutPostContactsData): Promise<{customer: ICustomer}> {
-		const {data} = await this.client.createRequest().post('/orders/checkout/contact', contactsData);
+	async saveContactsData(contactsData: ICheckoutPostContactsData): Promise<{customer: ICustomer, authToken?: string}> {
+		const {order_id, ...postData} = contactsData;
+		const {data} = await this.client.createRequest().post(`/orders/checkout/${order_id}/contact`, postData);
 
 		return data;
 	}
@@ -56,15 +57,13 @@ export default class CheckoutApi {
 	}
 
 	async clearDiscounts(orderId: string): Promise<{order: IOrder, total: ITotal}> {
-		const {data} = await this.client.createRequest().post('/orders/checkout/clear-discounts', {
-			order_id: orderId,
-		});
+		const {data} = await this.client.createRequest().delete(`/orders/checkout/${orderId}/discounts`);
 
 		return data;
 	}
 
 	async getShippingPage(orderId: string): Promise<ICheckoutShippingPageData> {
-		const {data} = await this.client.createRequest().get(`/orders/checkout/shipping/${orderId}`);
+		const {data} = await this.client.createRequest().get(`/orders/checkout/${orderId}/shipping-step`);
 
 		return data;
 	}
