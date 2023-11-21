@@ -1,6 +1,8 @@
 export interface IProductListImage {
 	image_id: number;
 	path: string;
+	width: number | null;
+	height: number | null;
 	is_default: boolean;
 	description: string | null;
 	alt: string | null;
