@@ -24,11 +24,12 @@ export default class CartApi {
 		return data;
 	}
 
-	async addItemToCart(cartId: string, itemId: number, qty: number): Promise<IAddToCartResponse> {
+	async addItemToCart(cartId: string, itemId: number, qty: number, validateStock?: boolean): Promise<IAddToCartResponse> {
 		const {data} = await this.client.createRequest().post('/orders/cart/add', {
 			cart_id: cartId,
 			item_id: itemId,
-			qty
+			qty,
+			validate_stock: validateStock
 		});
 
 		return data;
@@ -43,10 +44,10 @@ export default class CartApi {
 		return data;
 	}
 
-	async setCartItemsQty(cartId: string, items: IItemsQty[]): Promise<{result: true}> {
-		const {data} = await this.client.createRequest().post('/orders/cart/set-qty', {
-			cart_id: cartId,
+	async setCartItemsQty(cartId: string, items: IItemsQty[], validateStock?: boolean): Promise<{result: true}> {
+		const {data} = await this.client.createRequest().post(`/orders/cart/${cartId}/qty`, {
 			items,
+			validate_stock: validateStock
 		});
 
 		return data;
