@@ -1,6 +1,6 @@
 {
  "name": "boundless-api-client",
- "version": "0.2.2",
+ "version": "0.2.3",
  "description": "The official JavaScript + TypeScript client library for Boundless Commerce",
  "keywords": [
   "boundless",
