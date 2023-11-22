@@ -8,7 +8,7 @@ export interface ICartInfo {
 
 export interface ICartTotal {
 	qty: number;
-	total: number | string;
+	total: string;
 }
 
 export interface ICart {
