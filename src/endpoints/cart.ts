@@ -45,7 +45,7 @@ export default class CartApi {
 	}
 
 	async setCartItemsQty(cartId: string, items: IItemsQty[], validateStock?: boolean): Promise<{result: true}> {
-		const {data} = await this.client.createRequest().post(`/orders/cart/${cartId}/qty`, {
+		const {data} = await this.client.createRequest().patch(`/orders/cart/${cartId}/qty`, {
 			items,
 			validate_stock: validateStock
 		});
