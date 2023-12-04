@@ -11,8 +11,8 @@ Checkout Area.
 
 Just clone and go!
 
-- [Theme "Moon" (NextJS)](https://github.com/kirill-zhirnov/boundless-moon-theme)
-- [NextJS starter kit (empty theme)](https://github.com/kirill-zhirnov/boundless-nextjs-sample)
+- [Next.js E-commerce Starter kit (v14 version: The new App router)](https://github.com/kirill-zhirnov/nextjs-ecommerce-starter-kit)
+- [All E-commerce templates](https://boundless-commerce.com/templates)
 
 **Ready to use checkout area:**
 
