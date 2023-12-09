@@ -10,7 +10,9 @@ export interface IRegisterCustomerData {
 	receive_marketing_info?: '1';
 	custom_attrs?: {
 		[key: string]: any
-	}
+	},
+	send_welcome_email?: boolean,
+	login_url?: string
 }
 
 export interface ICustomer {

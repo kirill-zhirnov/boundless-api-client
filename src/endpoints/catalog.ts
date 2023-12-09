@@ -84,6 +84,8 @@ export interface IGetProductsParams {
 	page?: number;
 	cross_sell_category?: 'related' | 'similar';
 	cross_sell_product?: number;
+	removed?: 'all' | 'removed';
+	published_status?: 'all' | 'hidden';
 	'per-page'?: number;
 	sort?: string;
 }
