@@ -7,7 +7,7 @@ export interface IRegisterCustomerData {
 	first_name?: string;
 	last_name: string;
 	private_comment?: string;
-	receive_marketing_info?: '1';
+	receive_marketing_info?: boolean;
 	custom_attrs?: {
 		[key: string]: any
 	},
