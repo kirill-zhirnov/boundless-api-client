@@ -15,17 +15,23 @@ export default class AdminOrderApi {
 	}
 
 	async updateOrder(uuId: string, request: IUpdateOrderRequest): Promise<IAdminOrderInList> {
-		const {data: order} = await this.client.createRequest().put(`/orders/admin/order/${uuId}`, request);
+		const {data: order} = await this.client.createRequest().patch(`/orders/admin/order/${uuId}`, request);
 
 		return order;
 	}
 }
 
 export interface IUpdateOrderRequest {
-	payment_method_id?: number|null,
-	customer_id?: string|null,
+	status_id?: number,
+	customer_id?: string,
 	is_paid?: boolean,
-	internal_comment?: string;
+	payment_method_id?: number,
+	internal_comment?: string,
+	delivery_id?: number,
+	shipping_address?: {[key: string]: any},
+	billing_address?: {[key: string]: any},
+	billing_address_the_same?: boolean,
+	custom_attrs?: {[key: string]: any}
 }
 
 export interface IGetOrdersParams {
