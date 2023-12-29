@@ -10,6 +10,7 @@ export * from './types/catalog/characteristic';
 export * from './types/catalog/variant';
 export * from './types/catalog/inventoryItem';
 export * from './types/catalog/label';
+export * from './types/catalog/prices';
 
 export * from './types/orders/cart';
 export * from './types/orders/checkout';

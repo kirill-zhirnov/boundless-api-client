@@ -1,5 +1,6 @@
 import {IVariantCharacteristic} from './characteristic';
 import {IItemSize} from './inventoryItem';
+import {IFinalPrice} from './prices';
 
 export interface IVariant {
 	variant_id: number;
@@ -9,6 +10,8 @@ export interface IVariant {
 	created_at: string;
 	size: IItemSize;
 	title: string;
+	in_stock: boolean;
+	prices: IFinalPrice[];
 	inventoryItem: IInventoryItem;
 }
 
@@ -21,24 +24,11 @@ export interface IInventoryItem {
 	custom_item_id: number | null;
 }
 
-export interface IProductVariant {
-	variant_id: number;
-	sku: string | null;
-	title: string;
-	price: number | null;
-	price_old: number | null;
-	item_id: number;
-	track_inventory: boolean;
-	available_qty: number;
-	reserved_qty: number;
-	in_stock: boolean;
-}
-
 export interface IExtendedVariants {
 	characteristics: IVariantCharacteristic[],
 	combinations: IVariantCombination,
 	idCombinations: IVariantIdCombinations,
-	list: IProductVariant[];
+	list: IVariant[];
 }
 
 export interface IVariantCombination {

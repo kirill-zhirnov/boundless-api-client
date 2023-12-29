@@ -5,6 +5,7 @@ import {ICategory, ICategoryItem, IProductCategoryRels} from './category';
 import {IProductAttribute} from './characteristic';
 import {IExtendedVariants} from './variant';
 import {IItemSize} from './inventoryItem';
+import {IFinalPrice} from './prices';
 
 export enum TTaxStatus {
 	taxable = 'taxable',
@@ -20,9 +21,7 @@ export interface IProduct {
 	external_id: null | string;
 	item_id: number;
 	in_stock: boolean;
-	price_id?: number | null;
-	price_alias?: string;
-	price: IProductPrice | null;
+	prices: IFinalPrice[];
 	text: IProductText | null;
 	props: IProductProps | null;
 	manufacturer: IProductManufacturer | null;
@@ -43,16 +42,6 @@ export interface IProductManufacturer {
 	image?: string | null,
 }
 
-export interface IProductPrice {
-	value: number | null;
-	min: number | null;
-	max: number | null;
-	old: number | null;
-	old_min: number | null;
-	old_max: number | null;
-	currency_alias: string | null;
-}
-
 export interface IProductProps {
 	available_qty: number | null;
 	reserved_qty: number | null;
@@ -66,26 +55,6 @@ export interface IProductProps {
 }
 
 export type IProductCategory = Pick<ICategory, 'category_id' | 'title' | 'url_key'>;
-
-export interface ICartProduct {
-	product_id: number;
-	sku: string | null;
-	title: string;
-	url_key?: string | null;
-	external_id: number | string | null,
-	has_variants: boolean;
-	item_id: number;
-	group_id: number;
-	price: IProductPrice | null;
-	status: TPublishingStatus;
-	text: IProductText;
-	extendedVariants: IExtendedVariants;
-	in_stock: boolean;
-	images: IProductImage[];
-	created_by: number | null;
-	created_at: string;
-	deleted_at: string | null;
-}
 
 export interface IProductText {
 	description: string | null;
@@ -150,7 +119,7 @@ export interface IProductItem {
 	external_id: string | null;
 	item_id: number;
 	in_stock: boolean;
-	price: IProductPrice | null;
+	prices: IFinalPrice[];
 	text: IProductText;
 	images: IProductImage[];
 	props: IProductItemProps;
@@ -167,6 +136,11 @@ export interface IProductItem {
 	created_at: string;
 	deleted_at?: string | null;
 }
+
+export interface ICartProduct extends Omit<IProductItem,
+	'manufacturer' | 'default_category' | 'product_type' | 'labels' | 'sort_price' |
+	'sort_in_stock' | 'seo' | 'attributes' | 'categoryRels'
+> {}
 
 export interface IProductItemProps {
 	available_qty: number;
