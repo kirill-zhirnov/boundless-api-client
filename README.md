@@ -233,7 +233,8 @@ await apiClient.createRequest().post('/catalog/products', {
 await apiClient.createRequest().put('/catalog/products/1', {title: 'my new title'});
 ```
 
-`apiClient.createRequest()` returns instance of `AxiosInstance` - pre-configured instance for API requests.
+`apiClient.createRequest()` returns instance of [Axios Fetch Adapter](https://github.com/kirill-zhirnov/boundless-api-client/blob/master/src/axiosFetchAdapter.ts) 
+(Axios was replaced to `fetch`) - pre-configured instance for API requests.
 
 Example of files uploader (where `file` is instance of `File`):
 
