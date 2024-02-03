@@ -74,8 +74,9 @@ export class AxiosFetchAdapter {
 			data: null
 		};
 
-		switch (response.headers.get('Content-Type')) {
+		switch (String(response.headers.get('Content-Type')).toLowerCase()) {
 			case 'application/json':
+			case 'application/json; charset=utf-8':
 				out.data = await response.json();
 				break;
 			default:
