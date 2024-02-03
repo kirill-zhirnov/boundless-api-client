@@ -1,4 +1,3 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import CatalogApi from './endpoints/catalog';
 import CartApi from './endpoints/cart';
 import {BoundlessThumb} from './thumb';
@@ -7,6 +6,7 @@ import CustomerApi from './endpoints/customer';
 import CustomerOrderApi from './endpoints/customerOrder';
 import AdminOrderApi from './endpoints/adminOrder';
 import SystemApi from './endpoints/system';
+import {AxiosFetchAdapter, TAdapterExtraRequestInit, TAdapterHeaders} from './axiosFetchAdapter';
 
 const DEFAULT_BASE_URL = 'https://v1.api.boundless-commerce.com';
 
@@ -77,28 +77,23 @@ export class BoundlessClient {
 		return this;
 	}
 
-	/**
-	* Returns an axios instance to make custom API requests.
-	*
-	* @param {AxiosRequestConfig} config - additional axios request config
-	*/
-	public createRequest(config: AxiosRequestConfig = {}, appendCustomerAuthToken = true): AxiosInstance {
+	public createRequest(config: {headers?: TAdapterHeaders, extraRequest?: TAdapterExtraRequestInit} = {}, appendCustomerAuthToken = true): AxiosFetchAdapter {
 		if (!this.token) {
 			throw new Error('Token is required for authorization, use setAuthToken to set the token');
 		}
 
-		const instance = axios.create(Object.assign({
-			baseURL: this.baseUrl,
-			proxy: false
-		}, config));
-
-		instance.defaults.headers.common['Authorization'] = `Bearer ${this.token}`;
+		const authHeaders: TAdapterHeaders = {
+			'Authorization': `Bearer ${this.token}`,
+		};
 
 		if (appendCustomerAuthToken && this.customerAuthToken) {
-			instance.defaults.headers.common['X-Customer'] = this.customerAuthToken;
+			authHeaders['X-Customer'] = this.customerAuthToken;
 		}
 
-		return instance;
+		return new AxiosFetchAdapter(this.baseUrl, {
+			...authHeaders,
+			...config.headers
+		}, config.extraRequest);
 	}
 
 	public setS3FolderPrefix(prefix: string) {

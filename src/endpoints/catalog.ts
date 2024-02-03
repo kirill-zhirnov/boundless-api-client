@@ -5,62 +5,71 @@ import {ICategory, ICategoryFlatItem, ICategoryItem} from '../types/catalog/cate
 import {createGetStr, extractPaginationFromHeaders} from '../utils';
 import {IPagination} from '../types/common';
 import {IProductManufacturer} from '../types/catalog/product';
-import {ICharacteristic} from '..';
+import {ICharacteristic, TAdapterExtraRequestInit} from '..';
 
 export default class CatalogApi {
 	constructor(protected client: BoundlessClient) { }
 
-	async getProducts(params: IGetProductsParams = {}): Promise<{products: IProduct[], pagination: IPagination}> {
-		const {headers, data: products} = await this.client.createRequest().get(`/catalog/products?${createGetStr({...params})}`);
+	async getProducts(params: IGetProductsParams = {}, extraRequest: TAdapterExtraRequestInit = {}): Promise<{products: IProduct[], pagination: IPagination}> {
+		const {headers, data: products} = await this.client.createRequest({extraRequest})
+			.get(`/catalog/products?${createGetStr({...params})}`);
 		const pagination = extractPaginationFromHeaders(headers as {[key: string]: string});
 
 		return {products, pagination};
 	}
 
-	async getCategoryTree(params: IGetCategoryTreeParams = {}): Promise<ICategory[]> {
-		const {data} = await this.client.createRequest().get('/catalog/categories/tree', {params});
+	async getCategoryTree(params: IGetCategoryTreeParams = {}, extraRequest: TAdapterExtraRequestInit = {}): Promise<ICategory[]> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get('/catalog/categories/tree', {params});
 
 		return data;
 	}
 
-	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}): Promise<ICategoryItem> {
-		const {data} = await this.client.createRequest().get(`/catalog/categories/item/${slugOrId}`, {params});
+	async getCategoryItem(slugOrId: number | string, params: IGetCategoryItemParams = {}, extraRequest: TAdapterExtraRequestInit = {}): Promise<ICategoryItem> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get(`/catalog/categories/item/${slugOrId}`, {params});
 
 		return data;
 	}
 
-	async getFlatCategories(params: IGetCategoryFlatParams = {}): Promise<ICategoryFlatItem[]> {
-		const {data} = await this.client.createRequest().get('/catalog/categories/flat', {params});
+	async getFlatCategories(params: IGetCategoryFlatParams = {}, extraRequest: TAdapterExtraRequestInit = {}): Promise<ICategoryFlatItem[]> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get('/catalog/categories/flat', {params});
 
 		return data;
 	}
 
-	async getCategoryParents(categoryId: number): Promise<ICategoryFlatItem[]> {
-		const {data} = await this.client.createRequest().get('/catalog/categories/parents', {params: {category: categoryId}});
+	async getCategoryParents(categoryId: number, extraRequest: TAdapterExtraRequestInit = {}): Promise<ICategoryFlatItem[]> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get('/catalog/categories/parents', {params: {category: categoryId}});
 
 		return data;
 	}
 
-	async getFilters(params: IGetFiltersParams = {}): Promise<IFilter[]> {
-		const {data} = await this.client.createRequest().get('/catalog/filters', {params});
+	async getFilters(params: IGetFiltersParams = {}, extraRequest: TAdapterExtraRequestInit = {}): Promise<IFilter[]> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get('/catalog/filters', {params});
 
 		return data;
 	}
 
-	async getFiltersByCategory(categoryId: number): Promise<IFilter[]> {
-		const {data} = await this.client.createRequest().get(`/catalog/filters/by-category/${categoryId}`);
+	async getFiltersByCategory(categoryId: number, extraRequest: TAdapterExtraRequestInit = {}): Promise<IFilter[]> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get(`/catalog/filters/by-category/${categoryId}`);
 
 		return data;
 	}
 
-	async getFilterFieldsRanges(request: IFilterFieldsRequest): Promise<IFilterFieldsRangesResponse> {
-		const {data} = await this.client.createRequest().post('/catalog/products/filter-fields-ranges', request);
+	async getFilterFieldsRanges(request: IFilterFieldsRequest, extraRequest: TAdapterExtraRequestInit = {}): Promise<IFilterFieldsRangesResponse> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.post('/catalog/products/filter-fields-ranges', request);
 
 		return data;
 	}
 
-	async getProduct(slugOrId: number | string): Promise<IProductItem> {
-		const {data} = await this.client.createRequest().get(`/catalog/products/item/${slugOrId}`);
+	async getProduct(slugOrId: number | string, extraRequest: TAdapterExtraRequestInit = {}): Promise<IProductItem> {
+		const {data} = await this.client.createRequest({extraRequest})
+			.get(`/catalog/products/item/${slugOrId}`);
 
 		return data;
 	}

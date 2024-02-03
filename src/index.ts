@@ -1,6 +1,14 @@
 export {BoundlessClient} from './client';
 export {BoundlessThumb} from './thumb';
 export {extractPaginationFromHeaders, createGetStr, calcThumbSizeByProportion, calcProportion} from './utils';
+export {
+	AxiosFetchAdapter,
+	IAdapterResponse,
+	IAdapterNegativeResponse,
+	TAdapterExtraRequestInit,
+	TAdapterBodyInit,
+	TAdapterHeaders
+} from './axiosFetchAdapter';
 
 //Types exports:
 export * from './types/catalog/filter';
